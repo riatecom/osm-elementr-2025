@@ -1,0 +1,194 @@
+adm0_a3,country_name_geofabrik,Size_2025_OSM
+AFG,Afghanistan,99
+ALB,Albania,46.5 
+DZA,Algeria,274
+OTH,American Oceania,5.0 
+OTH,Andorra,3.1 
+AGO,Angola,72
+ARG,Argentina,367
+ARM,Armenia,47.2 
+AUS,Australia,798
+AUT,Austria,732
+AZE,Azerbaijan,40.4 
+OTH,Azores,15.9 
+BHS,Bahamas,12.8 
+BGD,Bangladesh,311
+BLR,Belarus,307
+BEL,Belgium,605
+BLZ,Belize,16.7 
+BEN,Benin,42.4 
+BTN,Bhutan,22.2 
+BOL,Bolivia,151
+BIH,Bosnia-Herzegovina,140
+BWA,Botswana,82
+BRA,Brazil,1700
+BGR,Bulgaria,144
+BFA,Burkina Faso,74
+BDI,Burundi,43.5 
+KHM,Cambodia,34.2 
+CMR,Cameroon,200
+CAN,Canada,5000
+OTH,Canary Islands,53
+OTH,Cape Verde,11.0 
+CAF,Central African Republic,92
+TCD,Chad,98
+CHL,Chile,303
+CHN,China,1200
+COL,Colombia,279
+OTH,Comores,3.7 
+COD,Congo (Democratic Republic/Kinshasa),379
+COG,Congo (Republic/Brazzaville),27.3 
+,Cook Islands,0.9
+CRI,Costa Rica,34.9 
+HRV,Croatia,172
+CUB,Cuba,52
+CYP,Cyprus,31.3 
+CZE,Czech Republic,843
+DNK,Denmark,439
+DJI,Djibouti,6.6 
+TLS,East Timor,16.2 
+ECU,Ecuador,107
+EGY,Egypt,162
+SLV,El Salvador,32.3 
+GNQ,Equatorial Guinea,6.0 
+ERI,Eritrea,25.9 
+EST,Estonia,109
+ETH,Ethiopia,99
+FLK,Faroe Islands,7.1 
+FJI,Fiji,16.1 
+FIN,Finland,635
+FRA,France,4400
+GAB,Gabon,21.1 
+SAU,GCC States,223
+GEO,Georgia,87
+DEU,Germany,4200
+GHA,Ghana,88
+GRC,Greece,304
+GRL,Greenland,16.6 
+GTM,Guatemala,121
+OTH,Guernsey and Jersey,3.6 
+GIN,Guinea,106
+GNB,Guinea-Bissau,9.8 
+GUY,Guyana,12.8 
+HTI,Haiti and Dominican Republic,80
+HND,Honduras,66
+HUN,Hungary,272
+ISL,Iceland,59
+OTH,Île de Clipperton,0.4
+IND,India,1500
+IDN,Indonesia (with East Timor),1500
+IRN,Iran,207
+IRQ,Iraq,79
+IRL,Ireland and Northern Ireland,339
+OTH,Isle of Man,5.1 
+ISR,Israel and Palestine,109
+ITA,Italy,1900
+CIV,Ivory Coast,67
+JAM,Jamaica,35.2 
+JPN,Japan,2000
+JOR,Jordan,28.5 
+KAZ,Kazakhstan,186
+KEN,Kenya,301
+OTH,Kiribati,2.3 
+KOS,Kosovo,27.6 
+KGZ,Kyrgyzstan,43.8 
+LAO,Laos,48.6 
+LVA,Latvia,122
+LBN,Lebanon,48.5 
+LSO,Lesotho,115
+LBR,Liberia,34.9 
+LBY,Libya,70
+OTH,Liechtenstein,2.9 
+LTU,Lithuania,199
+LUX,Luxembourg,42.3 
+MKD,Macedonia,25.1 
+MDG,Madagascar,357
+MWI,Malawi,135
+MYS,Malaysia,219
+OTH,Maldives,3.2 
+MLI,Mali,160
+OTH,Malta,7.2 
+OTH,Marshall Islands,1.0 
+MRT,Mauritania,25.8 
+OTH,Mauritius,7.6 
+MEX,Mexico,563
+OTH,Micronesia,1.8 
+MDA,Moldova,73
+OTH,Monaco,0.6
+MNG,Mongolia,55
+MNE,Montenegro,29.5 
+MAR,Morocco,225
+MOZ,Mozambique,196
+MMR,Myanmar (a.k.a. Burma),206
+NAM,Namibia,45.9 
+OTH,Nauru,0.2
+NPL,Nepal,380
+NLD,Netherlands,1200
+NCL,New Caledonia,12.7 
+NZL,New Zealand,348
+NIC,Nicaragua,52
+NER,Niger,67
+NGA,Nigeria,604
+OTH,Niue,0.4
+PRK,North Korea,75
+NOR,Norway,1200
+PAK,Pakistan,130
+OTH,Palau,0.7
+PAN,Panama,28.1 
+PNG,Papua New Guinea,47.3 
+PRY,Paraguay,142
+PER,Peru,218
+PHL,Philippines,545
+OTH,Pitcairn Islands,0.1
+POL,Poland,1800
+OTH,Polynésie française (French Polynesia),14.0 
+PRT,Portugal,349
+ROU,Romania,279
+RUS,Russian Federation,3600
+RWA,Rwanda,51
+OTH,Saint Helena,0.7
+OTH,Samoa,2.7 
+OTH,Sao Tome and Principe,1.1 
+SEN,Senegal and Gambia,97
+SRB,Serbia,203
+,Seychelles,2.6 
+SLE,Sierra Leone,37.7 
+SVK,Slovakia,294
+SVN,Slovenia,285
+SLB,Solomon Islands,9.3 
+SOM,Somalia,148
+ZAF,South Africa,343
+KOR,South Korea,231
+SDS,South Sudan,110
+ESP,Spain,1200
+LKA,Sri Lanka,130
+SDN,Sudan,118
+SUR,Suriname,19.6 
+SWZ,Swaziland,28.7 
+SWE,Sweden,722
+CHE,Switzerland,467
+SYR,Syria,67
+TWN,Taiwan,285
+TJK,Tajikistan,43.8 
+TZA,Tanzania,664
+THA,Thailand,284
+TGO,Togo,57
+OTH,Tokelau,0.1
+OTH,Tonga,3.5 
+TUN,Tunisia,78
+TUR,Turkey,552
+TKM,Turkmenistan,19.3 
+OTH,Tuvalu,0.3
+UGA,Uganda,324
+UKR,Ukraine (with Crimea),773
+GBR,United Kingdom,1800
+USA,United States of America,10300
+URY,Uruguay,50
+UZB,Uzbekistan,89
+VUT,Vanuatu,7.5 
+VEN,Venezuela,90
+VNM,Vietnam,294
+,Wallis et Futuna,0.5
+YEM,Yemen,40.0 
+ZMB,Zambia,236
+ZWE,Zimbabwe,165
