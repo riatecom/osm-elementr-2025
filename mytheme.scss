@@ -1,0 +1,88 @@
+/*-- scss:defaults --*/
+
+// colors
+$body-bg: #fff !default;
+$body-color :#1c1b1b !default;
+$link-color: #D3152C !default;
+$selection-bg: #26351c !default;
+
+// headings
+$presentation-heading-color: #000!default;
+
+// Font-size
+$presentation-font-size-root: 25px;
+$presentation-h2-font-size: 1.5em;
+$presentation-h3-font-size: 1.5em;
+
+
+.title {
+  font-size: 1.5em !important;
+  color: #D3152C !important;
+  position: fixed;
+  text-align: left;
+  top: 200px; left: -35px;
+}
+
+.subtitle {
+  font-size: 1.2em !important;
+  color: #D3152C !important;
+  position: fixed;
+  text-align: left;
+  top: 250px; left: -35px;
+}
+
+
+.quarto-title-author-name {
+  font-size: 0.9em !important;
+  font-weight: 300;
+  color: #1c1b1b !important;
+  position: fixed;
+  text-align: left;
+  top: 400px; left: -35px;
+}
+
+.date {
+  color: #D3152C !important;
+  font-size: 0.8em;
+  position: fixed;
+  text-align: left;
+  top: 420px; left: -35px;
+}
+
+
+h1 {
+  color: #D3152C !important;
+}
+
+h2 {
+  color: #D3152C !important;
+  text-align: center;
+  margin: 0 0 100px 0;
+}
+
+.big{
+    font-size: 1.8em;
+    font-weight: 600;
+}
+
+.medium{
+    font-size: 0.8em;
+}
+
+.small{
+    font-size: 0.7em;
+}
+
+.white{
+  color: #fff 
+}
+
+.iframe {
+    width: 50%;
+    height: 50%;
+    margin: 0px;
+    padding: 0px;
+    background: blue;
+    border: 0px;
+    display: block;
+}
