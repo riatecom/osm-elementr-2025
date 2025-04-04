@@ -1,6 +1,6 @@
 # Utiliser OpenStreetMap avec R
 
-Présentation réalisée par Ronan Ysebaert, Louis Laurian et Timothée Giraud (UAR RIATE pour le groupe [ElementR](https://elementr.gitpages.huma-num.fr/website/apropos.html) en mai 2025.
+Présentation réalisée par Ronan Ysebaert, Louis Laurian, Timothée Giraud et Matthieu Viry (UAR RIATE pour le groupe [ElementR](https://elementr.gitpages.huma-num.fr/website/apropos.html) en mai 2025.
 
 # Contenu
 
