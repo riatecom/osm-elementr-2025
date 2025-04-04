@@ -32,7 +32,43 @@ editor_options:
 
 - Evolution des utilisateurs à travers le temps (https://osmstats.neis-one.org/?item=members). 38 % des utilisateurs inscrits ont modifié un objet et 38 % ont contribué de manière significative (Zipf, 2012). 
 - Evolution des contributions
-- Contributions par pays (source Geofabrik) / df dispo à coupler avec rnatural earth
+
+
+## Les données OSM par pays
+
+```{r}
+library(rnaturalearth)
+library(mapsf)
+library(sf)
+
+# Import data
+world <- ne_countries(scale = "small") 
+df <- read.csv("docs/geofabrik_size_country.csv", dec = ",")
+
+# Join and data handling
+world <- merge(world[,c("adm0_a3_fr", "pop_est")], df, by.x = "adm0_a3_fr", by.y = "adm0_a3", all.x = TRUE)
+world <- world[world$adm0_a3_fr  != "ATA",]
+world <- st_transform(world, "+proj=bertin1953")
+
+world <- aggregate(world[,c("pop_est", "Size_2025_OSM")], by = list(world$adm0_a3_fr),
+                   FUN = sum)
+world$dens <- world$Size_2025_OSM / (world$pop_est/1000000)
+world <- world[order(world$dens, decreasing = TRUE),]
+
+# Map
+mf_map(world, col = "white")
+mf_map(world, var = c("Size_2025_OSM", "dens"), type = "prop_choro", pal = "YlOrRd", inches = .2,
+       leg_title = c("Poids du fichier\nosm.pbf (2025, Mo)", "Mo/Million d'habitants"), nbreaks = 5,
+       leg_val_rnd = c(0,0))
+mf_title("Masse de données OpenStreetMap à travers le monde")
+mf_credits("Source : Geofabrik, 2025")
+```
+
+- France = 4.4 GB
+- Top 10 (masse de donnée / million hab) : Féroé, Groenland, Norvège, Islande, Suède, Canada, Finland, Autriche, Estonie, Rep Tchèque
+
+
+
 
 ## Utilisateurs et contributeurs
 
