@@ -22,16 +22,47 @@ editor_options:
 
 ## Bref historique et grandes spécificités
 
-- Juillet 2004, Steve Coast.
-- Wikipedia de la donnée géographique
+::: {.center-xy}
+::: columns
+
+:::: {.column width="50"}
+- Un projet de cartographie collaborative en ligne
+- Inspiré de Wikipedia et la prédominance de données géographiques propriétaires
 - Courant du libre (licence Open Data Commons Open Database License)
 - Contribution par les utilisateurs
-- OpenStreetMap France, 2011
+:::: 
+
+:::: {.column width="50%"}
+**Quelques dates clé**
+
+- 2004 : création par Steve Coast (University College Londres)
+- 2006 : création de la fondation OpenStreetMap (infrastructure matérielle + cadre juridique)
+- 2010 : import du cadastre français dans un format vectoriel
+- 2011 : création de l'association OpenStreetMap France
+:::: 
+:::
+
+:::
+
+
 
 ## Utilisateurs et contributeurs
 
-- Evolution des utilisateurs à travers le temps (https://osmstats.neis-one.org/?item=members). 38 % des utilisateurs inscrits ont modifié un objet et 38 % ont contribué de manière significative (Zipf, 2012). 
-- Evolution des contributions
+- 38 % des utilisateurs inscrits ont modifié un objet et 38 % ont contribué de manière significative (Zipf, 2012). 
+- Une enquête menée de 2014 à 2017 a révélé que le contributeur type est masculin et trentenaire (moyenne d'âge 38 ans), doté d'un niveau de diplôme élevé, plutôt cadre et « évoluant entre informatique et territoires », avec un « intérêt marqué et renforcé pour les cartes (Noucher, 2018)
+
+
+::: columns
+
+:::: {.column width="50"}
+[Utilisateures](img/registered_members.png)
+:::: 
+
+:::: {.column width="50%"}
+[Membres actifs](img/daily_active_members.png)
+:::: 
+:::
+
 
 
 ## Les données OSM par pays
