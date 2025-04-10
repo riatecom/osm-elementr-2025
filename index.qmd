@@ -18,6 +18,31 @@ editor_options:
   chunk_output_type: console
 ---
 
+# Déroulé
+
+::: columns
+
+:::: {.column width="48"}
+
+**(1) OSM et des usages possibles dans la recherche... avec R (≈ 1h30)**
+
+- Présentation d'OpenStreetMap : spécificités, organisation, usages, documentation et logicels associés
+- Packages R de référence permettant d'interfacer OSM 
+- Retour sur les usages d'OSM dans les travaux du RIATE
+
+:::: 
+
+:::: {.column width="48"}
+
+**(2) Mise en pratique (≈ 1h30)**
+
+- Une chaine de traitement reproductible et extensible
+- Basé sur les packages R de référence : géoréférencement, import de tuiles OSM, d'objets géographiques associé à quelques traitements spatiaux
+
+::::
+
+::: 
+
 # OpenStreetMap en quelques mots
 
 ## Bref historique et grandes spécificités
@@ -26,46 +51,136 @@ editor_options:
 ::: columns
 
 :::: {.column width="50"}
+<br><br>
+
 - Un projet de cartographie collaborative en ligne
-- Inspiré de Wikipedia et la prédominance de données géographiques propriétaires
+- Inspiré de Wikipedia et par le constat de la prédominance de données géographiques propriétaires
 - Courant du libre (licence Open Data Commons Open Database License)
 - Contribution par les utilisateurs
+- Souvent présenté comme une alternative à Google. 
 :::: 
 
-:::: {.column width="50%"}
+:::: {.column width="50%" .fragment}
 **Quelques dates clé**
 
-- 2004 : création par Steve Coast (University College Londres)
+- 2004 : création par Steve Coast (University College Londres) et enregistrement du nom de domaine openstreetmap.org
 - 2006 : création de la fondation OpenStreetMap (infrastructure matérielle + cadre juridique)
+- 2007 : première conférence State Of The Map (SOTM)
 - 2010 : import du cadastre français dans un format vectoriel
 - 2011 : création de l'association OpenStreetMap France
+- 2012 : passage de la licence en OdbL
+- 2013 : premier SOTM France
 :::: 
 :::
-
 :::
 
 
+## Membres et contributeurs {.scrollable}
 
-## Utilisateurs et contributeurs
+<center> 
 
-- 38 % des utilisateurs inscrits ont modifié un objet et 38 % ont contribué de manière significative (Zipf, 2012). 
-- Une enquête menée de 2014 à 2017 a révélé que le contributeur type est masculin et trentenaire (moyenne d'âge 38 ans), doté d'un niveau de diplôme élevé, plutôt cadre et « évoluant entre informatique et territoires », avec un « intérêt marqué et renforcé pour les cartes (Noucher, 2018)
+
+[Utilisateurs enregistrés](https://wiki.openstreetmap.org/wiki/Stats)
+
+![](img/registered.png){fig-align="center" width="800px"}
+<br>
+<small>Source : Wiki OSM, 2025</small>
+
+<center>
+
+
+
+<center>
+
+::: columns
+
+:::: {.column width="50%"}
+
+
+
+[Contributeurs accumulés par mois](https://wiki.openstreetmap.org/wiki/Stats){.nostretch fig-align="center" width="800px"}
+
+![](img/contrib.png)
+
+<small>Source : osmstats, 2025</small>
+
+
+::::
+
+:::: {.column width="50%"}
+
+[Contributeurs par année](https://wiki.openstreetmap.org/wiki/Stats){.nostretch fig-align="center" width="800px"}
+
+![](img/contrib_year.png)
+<small>Source : Wiki OSM, 2025</small>
+
+::::
+
+:::
+
+</center>
+
+
+[Part des utilisateurs contributeurs](https://wiki.openstreetmap.org/wiki/Stats){.nostretch fig-align="center" width="800px"}
+
+![](img/register_contrib.png)
+<small>Source : Wiki OSM, 2025</small>
+
+
+## Profil des contributeurs
+
+On peut distinguer les **contributions individuelles** (*volunteers*) et les **imports de données** (*data imports*) issus de **sources externes**, souvent massives. 
 
 
 ::: columns
 
-:::: {.column width="50"}
-[Utilisateures](img/registered_members.png)
-:::: 
+:::: {.column width="45%" .medium}
 
-:::: {.column width="50%"}
-[Membres actifs](img/daily_active_members.png)
-:::: 
+**Contributions individuelles**
+
+- Contributions prioritaires pour OSM. 
+
+- Par des individus : couverture systématique d'un petit territoire (l'espace vécu), ou d'objets spécifiques sur un territoire plus étendu (expertise particulière). 
+
+- Une enquête menée de 2014 à 2017 ([Duféal et Noucher, 2017](https://journals.openedition.org/netcom/2635)) a révélé que le contributeur type est masculin et trentenaire (moyenne d'âge 38 ans), doté d'un niveau de diplôme élevé, plutôt cadre et « évoluant entre informatique et territoires », avec un « intérêt marqué et renforcé pour les cartes 
+
+
+::::
+
+:::: {.column width="5%"}
+::::
+
+:::: {.column width="45%" .medium}
+
+**Import de données externes**
+
+- Par des institutions, des gouvernements ou des compagnies/des organisations 
+
+- Des routes, des limites administratives, des objets spécifiques (arbres, hôpitaux). Voir (tous les arbres d'une ville, tout le réseau d'un  pays etc.). Voir le [cataloque](https://wiki.openstreetmap.org/wiki/Import/Catalogue).  
+
+- Controversé : 
+    - progression complétude et intérêt d'usage de la base ++
+    - qualité inégale, maintenance requise, mauvaise influence sur la communauté ([Witt, Loos, Zipf, 2021](https://doi.org/10.3390/ijgi10080528))
+
+::::
+
 :::
 
+À l'intersection entre les deux, des *[mapping parties](https://wiki.openstreetmap.org/wiki/FR:Cartoparties)* sont organisées régulièrement pour former des débutants et saisir de nouvelles informations dans OSM collectivement : [25 événements](https://wiki.openstreetmap.org/wiki/Current_events) proposés à travers le monde en mai 2025 ! 
 
 
-## Les données OSM par pays
+## Une base de donnée évolutive
+
+<center>
+
+![](img/GifsLechenet03.gif){.nostretch  width="800px"}
+<small>
+Source: OSM Then and Now (téléchargé depuis cet [article](https://www.lemonde.fr/blog/data/tag/openstreetmap/) du Monde)
+</small>
+
+</center>
+
+## Les données OSM par pays en 2025
 
 ```{r}
 library(rnaturalearth)
@@ -76,6 +191,7 @@ library(sf)
 world <- ne_countries(scale = "small") 
 df <- read.csv("docs/geofabrik_size_country.csv", dec = ",")
 
+
 # Join and data handling
 world <- merge(world[,c("adm0_a3_fr", "pop_est")], df, by.x = "adm0_a3_fr", by.y = "adm0_a3", all.x = TRUE)
 world <- world[world$adm0_a3_fr  != "ATA",]
@@ -85,69 +201,269 @@ world <- aggregate(world[,c("pop_est", "Size_2025_OSM")], by = list(world$adm0_a
                    FUN = sum)
 world$dens <- world$Size_2025_OSM / (world$pop_est/1000000)
 world <- world[order(world$dens, decreasing = TRUE),]
+world$dens_rank <- 1:nrow(world)
+
+world <- world[order(world$Size_2025_OSM, decreasing = TRUE),]
+world$size_rank <- 1:nrow(world)
+
 
 # Map
 mf_map(world, col = "white")
 mf_map(world, var = c("Size_2025_OSM", "dens"), type = "prop_choro", pal = "YlOrRd", inches = .2,
+       border = "white",
        leg_title = c("Poids du fichier\nosm.pbf (2025, Mo)", "Mo/Million d'habitants"), nbreaks = 5,
        leg_val_rnd = c(0,0))
 mf_title("Masse de données OpenStreetMap à travers le monde")
 mf_credits("Source : Geofabrik, 2025")
 ```
 
-- France = 4.4 GB
-- Top 10 (masse de donnée / million hab) : Féroé, Groenland, Norvège, Islande, Suède, Canada, Finland, Autriche, Estonie, Rep Tchèque
-
-
-
-
-## Utilisateurs et contributeurs
-
-gif (source https://www.lemonde.fr/blog/data/tag/openstreetmap/) 
+- **Top 3 (Masse de données)** : USA (10.3 Go), Canada (5), France (4.4)
+- **Top 3 (Mo / million hab)** : Féroé (2090 Mo/Million d'habitants), Groenland (295), Norvège (224) / (FR 18e, 65) 
 
 
 ## Usages courants
 
 - Amazon, Apple, FB, etc.
 - Secteur humanitaire (CartONG, Nations Unies, Banque Mondiale, etc.). Cf https://www.missingmaps.org/
-- Collectivités (exemple GRANULAR mise en place service partagé de données à l'échelle inter-communale sur la gestion des déchets).
+- Collectivités
 - Agences de transport ([SNCF](https://peertube.openstreetmap.fr/w/1Bi7aeGiRFWAXhU61a8gKC), Deutsche Bahn, etc.)
 - SIG et logiciels associés (QGIS, ESRI)
 - Medias
 - Des services/outils pour le public : randonnée, tourisme/city map, etc.) 
 
 
+## Usages par les collectivités
+
+- [Recensement (2018)](https://labo.societenumerique.gouv.fr/fr/articles/ces-collectivit%C3%A9s-qui-misent-sur-openstreetmap-et-la-cartographie-participative/) d'initiatives menées par des collectivités.
+
+- [Enquête 2020](https://labo.societenumerique.gouv.fr/fr/articles/lutilisation-et-la-contribution-%C3%A0-openstreetmap-par-lacteur-public/) sur la vision d'OSM par l'acteur public. 
+
+    - Alimentation / compléter les SIG internes
+    - fourniture de cartes locales
+    - renseignement de points d'intérêt à destination des usagers et touristes
+    - cartographie des réseaux de transport
+
+
 # La base de données OpenStreetMap
 
 ## Les objets géographiques dans OSM
 
-- nodes : un noeud qui contient des données avec sa position, des métadonnées (dernières contributions, modifications) et éventuellement des *tags* sous forme de pairs *key-value*.
-- way : une ligne avec au minimum 2 nodes. Peut se référer aussi à un polygone (une ligne qui a partage son premier et dernier point)
-- relation: pour regrouper des objets selon des caractéristiques communes (ligne de bus, objets inclus dans un aéroport, etc.) 
+::: columns
 
-## La folksonomie OSM
+:::: {.column width="30%"}
 
-- des tags, définis par des clés-valeur (key-value) pour caractériser les objets
-- proposés par la communauté : évolutif, flexibles
+- **node** : un noeud qui contient des données avec sa position, des métadonnées (dernières contributions, modifications) et éventuellement des *tags* sous forme de pairs *key-value*.
+- **way** : une ligne avec au minimum 2 nodes. Peut se référer aussi à un polygone (une ligne qui a partage son premier et dernier point)
+
+::::
+
+:::: {.column width="5%"}
+::::
+
+:::: {.column width="60%"}
+
+![](img/OpenStreetMap_data_primitives_in_iD.png)
+<small>Source: Wikipedia Commons, 2025 </small>
+
+:::: 
+
+:::
+
+- **relation** : pour regrouper des objets selon des caractéristiques communes (ligne de bus, objets inclus dans un aéroport, etc.) 
+
+## Nodes, ways & relations dans OpenStreetMap
+
+![](img/geometry_stat.png)
+
+<small>Source : Wiki OSM, 2025</small>
+
+
+## Les tags OSM
+
+::: columns
+
+:::: {.column width="30%"}
+
+- **Basé sur une folksonomie** : système de classification collaborative décentralisée spontanée, basé sur une indexation effectuée par des non-spécialistes 
+- Un **tag** est constitué d'une clé et d'une valeur (*key-value*) et caractérisent les objets géométriques
+- proposés par la **communauté** : évolutifs, flexibles
 - plusieurs tags peuvent être associés à un objet
 
-> exemple bâtiment recherche condorcet. 
-> OSM wiki pour s'y retrouver
+::::
 
-## Les clés principales
+:::: {.column width="5%"}
+::::
 
-présentation des clés principales en nb de contributions (+ types d'objets géo)
+:::: {.column width="60%"}
 
-Même chose avec la clé amenity
+![](img/key_value_condorcet.png)
+:::: 
+
+:::
 
 
-## Précision et complétude
+## OSM Wiki - La référence
 
-- Précision/justesse géométrique
-- Complétude des attributs / exemple tiré de l'étude centralité
+::: columns
+
+:::: {.column width="28%"}
+
+**Utile pour** :
+
+- Visualiser les tags les plus courants utilisés / admis par la communauté
+- Comprendre les attributs associés aux clés-valeurs (utilisables / contribuables)
+- Voir les objets géographiques auxquels ils se rattachent
+- Faire état des discussions / débats en cours
+
+::::
+
+
+:::: {.column width="72%"}
+
+<center>
+
+:::: {.panel-tabset}
+
+
+### Key-values
+
+![](img/key_value1.png)
+<small>Source : [Wiki OSM, 2025](https://wiki.openstreetmap.org/wiki/FR:%C3%89l%C3%A9ments_cartographiques)</small>
+
+### Détail
+![](img/key_value2a.png)
+<small>Source : [Wiki OSM, 2025](https://wiki.openstreetmap.org/wiki/FR:Tag:amenity%3Drestaurant)
+</small>
+
+### Débats
+![](img/key_value3.png)
+<small>Source : [Wiki OSM, 2025](https://wiki.openstreetmap.org/wiki/FR:Tag:amenity%3Drestaurant)
+</small>
+
+### Décision
+
+![](img/key_value2.png)
+<small>Source: [Wiki OSM, 2025](https://wiki.openstreetmap.org/wiki/FR:Key:highway)</small>
+
+
+### Osmecum
+
+![](img/osmecum.png)
+<small>Source: [Wiki OSM, 2025](https://wiki.openstreetmap.org/wiki/France/Osmecum)</small>
+
+:::: 
+
+</center>
+
+::::
+
+::::
+
+
+## Les clés les plus contribuées
+
+[Taginfo](https://taginfo.openstreetmap.org/keys) rassemble les informations sur les tags OSM afin  d'aider à comprendre ce qu'ils signifient et comment ils sont utilisés
+
+:::: {.panel-tabset}
+
+
+### Noeuds
+
+![](img/key_nodes.png)
+
+### Chemins
+
+![](img/key_ways.png)
+
+### Relations
+
+![](img/key_relations.png)
+
+:::: 
+
+
+
+# Précision et complétude
+
+## Un incontournable des études (scientifiques) sur OSM
+
+Du fait de l'écosystème d'OpenStreetMap la question de la complétude / précision des données de la base est centrale dans les études scientifiques sur le sujet.
+
+**Trois aspects sont régulièrement traités**, avec une abondante littérature scientifique portant généralement sur des **cas d'étude**.
+
+- **Précision / justesse géométrique et cohérence topologique** : comparer le niveau de précision des localisations présentes dans OSM au regard de bases de données de référence / trouver des solutions pour parer aux problèmes topologiques contenus dans la base de données.
+
+- **Complétude "brute" des données** : viser des manquements dans la base de données au regard de jeux de données externe de référence sur des zones de référence.
+
+- **Complétude et justesse attributaire** : présence ou non des attributs. Si oui, correctement utilisés ? Cela concerne aussi l'application de méthodes correctives permettant d'améliorer la justesse attributaire (routage)
+
+## Car...
+
+::: columns
+
+:::: {.column width="20%" .medium}
+... La tentation est grande de produire hâtivement ce type de représentations. 
+
+Est-ce une carte des services d'intérêt généraux ou des **contributions à OSM** ? Un point d'intérêt est-il **comparable** d'un pays à l'autre ?
+:::: 
+
+:::: {.column width="40%" .small .center}
+![](img/profecy_doctors.png)
+Source: [ESPON Profecy, 2025](https://archive.espon.eu/sites/default/files/attachments/D5%20Annex%203.%20Visualization%20of%20Input%20Data.pdf)
+:::: 
+
+:::: {.column width="40%"}
+![](img/profecy_hospitals.png)
+:::: 
+
+:::
+
+<small>
+**Précision méthodologique apportée** : *"As there is no centralized quality assurance mechanism
+implemented in the OpenStreetMap initiative, the OSM database has problems with
+quality assurance with regard to the completeness and actuality of the information.
+The general idea being that the local contributors at the same time ensure
+completeness and actuality; however, as the number of contributors in cities and
+regions, and their levels of engagement, vary substantially, the completeness and
+actuality of the information cannot be guarantee"*. 
+</small>
+
+
+## Précision et qualité topologique / géométrique
+
+Les études s'entendent sur le fait que la qualité du géoréférencement est supérieure
+
+::: columns
+
+:::: {.column width="50%" .small}
+
+**Corrections topologiques préalable à l'utilisation au réseau routier OSM**
+
+![](img/topology.png)
+
+<small>Source: [Tong et al., 2020](https://www.mdpi.com/1999-4907/11/12/1347)</small>
+
+**Québec: évaluation de la précision géométrique du réseau OSM au regard d'une source externe de référence**
+
+![](img/geometric_accuracy.png)
+
+<small>Source: [Moradi et al., 2022](http://dx.doi.org/10.1139/geomat-2021-0012)</small>
+
+:::: 
+
+:::: {.column width="50%" .small}
+
 - Aspect liés à la saturation et complétude des attributs (Heidelberg Institute for Geoinformation Technology) > [Ohsome Dashboard](https://dashboard.ohsome.org/#backend=ohsomeApi&groupBy=none&time=%2F2025-02-02T12%3A00Z%2FP1M&key=natural&value=tree&types=node&measure=count) 
 - [CheckAutopista](https://k1wiosm.github.io/checkautopista2/?id=16898316&lat=49.4788&lon=2.5598&z=7&view=AX)
 
+**Décalage de l'emprise des bâtiments à Munich**
+![](img/buildings_offsets.png)
+
+http://dx.doi.org/10.1080/13658816.2013.867495
+
+::::
+
+:::
 
 ## Les aspects récurrents
 
@@ -156,9 +472,6 @@ Même chose avec la clé amenity
 - Justesse/qualité dans les zones densément peuplées plus fortes
 - Réseau plutôt de bonne qualité
 - Variabilité en fonction des pays
-
-
-# Interroger OpenStreetMap avec R
 
 ## Logiciels qui utilisent / diffusent des données OSM
 
@@ -170,15 +483,112 @@ Même chose avec la clé amenity
 - contribuer ! OSMid Be careful bonnes pratiques ! 
 
 
-## Les packages R de référence
+# Interroger OpenStreetMap avec R
 
-Import de données:  osmdata, osmextract
-routage: osrm, [valh NEW!]
-carte interactive: leaflet, mapview
-habillage carto: maptiles, maposm
-géocodage: tidygeocoder, nominatim
+## Géocodage
 
-> exemple appliqué à l'environnement géo de Condorcet où on recherche l'indien le plus proche à pieds, qu'on déroule simplement ?
+![](img/r_packages_geocoding.png)
+
+## Import de données OSM
+
+![](img/r_packages_extract_objects.png)
+
+## Import tuiles raster et couches d'habillage carto
+![](img/r_packages_map_templates_static.png)
+
+## Tuiles raster pour carto interactive
+
+![](img/r_packages_map_templates_interactive.png)
+
+## Calcul d'itinéraires
+
+![](img/r_packages_map_routing.png)
+
+## Maintenus par le RIATE
+
+![](img/r_packages_riate.png)
+
+## Fonctions centrales  {.scrollable}
+
+
+### tidygeocoder
+
+Enrichir des données à partir de services de géocodage incluant l'API [Nominatim](https://nominatim.org/) qui utilise les adresses OpenStreetMap, notamment. 
+
+::: columns
+
+:::: {.column width="50"}
+
+
+```{r}
+#| warning: false
+#| message: false
+#| echo: true
+
+library(dplyr, warn.conflicts = FALSE)
+library(tidygeocoder)
+
+# create a dataframe with addresses
+some_addresses <- tibble::tribble(
+~name,                  ~addr,
+"White House",          "1600 Pennsylvania Ave NW, Washington, DC",
+"Transamerica Pyramid", "600 Montgomery St, San Francisco, CA 94111",     
+"Willis Tower",         "233 S Wacker Dr, Chicago, IL 60606"                                  
+)
+
+# geocode the addresses
+lat_longs <- some_addresses %>%
+  geocode(addr, method = 'osm', lat = latitude , long = longitude)
+```
+
+::::
+
+:::: {.column width="50"}
+
+```{r}
+lat_longs
+```
+
+::::
+
+:::
+
+### osmdata
+
+xx
+
+### osrm
+
+pr
+
+### osmextract
+
+tac
+
+### maptiles
+
+ta
+
+### maposm
+
+tutu
+
+### leaflet
+
+tata
+
+
+### mapview
+
+toto
+
+
+
+## Tidygeocoder
+
+hyh
+
+
 
 
 ## Le cas des requêtes massives
@@ -212,7 +622,6 @@ Exemple de réalisations du lavbo
 - Accès aux salles de grimpe en vélo [Ronan] / aspect contrib' en plus
 
 
-# Bibliographie (sélective)
 
 ## Bibliographie (sélective)
 
@@ -225,11 +634,14 @@ Exemple de réalisations du lavbo
 
 **Réflexion sur OSM, ses usages ses évolutions**
 
-- https://journals.openedition.org/netcom/2635 OSM Science—The Academic Study of the OpenStreetMap Project, Data, Contributors, Community, and Applications : https://www.mdpi.com/2220-9964/11/4/230
-- Analysing the Impact of Large Data Imports in OpenStreetMap : https://www.mdpi.com/2220-9964/10/8/528
+- Duféal, Noucher, 2017, *[Des TIC au TOC. Contribuer à OpenStreetMap : entre commun numérique et utopie cartographique](https://journals.openedition.org/netcom/2635)*, Netcom, 31-1/2. 
+- Witt, Loos, Zipf, 2021, [Analysing the Impact of Large Data Imports in OpenStreetMap](https://doi.org/10.3390/ijgi10080528), International Journal of Geo-Information, 10(8), 528. 
+
 - Bridges and Barriers: An Exploration of Engagements of the Research Community with the OpenStreetMap Community : https://www.mdpi.com/2220-9964/11/1/54
 
 **Complétude**
+
+Touya et al. 2010, https://hal.science/hal-02320425/document
 
 - https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0180698
 - https://onlinelibrary.wiley.com/doi/10.1111/j.1467-9671.2010.01203.x (fr)
@@ -245,46 +657,32 @@ Exemple de réalisations du lavbo
 toto
 :::
 
-## layout
-
-
-::: columns
-::: {.column width="50%"}
-super colonne
-:::
-
-::: {.column .v-center-container width="50%"}
-
-super autre colonne
-:::
-
-:::
-
 
 ## {background-image="utils/bg_last.png"}
 
 ::: columns
 
-::: {.column width="45%"}
+:::: {.column width="82%"}
 <br><br><br><br><br>
 
 ::: {.big}
-Merci ! 
+Merci ! Questions ?
 :::
 
-::: {.small}
+Place à l'application !
+<br>
+![](img/AvatarMaker.png){.nostretch fig-align="center" width="200px"}
 
+::::
+
+:::: {.column width="18%"}
+::: {.small}
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 ronan.ysebaert\@cnrs.fr\
 louis.laurian\@cnrs.fr\
 timothee.giraud\@cnrs.fr\
 matthieu.viry\@cnrs.fr\
 
 ::: 
-
-:::
-
-:::
-
-::: {.column width="55%"}
-
-:::
+::::
+::: 
