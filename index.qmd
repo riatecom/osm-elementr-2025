@@ -10,7 +10,9 @@ date-format: "DD MMM YYYY"
 format:
   revealjs: 
     theme: [default,mytheme.scss]
-self-contained: true
+    highlight-style: github
+    code-line-numbers: false
+cache: true
 title-slide-attributes: 
       data-background-image: utils/bg_first.png
       data-background-size: cover
@@ -43,7 +45,7 @@ editor_options:
 
 ::: 
 
-# OpenStreetMap en quelques mots
+# Le projet OpenStreetMap 
 
 ## Bref historique et grandes spécificités
 
@@ -263,7 +265,7 @@ mf_credits("Source : Geofabrik, 2025")
 :::: {.column width="60%"}
 
 ![](img/OpenStreetMap_data_primitives_in_iD.png)
-<small>Source: Wikipedia Commons, 2025 </small>
+<center><small>Source: [Wikipedia Commons](https://commons.wikimedia.org/wiki/File:OpenStreetMap_data_primitives_in_iD.png), 2025 </small></center>
 
 :::: 
 
@@ -273,9 +275,11 @@ mf_credits("Source : Geofabrik, 2025")
 
 ## Nodes, ways & relations dans OpenStreetMap
 
+<center>
 ![](img/geometry_stat.png)
+<small>Source : [Wiki OSM](https://wiki.openstreetmap.org/wiki/Stats), 2025</small>
+</center>
 
-<small>Source : Wiki OSM, 2025</small>
 
 
 ## Les tags OSM
@@ -487,58 +491,195 @@ http://dx.doi.org/10.1080/13658816.2013.867495
 
 ## Géocodage
 
-![](img/r_packages_geocoding.png)
+<center>![](img/r_packages_geocoding.png)</center>
 
 ## Import de données OSM
 
-![](img/r_packages_extract_objects.png)
+<center>![](img/r_packages_extract_objects.png)</center>
 
 ## Import tuiles raster et couches d'habillage carto
-![](img/r_packages_map_templates_static.png)
+
+<center>![](img/r_packages_map_templates_static.png)</center>
 
 ## Tuiles raster pour carto interactive
 
-![](img/r_packages_map_templates_interactive.png)
+<center>![](img/r_packages_map_templates_interactive.png)</center>
 
 ## Calcul d'itinéraires
 
-![](img/r_packages_map_routing.png)
+<center>![](img/r_packages_map_routing.png)</center>
 
 ## Maintenus par le RIATE
 
-![](img/r_packages_riate.png)
-
-## Fonctions centrales  {.scrollable}
+<center>![](img/r_packages_riate.png)</center>
 
 
-### tidygeocoder
+## Quel restaurant Thai dans le secteur ? 
 
-Enrichir des données à partir de services de géocodage incluant l'API [Nominatim](https://nominatim.org/) qui utilise les adresses OpenStreetMap, notamment. 
+**[tidygeocoder](https://jessecambon.github.io/tidygeocoder/)** (Cambon, 2025) : Enrichir des données à partir de services de géocodage qui utilise par défaut l'API [Nominatim](https://nominatim.org/) qui utilise les adresses OpenStreetMap. D'autres services sont aussi disponibles (Geocodio, Mapbox, HERE, TomTom, etc.)
+
+<br>
+
+::: columns
+
+:::: {.column width="40"}
+
+```{r}
+#| echo: true
+#| eval: false
+
+library(tidygeocoder)
+library(sf)
+library(mapsf)
+
+# Créer un dataframe avec les adresses
+here <- data.frame(address = "Recherche Sud, 93300 Aubervilliers")
+here <- geocode(.tbl = here, address = "address", quiet = TRUE) |>
+  st_as_sf(coords = c("long", "lat"), crs = 4326)
+here
+```
+
+::::
+
+:::: {.column width="60"}
+
+```{r}
+#| warning: false
+#| message: false
+#| echo: false
+
+library(tidygeocoder)
+library(sf)
+library(mapsf)
+
+# Créer un dataframe avec les adresses
+here <- data.frame(address = "Recherche Sud, 93300 Aubervilliers")
+here <- geocode(.tbl = here, address = "address", quiet = TRUE) |>
+  st_as_sf(coords = c("long", "lat"), crs = 4326)
+here
+```
+
+:::: 
+
+:::
+
+## Quel restaurant Thai dans le secteur ? 
+
+**[maposm](https://github.com/riatelab/maposm)** (Giraud, 2025) permet d'extraire des informations vectorielles (bâtiments, couverture du sol, infrastructures de transport), d'OSM à des fins cartographiques.  
+
+<br>
 
 ::: columns
 
 :::: {.column width="50"}
 
+```{r}
+#| echo: true
+#| eval: false
+
+library(maposm)
+
+# Télécharger, combiner et simplifier les couches géographiques
+res <- om_get(x = c(st_coordinates(here)[1],
+                    st_coordinates(here)[2]),
+              r = 2000)
+```
+
+:::: 
+
+:::: {.column width="50"}
 
 ```{r}
-#| warning: false
-#| message: false
+#| fig-width: 5
+#| fig-height: 5
+
+library(maposm)
+
+# Télécharger, combiner et simplifier les couches géographiques
+res <- om_get(x = c(st_coordinates(here)[1],
+                    st_coordinates(here)[2]),
+              r = 2000)
+```
+::::
+
+:::
+
+## Quel restaurant Thai dans le secteur ? 
+
+**[maposm](https://github.com/riatelab/maposm)** (Giraud, 2025) permet d'extraire des informations vectorielles (bâtiments, couverture du sol, infrastructures de transport), d'OSM à des fins cartographiques.  
+
+<br>
+
+::: columns
+
+:::: {.column width="50"}
+
+```{r}
 #| echo: true
+#| eval: false
 
-library(dplyr, warn.conflicts = FALSE)
-library(tidygeocoder)
+library(maposm)
 
-# create a dataframe with addresses
-some_addresses <- tibble::tribble(
-~name,                  ~addr,
-"White House",          "1600 Pennsylvania Ave NW, Washington, DC",
-"Transamerica Pyramid", "600 Montgomery St, San Francisco, CA 94111",     
-"Willis Tower",         "233 S Wacker Dr, Chicago, IL 60606"                                  
-)
+# Télécharger, combiner et simplifier les couches géographiques
+res <- om_get(x = c(st_coordinates(here)[1],
+                    st_coordinates(here)[2]),
+              r = 2000)
 
-# geocode the addresses
-lat_longs <- some_addresses %>%
-  geocode(addr, method = 'osm', lat = latitude , long = longitude)
+# En faire la carte
+om_map(res, title = "A 2000 mètres d'ici")
+```
+
+:::: 
+
+:::: {.column width="50"}
+
+```{r}
+#| fig-width: 5
+#| fig-height: 5
+
+# En faire la carte
+om_map(res, title = "A 2000 mètres d'ici")
+```
+::::
+
+:::
+
+
+## Quel restaurant Thai dans le secteur ? 
+
+**[osmdata](https://github.com/ropensci/osmdata)** (Padgham, 2023) permet d'importer des objets vectoriels d'OSM à partir du serveur [overpass](https://overpass-api.de/). Pour de grosses requêtes, préférez le package [osmextract](https://github.com/ropensci/osmextract) (Gilardi, 2025).
+
+<br>
+
+::: columns
+
+:::: {.column width="50"}
+
+```{r}
+#| echo: true
+#| eval: false
+
+# Extraire les restos thai
+library(osmdata)
+
+# Zone de recherche
+zone <- res$zone
+q <- opq(bbox = st_bbox(st_transform(res$zone, 4326)))
+
+# Construire la requête
+req <- add_osm_feature(opq = q, key = 'amenity', value = "restaurant")
+
+# L'exécuter
+output <- osmdata_sf(req)
+
+# Gestion des données et ajout à la carte
+restos <- output$osm_points
+thai <- restos[restos$cuisine %in% "thai",]
+
+# Résultat
+om_map(res, title = "A 2000 mètres d'ici")
+mf_map(st_transform(here, 3857), add = TRUE)
+mf_map(st_transform(thai, 3857), pch = 21, bg = "red",  add = TRUE)
 ```
 
 ::::
@@ -546,60 +687,296 @@ lat_longs <- some_addresses %>%
 :::: {.column width="50"}
 
 ```{r}
-lat_longs
+#| fig-width: 5
+#| fig-height: 5
+
+# Extraire les restos thai
+library(osmdata)
+
+# Zone de recherche
+zone <- res$zone
+q <- opq(bbox = st_bbox(st_transform(res$zone, 4326)))
+
+# Construire la requête
+req <- add_osm_feature(opq = q, key = 'amenity', value = "restaurant")
+
+# L'exécuter
+output <- osmdata_sf(req)
+
+# Gestion des données et ajout à la carte
+restos <- output$osm_points
+thai <- restos[restos$cuisine %in% "thai",]
+
+# Résultat
+om_map(res, title = "A 2000 mètres d'ici")
+mf_map(st_transform(here, 3857), add = TRUE)
+mf_map(st_transform(thai, 3857), pch = 21, bg = "red",  add = TRUE)
 ```
 
 ::::
 
 :::
 
-### osmdata
+## Quel restaurant Thai dans le secteur ? 
 
-xx
+**[osrm](https://github.com/riatelab/osrm)** (Giraud, 2024) permet l'interface entre R et le service de routage [OSRM](https://project-osrm.org/). Ce package permet de créer des routes, isochrones et matrices de distance à pieds/vélo/voiture. Pour de large requêtes, créer [sa propre instance OSRM](https://rcarto.github.io/posts/build_osrm_server/) pour ne pas surcharger le serveur de démo.
 
-### osrm
+::: columns
 
-pr
+:::: {.column width="50"}
 
-### osmextract
+```{r}
+#| echo: true
+#| eval: false
 
-tac
+library(osrm)
 
-### maptiles
+# Calcul de routes à pieds
+routes <- list()
+o <- data.frame(X = st_coordinates(here)[, 1],
+                Y = st_coordinates(here)[, 2])
+row.names(o) <- 1
+for(i in 1:nrow(thai)){
+  routes[[i]] <- osrmRoute(src = o,
+                           dst = thai[i,],
+                           overview = "full",
+                           osrm.profile = 'foot')
+}
+routes <- do.call(rbind, routes)
 
-ta
+# Récupérer les temps et distances de trajet
+thai <- merge(thai, 
+              st_set_geometry(routes, NULL),
+              by.x = "osm_id", by.y = "dst")
+thai$label <- paste0(round(thai$distance, 2), " km / ",
+                     round(thai$duration, 2), " mn")
 
-### maposm
+om_map(res, title = "A 2000 mètres d'ici")
+mf_map(st_transform(routes, 3857), add = TRUE)
+mf_map(st_transform(here, 3857), add = TRUE)
+mf_map(st_transform(thai, 3857), pch = 21, bg = "red",  add = TRUE)
+mf_label(st_transform(thai, 3857), var = "label", pos = 2)
+```
 
-tutu
+::::
 
-### leaflet
+:::: {.column width="50"}
 
-tata
+```{r}
+#| fig-width: 5
+#| fig-height: 5
+
+library(osrm)
+
+# Extraire les routes à partir de l'origine et des destinations
+routes <- list()
+o <- data.frame(X = st_coordinates(here)[, 1],
+                Y = st_coordinates(here)[, 2])
+row.names(o) <- 1
+for(i in 1:nrow(thai)){
+  routes[[i]] <- osrmRoute(src = o,
+                           dst = thai[i,],
+                           overview = "full",
+                           osrm.profile = 'foot')
+}
+routes <- do.call(rbind, routes)
+
+# Récupérer les temps et distances de trajet
+thai <- merge(thai, 
+              st_set_geometry(routes, NULL),
+              by.x = "osm_id", by.y = "dst")
+thai$label <- paste0(round(thai$distance, 2), " km / ",
+                     round(thai$duration, 2), " mn")
+
+# Carto
+om_map(res, title = "A 2000 mètres d'ici")
+mf_map(st_transform(routes, 3857), add = TRUE)
+mf_map(st_transform(here, 3857), add = TRUE)
+mf_map(st_transform(thai, 3857), pch = 21, bg = "red",  add = TRUE)
+mf_label(st_transform(thai, 3857), var = "label", pos = 2)
+```
+
+::::
+
+:::
 
 
-### mapview
+## C'est un peu loin, il faut le reconnaitre
 
-toto
+[leaflet](https://rstudio.github.io/leaflet/) (Cheng, 2024) permet de créer des cartes interactives en utilisant la librairie JavaScript Leaflet et le package htmlwidgets. Plusieurs [tuiles de référence](https://leaflet-extras.github.io/leaflet-providers/preview/index.html) sont utilisables (OpenStreetMap = défaut).
 
+<br>
 
+::: columns
 
-## Tidygeocoder
+:::: {.column width="50"}
 
-hyh
+```{r}
+#| eval: false
+#| echo: true
 
+# Tous les restos avec une spécialité qui n'est ni brasserie ni cuisine française
+restos <- restos[!is.na(restos$cuisine) & 
+                   !restos$cuisine %in% c("brasserie", "french"),]
 
+library(leaflet)
 
+# Un icone pour notre emplacemment
+pirate = makeIcon(
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Maki2-danger-24.svg/240px-Maki2-danger-24.svg.png",
+    70, 70
+  )
 
-## Le cas des requêtes massives
+# Carte interactive
+m <- leaflet(st_transform(zone, "EPSG:4326")) %>%
+  addTiles() %>%
+  addPolygons() %>%
+  addMarkers(data = here, icon = pirate) %>%
+  addMarkers(data = restos, 
+             popup = paste0("<b>", restos$name, "</b><br>",
+                            restos$cuisine))
+m
+```
 
-- osmextract plutôt qu'osmdata
-- mise en place d'un serveur de routage [Tim] 
+:::: 
 
+:::: {.column width="50"}
+
+```{r}
+#| fig-width: 5
+#| fig-height: 5
+
+# Tous les restos avec une spécialité qui n'est ni brasserie ni cuisine française
+restos <- restos[!is.na(restos$cuisine) & 
+                   !restos$cuisine %in% c("brasserie", "french"),]
+
+# Un icone pour notre emplacemment
+library(leaflet)
+pirate = makeIcon(
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Maki2-danger-24.svg/240px-Maki2-danger-24.svg.png",
+    70, 70
+  )
+
+# Carte interactive
+m <- leaflet(st_transform(zone, "EPSG:4326")) %>%
+  addTiles() %>%
+  addPolygons() %>%
+  addMarkers(data = here, icon = pirate) %>%
+  addMarkers(data = restos, 
+             popup = paste0("<b>", restos$name, "</b><br>",
+                            restos$cuisine))
+m
+```
+::::
+ 
+:::
 
 # OSM : un point de départ
 
-Exemple de réalisations du lavbo
+Cas d'usage du RIATE (2017-2025)
+
+- [Typologie socio-économique des régions de l'Union Européenne](https://hal.science/hal-03610513) (CGET, 2016)
+- [Apport des données OpenStreetMap pour l'analyse des centralités commerciales dans les espaces transfrontaliers](https://hal.science/hal-03587399/file/RIATE_Rapport_OSM_Octobre2020.pdf) (CGET, 2020)
+- [GRANULAR]() (Horizon Europe 2024 ->)
+- Quelques explorations plus "personnelles" : accès aux salles d'escalade parisiennes
+
+
+
+## Une typologie des territoires frontaliers (CGET, 2016)
+
+Complémentarité des territoires frontaliers européens à partir d'une typologie basée sur des données socio-économiques "classiques" (source : Eurostat) 
+
+![](img/cget16_01.png)
+
+
+## Une typologie des territoires frontaliers (CGET, 2016)
+
+Création d'indicateurs pour qualifier l'**accessibilité** des des territoires frontaliers à partir d'OSM : **points de passages frontaliers**.
+
+![](img/cget16_02.png)
+
+## Une typologie des territoires frontaliers (CGET, 2016)
+
+Création d'indicateurs pour qualifier l'**accessibilité** des des territoires frontaliers à partir d'OSM : **temps de parcours moyens entre deux régions frontalières**.
+
+![](img/cget16_03.png)
+
+## Une typologie des territoires frontaliers (CGET, 2016)
+
+Création d'indicateurs pour qualifier l'**accessibilité** des des territoires frontaliers à partir d'OSM : **performance du réseau routier**.
+
+![](img/cget16_04.png)
+
+
+## Une typologie des territoires frontaliers (CGET, 2016)
+
+Une étude qui a conclu que les territoires au profil de **complémentarité favorable** sont significativement **mieux reliés entre eux**. 
+
+![](img/cget16_05.png)
+
+<small>Pour en savoir plus, accès au rapport final, la présentation de synthèse et une collection de rapports techniques à partir de cette archive [HAL](https://hal.science/hal-03610513)</small>
+
+
+## Identifier des centralités frontalières avec OSM ? (CGET, 2020)
+
+Sélection de 15 équipements marqueurs de centralité disponibles *a priori* dans OpenStreetMap. 
+
+![](img/cget20_01.png)
+
+## Identifier des centralités frontalières avec OSM ? (CGET, 2020)
+
+Comparaison française avec la Base Permanente des équipements pour évaluer le niveau de **complétude d'OSM** pour ces points d'intérêt.
+
+::: columns
+
+:::: {.column width="50"}
+
+![](img/cget20_02.png)
+
+:::: 
+
+
+:::: {.column width="50"}
+![](img/cget20_03a.png)
+![](img/cget20_03b.png)
+:::: 
+
+::: 
+
+
+## Identifier des centralités frontalières avec OSM ? (CGET, 2020)
+
+Evaluation de **sur/sous représentations de POI** toute chose égale par ailleurs au regard de la population. 
+
+![](img/cget20_04.png)
+
+## Identifier des centralités frontalières avec OSM ? (CGET, 2020)
+
+Proposer des méthodes d'**analyse spatiale** pour identifier les **pôles locaux** de centralité malgré une complétude disparate : rapports de potentiel gaussiens à différentes portées)
+
+::: columns
+
+:::: {.column width="50"}
+
+![](img/cget20_06.png)
+
+:::: 
+
+:::: {.column width="50"}
+
+![](img/cget20_07.png)
+
+:::: 
+
+::: 
+
+
+## Qualifier l'accessibilité des territoires ruraux européens (Horizon Europe, 2024)
+
+
+
+
+
 
 ## Combinaison de sources hétérogènes et complétudes des données
 
