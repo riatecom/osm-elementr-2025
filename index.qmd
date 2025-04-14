@@ -45,6 +45,8 @@ editor_options:
 
 ::: 
 
+Une présentation à explorer ! N'hésitez pas à consulter les ressources associées à cette présentation ultérieurement. 
+
 # Le projet OpenStreetMap 
 
 ## Bref historique et grandes spécificités
@@ -227,23 +229,11 @@ mf_credits("Source : Geofabrik, 2025")
 
 - Amazon, Apple, FB, etc.
 - Secteur humanitaire (CartONG, Nations Unies, Banque Mondiale, etc.). Cf https://www.missingmaps.org/
-- Collectivités
+- Collectivités (voir [Recensement (2018)](https://labo.societenumerique.gouv.fr/fr/articles/ces-collectivit%C3%A9s-qui-misent-sur-openstreetmap-et-la-cartographie-participative/) d'initiatives menées par des collectivités ou une [enquête en  2020](https://labo.societenumerique.gouv.fr/fr/articles/lutilisation-et-la-contribution-%C3%A0-openstreetmap-par-lacteur-public/) sur la vision d'OSM par l'acteur public. )
 - Agences de transport ([SNCF](https://peertube.openstreetmap.fr/w/1Bi7aeGiRFWAXhU61a8gKC), Deutsche Bahn, etc.)
 - SIG et logiciels associés (QGIS, ESRI)
 - Medias
 - Des services/outils pour le public : randonnée, tourisme/city map, etc.) 
-
-
-## Usages par les collectivités
-
-- [Recensement (2018)](https://labo.societenumerique.gouv.fr/fr/articles/ces-collectivit%C3%A9s-qui-misent-sur-openstreetmap-et-la-cartographie-participative/) d'initiatives menées par des collectivités.
-
-- [Enquête 2020](https://labo.societenumerique.gouv.fr/fr/articles/lutilisation-et-la-contribution-%C3%A0-openstreetmap-par-lacteur-public/) sur la vision d'OSM par l'acteur public. 
-
-    - Alimentation / compléter les SIG internes
-    - fourniture de cartes locales
-    - renseignement de points d'intérêt à destination des usagers et touristes
-    - cartographie des réseaux de transport
 
 
 # La base de données OpenStreetMap
@@ -469,6 +459,7 @@ http://dx.doi.org/10.1080/13658816.2013.867495
 
 :::
 
+
 ## Les aspects récurrents
 
 - La qualité et la complétude augmente avec le temps
@@ -477,46 +468,37 @@ http://dx.doi.org/10.1080/13658816.2013.867495
 - Réseau plutôt de bonne qualité
 - Variabilité en fonction des pays
 
-## Logiciels qui utilisent / diffusent des données OSM
-
-- OverpassTurbo : explorer / télécharger rapidement (exemple cours Merickskay 
-- Geofabrik : télécharger massivement
-- OSRM/Valhalla: routage
-- nominatim : géocodage
-- stadia/thunderforest/CARTO
-- contribuer ! OSMid Be careful bonnes pratiques ! 
-
 
 # Interroger OpenStreetMap avec R
 
 ## Géocodage
 
-<center>![](img/r_packages_geocoding.png)</center>
+<center>![](img/r_packages_geocoding.png){width="800px"}</center>
 
 ## Import de données OSM
 
-<center>![](img/r_packages_extract_objects.png)</center>
+<center>![](img/r_packages_extract_objects.png){width="800px"}</center>
 
 ## Import tuiles raster et couches d'habillage carto
 
-<center>![](img/r_packages_map_templates_static.png)</center>
+<center>![](img/r_packages_map_templates_static.png){width="800px"}x</center>
 
-## Tuiles raster pour carto interactive
+## Carto interactive (tuiles OSM)
 
-<center>![](img/r_packages_map_templates_interactive.png)</center>
+<center>![](img/r_packages_map_templates_interactive.png){width="800px"}</center>
 
 ## Calcul d'itinéraires
 
-<center>![](img/r_packages_map_routing.png)</center>
+<center>![](img/r_packages_map_routing.png){width="800px"}</center>
 
 ## Maintenus par le RIATE
 
-<center>![](img/r_packages_riate.png)</center>
+<center>![](img/r_packages_riate.png){width="800px"}</center>
 
 
-## Quel restaurant Thai dans le secteur ? 
+## Un restaurant Thaï dans le secteur ? 
 
-**[tidygeocoder](https://jessecambon.github.io/tidygeocoder/)** (Cambon, 2025) : Enrichir des données à partir de services de géocodage qui utilise par défaut l'API [Nominatim](https://nominatim.org/) qui utilise les adresses OpenStreetMap. D'autres services sont aussi disponibles (Geocodio, Mapbox, HERE, TomTom, etc.)
+**[tidygeocoder](https://jessecambon.github.io/tidygeocoder/)** (Cambon, 2025) : permet d'enrichir des données à partir de services de géocodage (Geocodio, Mapbox, HERE, TomTom, etc.) dont l'API [Nominatim](https://nominatim.org/) qui utilise les adresses OpenStreetMap
 
 <br>
 
@@ -563,7 +545,7 @@ here
 
 :::
 
-## Quel restaurant Thai dans le secteur ? 
+## Un restaurant Thaï dans le secteur ? 
 
 **[maposm](https://github.com/riatelab/maposm)** (Giraud, 2025) permet d'extraire des informations vectorielles (bâtiments, couverture du sol, infrastructures de transport), d'OSM à des fins cartographiques.  
 
@@ -604,7 +586,7 @@ res <- om_get(x = c(st_coordinates(here)[1],
 
 :::
 
-## Quel restaurant Thai dans le secteur ? 
+## Un restaurant Thaï dans le secteur ? 
 
 **[maposm](https://github.com/riatelab/maposm)** (Giraud, 2025) permet d'extraire des informations vectorielles (bâtiments, couverture du sol, infrastructures de transport), d'OSM à des fins cartographiques.  
 
@@ -627,6 +609,7 @@ res <- om_get(x = c(st_coordinates(here)[1],
 
 # En faire la carte
 om_map(res, title = "A 2000 mètres d'ici")
+mf_map(st_transform(here, 3857), add = TRUE)
 ```
 
 :::: 
@@ -639,15 +622,16 @@ om_map(res, title = "A 2000 mètres d'ici")
 
 # En faire la carte
 om_map(res, title = "A 2000 mètres d'ici")
+mf_map(st_transform(here, 3857), add = TRUE)
 ```
 ::::
 
 :::
 
 
-## Quel restaurant Thai dans le secteur ? 
+## Un restaurant Thaï dans le secteur ? 
 
-**[osmdata](https://github.com/ropensci/osmdata)** (Padgham, 2023) permet d'importer des objets vectoriels d'OSM à partir du serveur [overpass](https://overpass-api.de/). Pour de grosses requêtes, préférez le package [osmextract](https://github.com/ropensci/osmextract) (Gilardi, 2025).
+**[osmdata](https://github.com/ropensci/osmdata)** (Padgham, 2023) permet d'importer des objets vectoriels d'OSM à partir du serveur [overpass](https://overpass-api.de/). Pour de grosses requêtes, préférez le package **[osmextract](https://github.com/ropensci/osmextract)** (Gilardi, 2025).
 
 <br>
 
@@ -717,9 +701,9 @@ mf_map(st_transform(thai, 3857), pch = 21, bg = "red",  add = TRUE)
 
 :::
 
-## Quel restaurant Thai dans le secteur ? 
+## Un restaurant Thaï dans le secteur ? 
 
-**[osrm](https://github.com/riatelab/osrm)** (Giraud, 2024) permet l'interface entre R et le service de routage [OSRM](https://project-osrm.org/). Ce package permet de créer des routes, isochrones et matrices de distance à pieds/vélo/voiture. Pour de large requêtes, créer [sa propre instance OSRM](https://rcarto.github.io/posts/build_osrm_server/) pour ne pas surcharger le serveur de démo.
+**[osrm](https://github.com/riatelab/osrm)** (Giraud, 2024) permet l'interface entre R et le service de routage [OSRM](https://project-osrm.org/) et d'exporter routes, isochrones et matrices de distance à pieds/vélo/voiture. Pour des requêtes importantes, créer [sa propre instance OSRM](https://rcarto.github.io/posts/build_osrm_server/) pour ne pas surcharger le serveur de démo.
 
 ::: columns
 
@@ -752,7 +736,7 @@ thai$label <- paste0(round(thai$distance, 2), " km / ",
                      round(thai$duration, 2), " mn")
 
 om_map(res, title = "A 2000 mètres d'ici")
-mf_map(st_transform(routes, 3857), add = TRUE)
+mf_map(st_transform(routes, 3857), lwd = 2, add = TRUE)
 mf_map(st_transform(here, 3857), add = TRUE)
 mf_map(st_transform(thai, 3857), pch = 21, bg = "red",  add = TRUE)
 mf_label(st_transform(thai, 3857), var = "label", pos = 2)
@@ -790,7 +774,7 @@ thai$label <- paste0(round(thai$distance, 2), " km / ",
 
 # Carto
 om_map(res, title = "A 2000 mètres d'ici")
-mf_map(st_transform(routes, 3857), add = TRUE)
+mf_map(st_transform(routes, 3857), lwd = 2, add = TRUE)
 mf_map(st_transform(here, 3857), add = TRUE)
 mf_map(st_transform(thai, 3857), pch = 21, bg = "red",  add = TRUE)
 mf_label(st_transform(thai, 3857), var = "label", pos = 2)
@@ -800,10 +784,9 @@ mf_label(st_transform(thai, 3857), var = "label", pos = 2)
 
 :::
 
+## D'autres restaurants plus proches ?
 
-## C'est un peu loin, il faut le reconnaitre
-
-[leaflet](https://rstudio.github.io/leaflet/) (Cheng, 2024) permet de créer des cartes interactives en utilisant la librairie JavaScript Leaflet et le package htmlwidgets. Plusieurs [tuiles de référence](https://leaflet-extras.github.io/leaflet-providers/preview/index.html) sont utilisables (OpenStreetMap = défaut).
+**[leaflet](https://rstudio.github.io/leaflet/)** (Cheng, 2024) permet de créer des cartes interactives en utilisant la librairie JavaScript éponyme. Elles incluent plusieurs [tuiles de référence](https://leaflet-extras.github.io/leaflet-providers/preview/index.html) à différents niveaux de zoom, dont OSM (défaut).
 
 <br>
 
@@ -871,72 +854,90 @@ m
  
 :::
 
-# OSM : un point de départ
 
-Cas d'usage du RIATE (2017-2025)
+# Les usages d'OSM au RIATE
 
-- [Typologie socio-économique des régions de l'Union Européenne](https://hal.science/hal-03610513) (CGET, 2016)
-- [Apport des données OpenStreetMap pour l'analyse des centralités commerciales dans les espaces transfrontaliers](https://hal.science/hal-03587399/file/RIATE_Rapport_OSM_Octobre2020.pdf) (CGET, 2020)
-- [GRANULAR]() (Horizon Europe 2024 ->)
-- Quelques explorations plus "personnelles" : accès aux salles d'escalade parisiennes
-
+*Sélection (non exhaustive) de 10 ans de projets et études*
 
 
 ## Une typologie des territoires frontaliers (CGET, 2016)
 
-Complémentarité des territoires frontaliers européens à partir d'une typologie basée sur des données socio-économiques "classiques" (source : Eurostat) 
+<center>
 
-![](img/cget16_01.png)
+**Complémentarité des territoires frontaliers** à partir d'une typologie basée sur des données socio-économiques "classiques" (Eurostat) 
+
+![](img/cget16_01.png){width="650px"}
+
+</center>
+
+## Une typologie des territoires frontaliers (CGET, 2016)
+
+<center>
+Création d'indicateurs pour qualifier l'**accessibilité** des des territoires frontaliers à partir d'OSM : **points de passages frontaliers**
+
+![](img/cget16_02.png){width="750px"}
+</center>
+
+## Une typologie des territoires frontaliers (CGET, 2016)
+
+<center>
+Création d'indicateurs pour qualifier l'**accessibilité** des des territoires frontaliers à partir d'OSM : **temps de parcours entre deux régions frontalières**
+
+![](img/cget16_03.png){width="650px"}
+
+</center>
+
+## Une typologie des territoires frontaliers (CGET, 2016)
+
+<center>
+
+Création d'indicateurs pour qualifier l'**accessibilité** des des territoires frontaliers à partir d'OSM : **performance du réseau routier**
+
+![](img/cget16_04.png){width="650px"}
+
+</center>
 
 
 ## Une typologie des territoires frontaliers (CGET, 2016)
 
-Création d'indicateurs pour qualifier l'**accessibilité** des des territoires frontaliers à partir d'OSM : **points de passages frontaliers**.
+<center>
 
-![](img/cget16_02.png)
-
-## Une typologie des territoires frontaliers (CGET, 2016)
-
-Création d'indicateurs pour qualifier l'**accessibilité** des des territoires frontaliers à partir d'OSM : **temps de parcours moyens entre deux régions frontalières**.
-
-![](img/cget16_03.png)
-
-## Une typologie des territoires frontaliers (CGET, 2016)
-
-Création d'indicateurs pour qualifier l'**accessibilité** des des territoires frontaliers à partir d'OSM : **performance du réseau routier**.
-
-![](img/cget16_04.png)
-
-
-## Une typologie des territoires frontaliers (CGET, 2016)
-
-Une étude qui a conclu que les territoires au profil de **complémentarité favorable** sont significativement **mieux reliés entre eux**. 
+Une étude qui a conclu que les territoires au profil de **complémentarité favorable** sont significativement **mieux reliés entre eux** 
 
 ![](img/cget16_05.png)
 
-<small>Pour en savoir plus, accès au rapport final, la présentation de synthèse et une collection de rapports techniques à partir de cette archive [HAL](https://hal.science/hal-03610513)</small>
+:::: {.medium}
+**En savoir plus ?** Voir le dépôt [HAL](https://hal.science/hal-03610513) (rapport final, présentation de synthèse et rapports techniques)
+:::: 
 
+</center>
 
-## Identifier des centralités frontalières avec OSM ? (CGET, 2020)
+## Des centralités frontalières avec OSM ? (CGET, 2020)
 
-Sélection de 15 équipements marqueurs de centralité disponibles *a priori* dans OpenStreetMap. 
+<center>
+Sélectionner des équipements marqueurs de centralité à partir du wiki OSM
 
 ![](img/cget20_01.png)
+</center>
 
-## Identifier des centralités frontalières avec OSM ? (CGET, 2020)
+## Des centralités frontalières avec OSM ? (CGET, 2020)
 
-Comparaison française avec la Base Permanente des équipements pour évaluer le niveau de **complétude d'OSM** pour ces points d'intérêt.
+<center>
+
+Comparaison française BPE/OSM pour discuter de la **complétude** de ces POI
+
+</center>
 
 ::: columns
 
-:::: {.column width="50"}
+:::: {.column width="65%"}
 
 ![](img/cget20_02.png)
 
 :::: 
 
 
-:::: {.column width="50"}
+:::: {.column width="35%"}
 ![](img/cget20_03a.png)
 ![](img/cget20_03b.png)
 :::: 
@@ -944,25 +945,30 @@ Comparaison française avec la Base Permanente des équipements pour évaluer le
 ::: 
 
 
-## Identifier des centralités frontalières avec OSM ? (CGET, 2020)
+## Des centralités frontalières avec OSM ? (CGET, 2020)
 
-Evaluation de **sur/sous représentations de POI** toute chose égale par ailleurs au regard de la population. 
+<center>
+Comparaison transfrontalière population/OSM pour discuter de la **complétude** de ces POI
 
 ![](img/cget20_04.png)
 
-## Identifier des centralités frontalières avec OSM ? (CGET, 2020)
+</center>
 
-Proposer des méthodes d'**analyse spatiale** pour identifier les **pôles locaux** de centralité malgré une complétude disparate : rapports de potentiel gaussiens à différentes portées)
+## Des centralités frontalières avec OSM ? (CGET, 2020)
+
+<center>
+
+Proposer des méthodes d'**analyse spatiale** pour identifier les **pôles locaux** de centralité malgré une complétude disparate : rapports de potentiel gaussiens à différentes portées
 
 ::: columns
 
-:::: {.column width="50"}
+:::: {.column width="50%"}
 
 ![](img/cget20_06.png)
 
 :::: 
 
-:::: {.column width="50"}
+:::: {.column width="50%"}
 
 ![](img/cget20_07.png)
 
@@ -970,35 +976,320 @@ Proposer des méthodes d'**analyse spatiale** pour identifier les **pôles locau
 
 ::: 
 
+:::: {.medium}
+**En savoir plus ?** Voir le [Rapport final](https://hal.science/hal-03587237/document) et son [Site Web](https://rcarto.gitpages.huma-num.fr/centralite/) associé
+::::
 
-## Qualifier l'accessibilité des territoires ruraux européens (Horizon Europe, 2024)
+</center>
+
+## Comparaison potentiel euclidien / fonctionnel (2017)
+
+<center>
+
+Approche multi-échelle de potentiels de population dans des **voisinages géographiques/fonctionnels**
+
+::: columns
+
+:::: {.column width="50" .medium}
+
+![](img/Pot10km.png)
+
+::::
+
+:::: {.column width="50" .medium}
+![](img/Pot15min.png)
+::::
+
+:::
+
+</center>
+
+## Comparaison potentiel euclidien / fonctionnel (2017)
+
+<center>
+
+Approche multi-échelle de potentiels de population dans des **voisinages géographiques/fonctionnels**
+
+::: columns
+
+:::: {.column width="50" .medium}
+
+![](img/Pot20km.png)
+
+::::
+
+:::: {.column width="50" .medium}
+![](img/Pot30min.png)
+::::
+
+:::
+
+</center>
+
+## Comparaison potentiel euclidien / fonctionnel (2017)
+
+<center>
+
+Approche multi-échelle de potentiels de population dans des **voisinages géographiques/fonctionnels**
+
+::: columns
+
+:::: {.column width="50" .medium}
+
+![](img/Pot40km.png)
+
+::::
+
+:::: {.column width="50" .medium}
+
+![](img/Pot60min.png)
+::::
+
+:::
+
+:::: {.medium}
+**En savoir plus ?** Voir [la présentation](https://mthh.github.io/sotm_riate)
+::::
+</center>
+
+## Accessibilité aux services (2019 > 2025)
+
+**Travaux sur les équipements de santé** : impact de fermetures d'établissements de santé, en utilisant les engin de routage qui reposent sur OSM.  
+
+::: columns
+
+:::: {.column width="61%" .medium}
+
+![](img/mater.png)
+
+::::
+
+:::: {.column width="39%" .medium}
+
+![](img/chiru.png)
+::::
+
+:::
+
+:::: {.medium}
+<center>**En savoir plus?** Voir [ce support](https://rcarto.gitpages.huma-num.fr/santelocal/) de formation sur l'impact des fermetures de maternité dans la Nièvre (2019) et [ce notebook](https://rysebaert.gitpages.huma-num.fr/chir-access_methodo) sur les évolutions 2000-2018 de l'accès aux services de chirurgie (2024)</center>
+::::
+
+## Accessibilité aux services (2023)
+
+**Salles d'escalade en vélo à Paris** : Saisie d'informations dans OSM, routage en vélo / calcul d'indicateurs avec R et cartographie interactive en OJS. 
+
+::: columns
+
+:::: {.column width="50" .medium}
+
+![](img/climbing_1.png)
+
+::::
+
+:::: {.column width="50" .medium}
+
+![](img/climbing_2.png)
+::::
+
+:::
+
+:::: {.medium}
+<center>**En savoir plus ?** Consulter [ce notebook](https://rysebaert.github.io/climbing_paris/) et ses ressources associées</center>
+:::: 
 
 
+## Accessibilité aux services (Horizon Europe, 2022-2026)
+
+Accessibilité des territoires ruraux européens aux **petites et moyennes villes** / **écoles** 
+
+::: columns
+
+:::: {.column width="50"}
+
+- 512 million de couples origine (carreaux de grille kilométriques peuplés) / destination (petites et moyennes villes)
+
+- Mise en place d'un serveur de routage Europe entière (package [`osrm`](https://github.com/riatelab/osrm)), parallélisation ([`parallel`](https://r-universe.dev/manuals/parallel.html)), optimisation de workflows ([`targets`](https://books.ropensci.org/targets/))
+
+- Documentation dans une série de notebooks, création d'un outil de géovisualisation
+
+:::: 
+
+:::: {.column width="50"}
+
+![](img/granular_01.png)
+::::
+
+:::
+
+## Accessibilité aux services (Horizon Europe, 2022-2026)
+
+Accessibilité des territoires ruraux européens aux **petites et moyennes villes** / **écoles** 
+
+::: columns
+
+:::: {.column width="50"}
+
+- 512 million de couples origine (carreaux de grille kilométriques peuplés) / destination (petites et moyennes villes)
+
+- Mise en place d'un serveur de routage Europe entière (package [`osrm`](https://github.com/riatelab/osrm)), parallélisation ([`parallel`](https://r-universe.dev/manuals/parallel.html)), optimisation de workflows ([`targets`](https://books.ropensci.org/targets/))
+
+- Documentation dans une série de notebooks, création d'un outil de géovisualisation
+
+:::: 
+
+:::: {.column width="50"}
+
+![](img/granular_02.png)
+::::
+
+:::
 
 
+## Accessibilité aux services (Horizon Europe, 2022-2026)
+
+Accessibilité des territoires ruraux européens aux **petites et moyennes villes** / **écoles** 
+
+::: columns
+
+:::: {.column width="50"}
+
+- 512 million de couples origine (carreaux de grille kilométriques peuplés) / destination (petites et moyennes villes)
+
+- Mise en place d'un serveur de routage Europe entière (package [`osrm`](https://github.com/riatelab/osrm)), parallélisation ([`parallel`](https://r-universe.dev/manuals/parallel.html)), optimisation de workflows ([`targets`](https://books.ropensci.org/targets/))
+
+- Documentation dans une série de notebooks, création d'un outil de géovisualisation
+
+:::: 
+
+:::: {.column width="50"}
+
+![](img/granular_03.png)
+::::
+
+:::
 
 
-## Combinaison de sources hétérogènes et complétudes des données
+## Accessibilité aux services (Horizon Europe, 2022-2026)
 
-- Combiner des données institutionnelles (GRANULAR / aspects complétude) [Louis ou Ronan]
-- Analyse de complétude / points (GRANULAR / CGET) [Ronan]
-- Comparaison des temps routiers / preuves de covoiturage [Louis]
-- Habillage de cartes pour mise en situation locale: Airbnb template locaux [Ronan]
+Accessibilité des territoires ruraux européens aux **petites et moyennes villes** / **écoles** 
 
-## Du point à la surface
+::: columns
 
-- lissages gaussiens : diff de potentiels étude CGET [Ronan]
-- KDE / restos à Paris [Tim].
+:::: {.column width="50"}
 
-## Accessibilité
+- 512 million de couples origine (carreaux de grille kilométriques peuplés) / destination (petites et moyennes villes)
 
-- Indicateurs d'accessibilité GRANULAR [Louis]
-- Porosité des points de passage frontaliers [Matthieu]
-- Accès aux maternités [Ronan]
-- Voisinage fonctionnel: potentiel de pop euclidien / par la route [Tim]
-- Accès aux salles de grimpe en vélo [Ronan] / aspect contrib' en plus
+- Mise en place d'un serveur de routage Europe entière (package [`osrm`](https://github.com/riatelab/osrm)), parallélisation ([`parallel`](https://r-universe.dev/manuals/parallel.html)), optimisation de workflows ([`targets`](https://books.ropensci.org/targets/))
+
+- Documentation dans une série de notebooks, création d'un outil de géovisualisation
+
+:::: 
+
+:::: {.column width="50"}
+
+![](img/granular_04.png)
+::::
+
+:::
 
 
+## Accessibilité aux services (Horizon Europe, 2022-2026)
+
+Accessibilité des territoires ruraux européens aux **petites et moyennes villes** / **écoles** 
+
+::: columns
+
+:::: {.column width="50"}
+
+- 512 million de couples origine (carreaux de grille kilométriques peuplés) / destination (petites et moyennes villes)
+
+- Mise en place d'un serveur de routage Europe entière (package [`osrm`](https://github.com/riatelab/osrm)), parallélisation ([`parallel`](https://r-universe.dev/manuals/parallel.html)), optimisation de workflows ([`targets`](https://books.ropensci.org/targets/))
+
+- Documentation dans une série de notebooks, création d'un outil de géovisualisation
+
+:::: 
+
+:::: {.column width="50"}
+
+![](img/granular_05.png)
+::::
+
+:::
+
+
+## Accessibilité aux services (Horizon Europe, 2022-2026)
+
+Accessibilité des territoires ruraux européens aux **petites et moyennes villes** / **écoles** 
+
+::: columns
+
+:::: {.column width="50"}
+
+- 512 million de couples origine (carreaux de grille kilométriques peuplés) / destination (petites et moyennes villes)
+
+- Mise en place d'un serveur de routage Europe entière (package [`osrm`](https://github.com/riatelab/osrm)), parallélisation ([`parallel`](https://r-universe.dev/manuals/parallel.html)), optimisation de workflows ([`targets`](https://books.ropensci.org/targets/))
+
+- Documentation dans une série de notebooks, création d'un outil de géovisualisation
+
+- Qualifier les écarts de temps de routage à partir de données "réelles" ([Registre des Preuves de Covoiturage](https://www.data.gouv.fr/fr/datasets/trajets-realises-en-covoiturage-registre-de-preuve-de-covoiturage/))
+
+:::: 
+
+:::: {.column width="50"}
+<center>
+![](img/granular_06.png){width="400px"}
+![](img/granular_07.png){width="400px"}
+</center>
+
+::::
+
+:::
+
+
+## Accessibilité aux services (Horizon Europe, 2022-2026)
+
+Accessibilité des territoires ruraux européens aux **petites et moyennes villes** / **écoles** 
+
+::: columns
+
+:::: {.column width="50"}
+
+- 512 million de couples origine (carreaux de grille kilométriques peuplés) / destination (petites et moyennes villes)
+
+- Mise en place d'un serveur de routage Europe entière (package [`osrm`](https://github.com/riatelab/osrm)), parallélisation ([`parallel`](https://r-universe.dev/manuals/parallel.html)), optimisation de workflows ([`targets`](https://books.ropensci.org/targets/))
+
+- Documentation dans une série de notebooks, création d'un outil de géovisualisation
+
+- Qualifier les écarts de temps de routage à partir de données "réelles" ([Registre des Preuves de Covoiturage](https://www.data.gouv.fr/fr/datasets/trajets-realises-en-covoiturage-registre-de-preuve-de-covoiturage/))
+- Comparer temps de trajet en voiture / vélo. 
+
+:::: 
+
+:::: {.column width="50"}
+
+xx
+::::
+
+:::
+
+:::: {.medium}
+<center>**En savoir plus ?** Dépôt [Zenodo](https://zenodo.org/records/14160729) (données et méthodes), outil de [géovisualisation](https://nlambert.gitpages.huma-num.fr/granular-gridviz/)</center>
+::::
+
+
+# Pour résumer
+
+## Pour résumer
+
+- OSM: Un projet vieux de 20 ans. Une communauté qui grandit, la qualité qui s'améliore et des usages qui se diversifient  
+- Avoir toujours en tête les spécificités de cette base de données participative (organisations, débats, complétude) pour ne pas faire n'importe quoi 
+- Un ecosystème autour de R (mais pas que) fonctionnel et qui permet de faire beaucoup de choses
+- Usage du RIATE autour d'OSM :
+    - développement logiciel 
+    - import de POI associé à des analyses de complétude et des méthodes d'interpolation spatiale
+    - utilisation du réseau et d'engins de routage dérivés d'OSM pour analyses d'accessibilité, généralement associé à des origines-destinations issus de données institutionnelles.
+- Contribuer quand c'est possible / adapté ! Respecter les règles de contribution 
 
 ## Bibliographie (sélective)
 
@@ -1026,14 +1317,6 @@ Touya et al. 2010, https://hal.science/hal-02320425/document
 - Analyzing the Contributor Activity of a Volunteered Geographic Information Project — The Case of OpenStreetMap (https://www.mdpi.com/2220-9964/1/2/146)
 
 :::
-
-
-## remind for layout
-
-::: {.small}
-toto
-:::
-
 
 ## {background-image="utils/bg_last.png"}
 
@@ -1063,3 +1346,20 @@ matthieu.viry\@cnrs.fr\
 ::: 
 ::::
 ::: 
+
+
+# Commentaires
+
+éléments mis de côté de peur d'exploser le temps mais qui peuvent être rajoutés si cela vous semble nécessaire ou pertinent. La plupart du temps il seront évoqués à l'oral avec renvoi vers des ressources de référence. 
+
+- présentation des logiciels hors OSM qui utilisent / diffusent des données OSM
+- ressources RIATE qui présentent les méthodes type KDE. 
+- comment installer un serveur osrm
+
+Ce qui pourrait être mis de côté
+
+- Usages OSM (bof)
+
+Des questions
+
+- Pas too much au niveau de la prez des projets ? 
