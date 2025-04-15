@@ -24,22 +24,27 @@ editor_options:
 
 ::: columns
 
-:::: {.column width="48"}
+:::: {.column width="48%"}
 
 **(1) OSM et des usages possibles dans la recherche... avec R (≈ 1h30)**
 
-- Présentation d'OpenStreetMap : spécificités, organisation, usages, documentation et logicels associés
+- Présentation d'OpenStreetMap : spécificités, histoire, organisation, usages
+- L'évaluation de la qualité d'OSM
 - Packages R de référence permettant d'interfacer OSM 
-- Retour sur les usages d'OSM dans les travaux du RIATE
+- Retour sur quelques cas d'usage dans les travaux du RIATE
 
 :::: 
 
-:::: {.column width="48"}
+:::: {.column width="4%"}
+::::
+
+:::: {.column width="48%"}
 
 **(2) Mise en pratique (≈ 1h30)**
 
 - Une chaine de traitement reproductible et extensible
 - Basé sur les packages R de référence : géoréférencement, import de tuiles OSM, d'objets géographiques associé à quelques traitements spatiaux
+- *#DoItYourSelf*
 
 ::::
 
@@ -54,18 +59,20 @@ Une présentation à explorer ! N'hésitez pas à consulter les ressources assoc
 ::: {.center-xy}
 ::: columns
 
-:::: {.column width="50"}
+:::: {.column width="48%"}
 <br><br>
 
 - Un projet de cartographie collaborative en ligne
-- Inspiré de Wikipedia et par le constat de la prédominance de données géographiques propriétaires
+- Aux origines inspiré de Wikipedia et le constat de la prédominance de données géographiques propriétaires/payantes
 - Courant du libre (licence Open Data Commons Open Database License)
 - Contribution par les utilisateurs
 - Souvent présenté comme une alternative à Google. 
 :::: 
 
-:::: {.column width="50%" .fragment}
-**Quelques dates clé**
+:::: {.column width="4%"}
+::::
+
+:::: {.column width="48%" .fragment}
 
 - 2004 : création par Steve Coast (University College Londres) et enregistrement du nom de domaine openstreetmap.org
 - 2006 : création de la fondation OpenStreetMap (infrastructure matérielle + cadre juridique)
@@ -377,7 +384,7 @@ mf_credits("Source : Geofabrik, 2025")
 
 
 
-# Précision et complétude
+# Précision, complétude et qualité
 
 ## Un incontournable des études (scientifiques) sur OSM
 
@@ -390,6 +397,8 @@ Du fait de l'écosystème d'OpenStreetMap la question de la complétude / préci
 - **Complétude "brute" des données** : viser des manquements dans la base de données au regard de jeux de données externe de référence sur des zones de référence.
 
 - **Complétude et justesse attributaire** : présence ou non des attributs. Si oui, correctement utilisés ? Cela concerne aussi l'application de méthodes correctives permettant d'améliorer la justesse attributaire (routage)
+
+S'additionnent à cela les **métriques** (quels indicateurs ?) mobilisables pour évaluer la qualité d'OSM.
 
 ## Car...
 
@@ -425,13 +434,13 @@ actuality of the information cannot be guarantee"*.
 
 ## Précision et qualité topologique / géométrique
 
-Les études s'entendent sur le fait que la qualité du géoréférencement est supérieure
+Les études s'entendent sur le fait que la qualité du géoréférencement est plutôt bonne dans OSM (précision moins d'un mètre), avec des erreurs topologiques à considérer. 
 
 ::: columns
 
 :::: {.column width="50%" .small}
 
-**Corrections topologiques préalable à l'utilisation au réseau routier OSM**
+**Corrections topologiques préalable à l'utilisation du réseau routier OSM**
 
 ![](img/topology.png)
 
@@ -447,9 +456,6 @@ Les études s'entendent sur le fait que la qualité du géoréférencement est s
 
 :::: {.column width="50%" .small}
 
-- Aspect liés à la saturation et complétude des attributs (Heidelberg Institute for Geoinformation Technology) > [Ohsome Dashboard](https://dashboard.ohsome.org/#backend=ohsomeApi&groupBy=none&time=%2F2025-02-02T12%3A00Z%2FP1M&key=natural&value=tree&types=node&measure=count) 
-- [CheckAutopista](https://k1wiosm.github.io/checkautopista2/?id=16898316&lat=49.4788&lon=2.5598&z=7&view=AX)
-
 **Décalage de l'emprise des bâtiments à Munich**
 ![](img/buildings_offsets.png)
 
@@ -459,6 +465,228 @@ http://dx.doi.org/10.1080/13658816.2013.867495
 
 :::
 
+
+## Complétude des données
+
+<center>
+
+Évaluation de la complétude OSM au regard de **sources de données externes** réputées "fiables". 
+
+::: columns
+
+:::: {.column width="30%" .small}
+
+**Précision des tags et complétude de points d'intérêt à Salzburg**
+
+![](img/completeness_salzburg.jpg)
+<small>Source: [Hennig., 2019](https://doi.org/10.4000/articulo.4296)</small>
+
+::::
+
+:::: {.column width="25%" .small}
+
+**Occupation du sol en Europe**
+![](img/completeness_land_use.png)
+<small>Source: [Arsanjani, Fonte, 2016](https://www.jstor.org/stable/j.ctv3t5r09.24)</small>
+
+::::
+
+:::: {.column width="44%" .small}
+
+**Variabilité géographique de la complétude à Londres**
+
+![](img/completeness_london.png)
+<small>Source: [Mashhadi et al., 2015](https://doi.org/10.1007/978-3-319-14280-7_7)</small>
+
+::::
+
+:::
+
+</center>
+
+
+## Justesse attributaire
+
+<center>
+
+Les études s'intéressent généralement à la complétude de tags clés et la consistance des attributs (mauvais tags, comparaison avec des bases de données de référence).
+
+::: columns
+
+:::: {.column width="50%" .small}
+
+**Part des objets de type buildings ayant pour attribut
+
+![](img/attribute_completeness_1.jpg)
+::::
+
+:::: {.column width="50%" .small}
+
+**Part des objets buildings ayant pour attribut un tag découragé par la communauté**
+
+![](img/attribute_completeness_2.png)
+
+::::
+
+:::
+
+<small>Source: [Biljecki et al., 2023](https://doi.org/10.1016/j.buildenv.2023.110295)</small> 
+
+</center>
+
+
+## Ohsome - Un outil fort utile !
+
+<center>
+
+L'outil [Ohsome](https://dashboard.ohsome.org) développé par l'[HeiGIT](https://heigit.org/) propose **plusieurs métriques** qualifier la qualité d'OSM à travers le temps et l'espace.
+
+::: columns
+
+:::: {.column width="58%" .small}
+![](img/ohsome_tree.png)
+::::
+
+:::: {.column width="42%" .small}
+
+**Paris (arbres / points)**
+![](img/ohsome_tree_paris.png)
+**Mexico**
+![](img/ohsome_tree_mexico.png)
+::::
+
+:::
+
+</center>
+
+## Ohsome - *Comparisons*
+
+<center>
+
+Comparaison à des jeux de données de référence (Microsoft Buildings, EURO) : surface couverte. 
+
+::: columns
+
+:::: {.column width="58%" .small}
+![](img/ohsome_buildings.png)
+::::
+
+:::: {.column width="42%" .small}
+
+**Paris (surface des bâtiments)**
+![](img/ohsome_buildings_paris.png)
+**Mexico**
+![](img/ohsome_buildings_mexico.png)
+::::
+
+:::
+
+</center>
+
+## Ohsome - *Comparisons*
+
+<center>
+
+Comparaison à des jeux de données de référence (Microsoft Roads) : longeur des tronçons 
+
+::: columns
+
+:::: {.column width="58%" .small}
+![](img/ohsome_roads.png)
+::::
+
+
+:::: {.column width="42%" .small}
+
+**Paris (longueur des routes)**
+![](img/ohsome_roads_paris.png)
+**Mexico**
+![](img/ohsome_roads_paris.png)
+::::
+
+:::
+
+</center>
+
+## Ohsome - *Saturation*
+
+<center>
+
+Évaluation de la saturation des contributions. Elle est élevée si la croissance de la courbe ajustée est minimale. 
+
+::: columns
+
+:::: {.column width="58%" .small}
+![](img/ohsome_poi_saturation.png)
+::::
+
+:::: {.column width="42%" .small}
+
+**Paris (plus d'une centaine de points d'intérêts)**
+![](img/ohsome_poi_saturation_paris.png)
+**Mexico**
+![](img/ohsome_poi_saturation_mexico.png)
+::::
+
+:::
+
+</center>
+
+## Ohsome - *Currentness*
+
+<center>
+
+Estimation du niveau de mise à jour des données (dates des dernières contributions)
+
+::: columns
+
+:::: {.column width="58%" .small}
+![](img/ohsome_poi_currentness.png)
+::::
+
+:::: {.column width="42%" .small}
+
+**Paris (plus d'une centaine de points d'intérêts)**
+![](img/ohsome_poi_currentness_paris.png)
+**Mexico**
+![](img/ohsome_poi_currentness_mexico.png)
+::::
+
+:::
+
+</center>
+
+## Ohsome - *Attribute completeness*
+
+<center>
+Évaluation de la complétude de tags centraux
+
+::: columns
+
+:::: {.column width="58%" .small}
+![](img/ohsome_roads_maxspeed.png)
+::::
+
+:::: {.column width="42%" .small}
+
+**Paris (part des routes ayant le tag *maxspeed* saisi)**
+![](img/ohsome_roads_maxspeed_paris.png)
+**Mexico**
+![](img/ohsome_roads_maxspeed_mexico.png)
+::::
+
+:::
+
+</center>
+
+## Des outils collaboratifs pour améliorer la qualité d'OSM
+
+<center>
+
+[Osmose](https://osmose.openstreetmap.fr) est un des [nombreux outils](https://wiki.openstreetmap.org/wiki/FR:Assurance_qualit%C3%A9) qualité dédié au signalement de problèmes dans les données OSM
+
+![](img/osmose.png)
+</center>
 
 ## Les aspects récurrents
 
@@ -473,25 +701,34 @@ http://dx.doi.org/10.1080/13658816.2013.867495
 
 ## Géocodage
 
+<br>
 <center>![](img/r_packages_geocoding.png){width="800px"}</center>
 
 ## Import de données OSM
 
+<br>
 <center>![](img/r_packages_extract_objects.png){width="800px"}</center>
 
 ## Import tuiles raster et couches d'habillage carto
 
-<center>![](img/r_packages_map_templates_static.png){width="800px"}x</center>
+<br>
+<center>![](img/r_packages_map_templates_static.png){width="800px"}</center>
 
 ## Carto interactive (tuiles OSM)
+
+<br>
 
 <center>![](img/r_packages_map_templates_interactive.png){width="800px"}</center>
 
 ## Calcul d'itinéraires
 
+<br>
+
 <center>![](img/r_packages_map_routing.png){width="800px"}</center>
 
-## Maintenus par le RIATE
+## Développés et maintenus par le RIATE
+
+<br>
 
 <center>![](img/r_packages_riate.png){width="800px"}</center>
 
@@ -1282,14 +1519,14 @@ xx
 
 ## Pour résumer
 
-- OSM: Un projet vieux de 20 ans. Une communauté qui grandit, la qualité qui s'améliore et des usages qui se diversifient  
-- Avoir toujours en tête les spécificités de cette base de données participative (organisations, débats, complétude) pour ne pas faire n'importe quoi 
-- Un ecosystème autour de R (mais pas que) fonctionnel et qui permet de faire beaucoup de choses
+- OSM: Un projet vieux de 20 ans. Une **communauté** qui **grandit**, la **qualité** qui **s'améliore**, des **usages** qui se **diversifient** et des outils (extraction de données, saisie de données, routage, stylisation de tuiles raster, évaluation qualité) qui se **multiplient**
+- Avoir toujours en tête les **spécificités** de cette **base de données participative** (organisations, débats, complétude) pour ne pas faire n'importe quoi 
+- Un **ecosystème autour de R** (mais pas que) **fonctionnel** et qui permet de faire beaucoup de choses
 - Usage du RIATE autour d'OSM :
     - développement logiciel 
     - import de POI associé à des analyses de complétude et des méthodes d'interpolation spatiale
     - utilisation du réseau et d'engins de routage dérivés d'OSM pour analyses d'accessibilité, généralement associé à des origines-destinations issus de données institutionnelles.
-- Contribuer quand c'est possible / adapté ! Respecter les règles de contribution 
+- **Contribuez quand c'est possible** / adapté ! Voir le wiki [How to contribute](https://wiki.openstreetmap.org/wiki/How_to_contribute)
 
 ## Bibliographie (sélective)
 
@@ -1308,8 +1545,10 @@ xx
 - Bridges and Barriers: An Exploration of Engagements of the Research Community with the OpenStreetMap Community : https://www.mdpi.com/2220-9964/11/1/54
 
 **Complétude**
+- Hennig, 2019, *[Child- and Youth-Friendly Cities: How Does and Can Crowdmapping Support Their Development?](https://doi.org/https://doi.org/10.4000/articulo.4296)*, Journal of Urban Research. 
+- Touya et al. 2010, https://hal.science/hal-02320425/document
 
-Touya et al. 2010, https://hal.science/hal-02320425/document
+
 
 - https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0180698
 - https://onlinelibrary.wiley.com/doi/10.1111/j.1467-9671.2010.01203.x (fr)
