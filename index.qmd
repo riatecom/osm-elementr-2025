@@ -1,5 +1,5 @@
 ---
-title: "Utiliser OpenStreetMap avec R"
+title: "OpenStreetMap - spécificités et usages possibles"
 subtitle: "Goupe ElementR"
 lang: "fr"
 author: "Ronan Ysebaert, Louis Laurian, Timothée Giraud, Matthieu Viry"
@@ -54,19 +54,19 @@ Une présentation à explorer ! N'hésitez pas à consulter les ressources assoc
 
 # Le projet OpenStreetMap 
 
-## Bref historique et grandes spécificités
+## En quelques mots et dates
 
 ::: {.center-xy}
 ::: columns
 
 :::: {.column width="48%"}
-<br><br>
 
 - Un projet de cartographie collaborative en ligne
 - Aux origines inspiré de Wikipedia et le constat de la prédominance de données géographiques propriétaires/payantes
-- Courant du libre (licence Open Data Commons Open Database License)
+- Une licence (Open Data Commons Open Database License - ODbL) favorisant la libre circulation des données
 - Contribution par les utilisateurs
-- Souvent présenté comme une alternative à Google. 
+- Souvent présenté comme une alternative à Google 
+
 :::: 
 
 :::: {.column width="4%"}
@@ -76,84 +76,72 @@ Une présentation à explorer ! N'hésitez pas à consulter les ressources assoc
 
 - 2004 : création par Steve Coast (University College Londres) et enregistrement du nom de domaine openstreetmap.org
 - 2006 : création de la fondation OpenStreetMap (infrastructure matérielle + cadre juridique)
-- 2007 : première conférence State Of The Map (SOTM)
+- 2007 : 1ère conférence State Of The Map (SOTM)
 - 2010 : import du cadastre français dans un format vectoriel
 - 2011 : création de l'association OpenStreetMap France
 - 2012 : passage de la licence en OdbL
-- 2013 : premier SOTM France
+- 2013 : 1er SOTM France
 :::: 
 :::
 :::
 
 
-## Membres et contributeurs {.scrollable}
+## Utilisateurs OSM
 
 <center> 
 
-
-[Utilisateurs enregistrés](https://wiki.openstreetmap.org/wiki/Stats)
-
-![](img/registered.png){fig-align="center" width="800px"}
+![](img/registered.png){width="800px"}
 <br>
-<small>Source : Wiki OSM, 2025</small>
+<small>Source : [Wiki OSM](https://wiki.openstreetmap.org/wiki/Stats), 2025</small>
 
 <center>
 
 
+## Contributeurs
 
 <center>
+
+**2.2 millions** depuis le début du projet OSM. Depuis 2017, entre **250 et 300 mille** contributeurs sont actifs sur l'année. 
 
 ::: columns
 
-:::: {.column width="50%"}
+:::: {.column width="50%" .medium}
 
-
-
-[Contributeurs accumulés par mois](https://wiki.openstreetmap.org/wiki/Stats){.nostretch fig-align="center" width="800px"}
+**Contributeurs accumulés par mois**
 
 ![](img/contrib.png)
 
-<small>Source : osmstats, 2025</small>
-
-
 ::::
 
-:::: {.column width="50%"}
+:::: {.column width="50%" .medium}
 
-[Contributeurs par année](https://wiki.openstreetmap.org/wiki/Stats){.nostretch fig-align="center" width="800px"}
+**Contributeurs par année**
 
 ![](img/contrib_year.png)
-<small>Source : Wiki OSM, 2025</small>
 
 ::::
 
 :::
-
+<small>Source : [Wiki OSM](https://wiki.openstreetmap.org/wiki/Stats), 2025</small>
 </center>
-
-
-[Part des utilisateurs contributeurs](https://wiki.openstreetmap.org/wiki/Stats){.nostretch fig-align="center" width="800px"}
-
-![](img/register_contrib.png)
-<small>Source : Wiki OSM, 2025</small>
 
 
 ## Profil des contributeurs
 
-On peut distinguer les **contributions individuelles** (*volunteers*) et les **imports de données** (*data imports*) issus de **sources externes**, souvent massives. 
+On peut distinguer les **contributions individuelles** (*volunteers*), **"organisées"**, et les **imports de données** (*data imports*) issus de **sources externes**, souvent massives. 
 
 
 ::: columns
 
-:::: {.column width="45%" .medium}
+:::: {.column width="30%" .medium}
 
-**Contributions individuelles**
+**Les particuliers**
 
-- Contributions prioritaires pour OSM. 
+- Profil type : trentenaire masculin, diplôme élevé, évoluant entre informatique et territoire et un intérêt marqué pour les cartes ([Duféal et Noucher, 2017](https://journals.openedition.org/netcom/2635))
 
-- Par des individus : couverture systématique d'un petit territoire (l'espace vécu), ou d'objets spécifiques sur un territoire plus étendu (expertise particulière). 
+- Motivations : couverture systématique d'un petit territoire (l'espace vécu), ou d'objets spécifiques sur un territoire plus étendu (expertise particulière), corriger des erreurs.  
 
-- Une enquête menée de 2014 à 2017 ([Duféal et Noucher, 2017](https://journals.openedition.org/netcom/2635)) a révélé que le contributeur type est masculin et trentenaire (moyenne d'âge 38 ans), doté d'un niveau de diplôme élevé, plutôt cadre et « évoluant entre informatique et territoires », avec un « intérêt marqué et renforcé pour les cartes 
+- Une petite part de *mappers* réalise une grande partie du travail / une large part réalise quelques éditions (médiane du nombre de contributions = [27](https://piebro.github.io/openstreetmap-statistics/#a3ed)). Voir [cette présentation](https://2019.stateofthemap.org/attachments/7ZVYEH_sl_Mooney_a_novel_application.pdf). 
 
 
 ::::
@@ -161,13 +149,29 @@ On peut distinguer les **contributions individuelles** (*volunteers*) et les **i
 :::: {.column width="5%"}
 ::::
 
-:::: {.column width="45%" .medium}
+:::: {.column width="30%" .medium}
+
+**Contributions "organisées"**
+
+- Des *[mapping parties](https://wiki.openstreetmap.org/wiki/FR:Cartoparties)* organisées régulièrement pour former des débutants et saisir de nouvelles informations dans OSM collectivement : [25 événements](https://wiki.openstreetmap.org/wiki/Current_events) proposés à travers le monde en mai 2025 ! 
+
+- Secteur humanitaire : 60.5 million de bâtiments et 4.5 million de routes cartographiées depuis 2008 ([Herfort et al., 2021](https://doi.org/10.1038/s41598-021-82404-z)), voir projet [Missing Maps](https://www.missingmaps.org/)
+
+- Acteurs institutionnels et industriels ([Hayat, 2019](https://theses.hal.science/tel-03117730v1/file/HAYAT_Flora_va2.pdf))
+
+
+::::
+
+:::: {.column width="5%"}
+::::
+
+:::: {.column width="30%" .medium}
 
 **Import de données externes**
 
 - Par des institutions, des gouvernements ou des compagnies/des organisations 
 
-- Des routes, des limites administratives, des objets spécifiques (arbres, hôpitaux). Voir (tous les arbres d'une ville, tout le réseau d'un  pays etc.). Voir le [cataloque](https://wiki.openstreetmap.org/wiki/Import/Catalogue).  
+- Des routes, des limites administratives, des objets spécifiques (arbres, hôpitaux). Voir le [cataloque](https://wiki.openstreetmap.org/wiki/Import/Catalogue).  
 
 - Controversé : 
     - progression complétude et intérêt d'usage de la base ++
@@ -177,7 +181,6 @@ On peut distinguer les **contributions individuelles** (*volunteers*) et les **i
 
 :::
 
-À l'intersection entre les deux, des *[mapping parties](https://wiki.openstreetmap.org/wiki/FR:Cartoparties)* sont organisées régulièrement pour former des débutants et saisir de nouvelles informations dans OSM collectivement : [25 événements](https://wiki.openstreetmap.org/wiki/Current_events) proposés à travers le monde en mai 2025 ! 
 
 
 ## Une base de donnée évolutive
@@ -192,6 +195,8 @@ Source: OSM Then and Now (téléchargé depuis cet [article](https://www.lemonde
 </center>
 
 ## Les données OSM par pays en 2025
+
+<center>[Geofabrik](https://download.geofabrik.de/) permet de télécharger les données OSM par région géographique</center>
 
 ```{r}
 library(rnaturalearth)
@@ -232,18 +237,7 @@ mf_credits("Source : Geofabrik, 2025")
 - **Top 3 (Mo / million hab)** : Féroé (2090 Mo/Million d'habitants), Groenland (295), Norvège (224) / (FR 18e, 65) 
 
 
-## Usages courants
-
-- Amazon, Apple, FB, etc.
-- Secteur humanitaire (CartONG, Nations Unies, Banque Mondiale, etc.). Cf https://www.missingmaps.org/
-- Collectivités (voir [Recensement (2018)](https://labo.societenumerique.gouv.fr/fr/articles/ces-collectivit%C3%A9s-qui-misent-sur-openstreetmap-et-la-cartographie-participative/) d'initiatives menées par des collectivités ou une [enquête en  2020](https://labo.societenumerique.gouv.fr/fr/articles/lutilisation-et-la-contribution-%C3%A0-openstreetmap-par-lacteur-public/) sur la vision d'OSM par l'acteur public. )
-- Agences de transport ([SNCF](https://peertube.openstreetmap.fr/w/1Bi7aeGiRFWAXhU61a8gKC), Deutsche Bahn, etc.)
-- SIG et logiciels associés (QGIS, ESRI)
-- Medias
-- Des services/outils pour le public : randonnée, tourisme/city map, etc.) 
-
-
-# La base de données OpenStreetMap
+# La base de données OSM
 
 ## Les objets géographiques dans OSM
 
@@ -270,10 +264,11 @@ mf_credits("Source : Geofabrik, 2025")
 
 - **relation** : pour regrouper des objets selon des caractéristiques communes (ligne de bus, objets inclus dans un aéroport, etc.) 
 
-## Nodes, ways & relations dans OpenStreetMap
+## Nodes, ways & relations dans OSM
 
 <center>
-![](img/geometry_stat.png)
+![](img/geometry_stat.png){width="850px"}
+
 <small>Source : [Wiki OSM](https://wiki.openstreetmap.org/wiki/Stats), 2025</small>
 </center>
 
@@ -286,7 +281,7 @@ mf_credits("Source : Geofabrik, 2025")
 :::: {.column width="30%"}
 
 - **Basé sur une folksonomie** : système de classification collaborative décentralisée spontanée, basé sur une indexation effectuée par des non-spécialistes 
-- Un **tag** est constitué d'une clé et d'une valeur (*key-value*) et caractérisent les objets géométriques
+- OSM utilise des **tags** de la forme **clé=valeur** (*key-value*) pour rajouter des informations aux objets géographiques
 - proposés par la **communauté** : évolutifs, flexibles
 - plusieurs tags peuvent être associés à un objet
 
@@ -303,7 +298,7 @@ mf_credits("Source : Geofabrik, 2025")
 :::
 
 
-## OSM Wiki - La référence
+## Wiki OSM - La référence
 
 ::: columns
 
@@ -311,10 +306,10 @@ mf_credits("Source : Geofabrik, 2025")
 
 **Utile pour** :
 
-- Visualiser les tags les plus courants utilisés / admis par la communauté
-- Comprendre les attributs associés aux clés-valeurs (utilisables / contribuables)
+- Visualiser les tags les plus courants utilisés/admis par la communauté
+- Comprendre les attributs associés aux clés-valeurs utilisables/contribuables
 - Voir les objets géographiques auxquels ils se rattachent
-- Faire état des discussions / débats en cours
+- Faire état des discussions/débats en cours
 
 ::::
 
@@ -336,7 +331,7 @@ mf_credits("Source : Geofabrik, 2025")
 <small>Source : [Wiki OSM, 2025](https://wiki.openstreetmap.org/wiki/FR:Tag:amenity%3Drestaurant)
 </small>
 
-### Débats
+### Erreurs
 ![](img/key_value3.png)
 <small>Source : [Wiki OSM, 2025](https://wiki.openstreetmap.org/wiki/FR:Tag:amenity%3Drestaurant)
 </small>
@@ -361,9 +356,9 @@ mf_credits("Source : Geofabrik, 2025")
 ::::
 
 
-## Les clés les plus contribuées
+## Les principaux tags
 
-[Taginfo](https://taginfo.openstreetmap.org/keys) rassemble les informations sur les tags OSM afin  d'aider à comprendre ce qu'ils signifient et comment ils sont utilisés
+<center>[Taginfo](https://taginfo.openstreetmap.org/keys) rassemble les informations sur les tags OSM afin  d'aider à comprendre ce qu'ils signifient et comment ils sont utilisés</center>
 
 :::: {.panel-tabset}
 
@@ -388,7 +383,7 @@ mf_credits("Source : Geofabrik, 2025")
 
 ## Un incontournable des études (scientifiques) sur OSM
 
-Du fait de l'écosystème d'OpenStreetMap la question de la complétude / précision des données de la base est centrale dans les études scientifiques sur le sujet.
+Du fait de l'écosystème d'OSM la question de la complétude / précision des données de la base est centrale dans les études scientifiques sur le sujet.
 
 **Trois aspects sont régulièrement traités**, avec une abondante littérature scientifique portant généralement sur des **cas d'étude**.
 
@@ -434,18 +429,22 @@ actuality of the information cannot be guarantee"*.
 
 ## Précision et qualité topologique / géométrique
 
+<center>
 Les études s'entendent sur le fait que la qualité du géoréférencement est plutôt bonne dans OSM (précision moins d'un mètre), avec des erreurs topologiques à considérer. 
+<br>
 
 ::: columns
 
-:::: {.column width="50%" .small}
+:::: {.column width="33%" .small}
 
-**Corrections topologiques préalable à l'utilisation du réseau routier OSM**
+**Corrections préalables à l'utilisation du réseau routier OSM**
 
 ![](img/topology.png)
-
 <small>Source: [Tong et al., 2020](https://www.mdpi.com/1999-4907/11/12/1347)</small>
+::::
 
+:::: {.column width="33%" .small}
+<br><br><br><br><br><br><br><br>
 **Québec: évaluation de la précision géométrique du réseau OSM au regard d'une source externe de référence**
 
 ![](img/geometric_accuracy.png)
@@ -454,17 +453,18 @@ Les études s'entendent sur le fait que la qualité du géoréférencement est p
 
 :::: 
 
-:::: {.column width="50%" .small}
+:::: {.column width="33%" .small}
 
 **Décalage de l'emprise des bâtiments à Munich**
 ![](img/buildings_offsets.png)
 
-http://dx.doi.org/10.1080/13658816.2013.867495
+<small>Source: [Fan et al., 2013](https://doi.org/10.1080/13658816.2013.867495)</small>
 
 ::::
 
 :::
 
+</center>
 
 ## Complétude des données
 
@@ -515,22 +515,21 @@ Les études s'intéressent généralement à la complétude de tags clés et la 
 
 :::: {.column width="50%" .small}
 
-**Part des objets de type buildings ayant pour attribut
+**Part des clés buildings ayant une valeur level saisie**
 
-![](img/attribute_completeness_1.jpg)
+![](img/attribute_completeness_1.jpg){width="450px"}
 ::::
 
 :::: {.column width="50%" .small}
 
-**Part des objets buildings ayant pour attribut un tag découragé par la communauté**
+**Part des clés buildings ayant des valeurs découragées par la communauté**
 
 ![](img/attribute_completeness_2.png)
+<small>Source: [Biljecki et al., 2023](https://doi.org/10.1016/j.buildenv.2023.110295)</small> 
 
 ::::
 
 :::
-
-<small>Source: [Biljecki et al., 2023](https://doi.org/10.1016/j.buildenv.2023.110295)</small> 
 
 </center>
 
@@ -539,7 +538,7 @@ Les études s'intéressent généralement à la complétude de tags clés et la 
 
 <center>
 
-L'outil [Ohsome](https://dashboard.ohsome.org) développé par l'[HeiGIT](https://heigit.org/) propose **plusieurs métriques** qualifier la qualité d'OSM à travers le temps et l'espace.
+L'outil [Ohsome](https://dashboard.ohsome.org) développé par l'[HeiGIT](https://heigit.org/) propose **plusieurs métriques** pour qualifier la qualité d'OSM dans le temps et l'espace.
 
 ::: columns
 
@@ -563,7 +562,7 @@ L'outil [Ohsome](https://dashboard.ohsome.org) développé par l'[HeiGIT](https:
 
 <center>
 
-Comparaison à des jeux de données de référence (Microsoft Buildings, EURO) : surface couverte. 
+Comparaison à des jeux de données de référence (Microsoft Buildings, EURO)
 
 ::: columns
 
@@ -587,7 +586,7 @@ Comparaison à des jeux de données de référence (Microsoft Buildings, EURO) :
 
 <center>
 
-Comparaison à des jeux de données de référence (Microsoft Roads) : longeur des tronçons 
+Comparaison à des jeux de données de référence (Microsoft Roads)
 
 ::: columns
 
@@ -612,7 +611,7 @@ Comparaison à des jeux de données de référence (Microsoft Roads) : longeur d
 
 <center>
 
-Évaluation de la saturation des contributions. Elle est élevée si la croissance de la courbe ajustée est minimale. 
+La saturation est atteinte si la croissance de la courbe ajustée est minimale 
 
 ::: columns
 
@@ -679,25 +678,26 @@ Estimation du niveau de mise à jour des données (dates des dernières contribu
 
 </center>
 
+
+## Les aspects récurrents
+
+- La qualité et la complétude augmente avec le temps
+- Justesse/qualité dans les zones densément peuplées plus fortes 
+- Réseau plutôt de bonne qualité
+- Variabilité en fonction des pays
+- Le caractère ouvert des contributions OSM génère *de facto* des erreurs volontaires ([vandalisme](https://wiki.openstreetmap.org/wiki/FR:Vandalisme)) ou non (tags fantaisistes, erreurs topologiques, etc.), à considérer
+
+
 ## Des outils collaboratifs pour améliorer la qualité d'OSM
 
 <center>
 
 [Osmose](https://osmose.openstreetmap.fr) est un des [nombreux outils](https://wiki.openstreetmap.org/wiki/FR:Assurance_qualit%C3%A9) qualité dédié au signalement de problèmes dans les données OSM
 
-![](img/osmose.png)
+![](img/osmose.png){width="850px"}
 </center>
 
-## Les aspects récurrents
-
-- La qualité et la complétude augmente avec le temps
-- Hétérogénéité d'OSM: tags fantaisistes
-- Justesse/qualité dans les zones densément peuplées plus fortes
-- Réseau plutôt de bonne qualité
-- Variabilité en fonction des pays
-
-
-# Interroger OpenStreetMap avec R
+# Interroger OSM avec R
 
 ## Géocodage
 
@@ -717,31 +717,28 @@ Estimation du niveau de mise à jour des données (dates des dernières contribu
 ## Carto interactive (tuiles OSM)
 
 <br>
-
 <center>![](img/r_packages_map_templates_interactive.png){width="800px"}</center>
 
 ## Calcul d'itinéraires
 
 <br>
-
 <center>![](img/r_packages_map_routing.png){width="800px"}</center>
 
 ## Développés et maintenus par le RIATE
 
 <br>
-
 <center>![](img/r_packages_riate.png){width="800px"}</center>
 
 
 ## Un restaurant Thaï dans le secteur ? 
 
-**[tidygeocoder](https://jessecambon.github.io/tidygeocoder/)** (Cambon, 2025) : permet d'enrichir des données à partir de services de géocodage (Geocodio, Mapbox, HERE, TomTom, etc.) dont l'API [Nominatim](https://nominatim.org/) qui utilise les adresses OpenStreetMap
+**[tidygeocoder](https://jessecambon.github.io/tidygeocoder/)** (Cambon, 2025) : permet d'enrichir des données à partir de services de géocodage (Geocodio, Mapbox, HERE, TomTom, etc.) dont l'API [Nominatim](https://nominatim.org/) qui utilise les adresses OSM
 
 <br>
 
 ::: columns
 
-:::: {.column width="40"}
+:::: {.column width="50%"}
 
 ```{r}
 #| echo: true
@@ -760,7 +757,7 @@ here
 
 ::::
 
-:::: {.column width="60"}
+:::: {.column width="50%"}
 
 ```{r}
 #| warning: false
@@ -790,7 +787,7 @@ here
 
 ::: columns
 
-:::: {.column width="50"}
+:::: {.column width="50%"}
 
 ```{r}
 #| echo: true
@@ -806,7 +803,7 @@ res <- om_get(x = c(st_coordinates(here)[1],
 
 :::: 
 
-:::: {.column width="50"}
+:::: {.column width="50%"}
 
 ```{r}
 #| fig-width: 5
@@ -831,7 +828,7 @@ res <- om_get(x = c(st_coordinates(here)[1],
 
 ::: columns
 
-:::: {.column width="50"}
+:::: {.column width="50%"}
 
 ```{r}
 #| echo: true
@@ -851,7 +848,7 @@ mf_map(st_transform(here, 3857), add = TRUE)
 
 :::: 
 
-:::: {.column width="50"}
+:::: {.column width="50%"}
 
 ```{r}
 #| fig-width: 5
@@ -874,7 +871,7 @@ mf_map(st_transform(here, 3857), add = TRUE)
 
 ::: columns
 
-:::: {.column width="50"}
+:::: {.column width="50%"}
 
 ```{r}
 #| echo: true
@@ -905,7 +902,7 @@ mf_map(st_transform(thai, 3857), pch = 21, bg = "red",  add = TRUE)
 
 ::::
 
-:::: {.column width="50"}
+:::: {.column width="50%"}
 
 ```{r}
 #| fig-width: 5
@@ -944,7 +941,7 @@ mf_map(st_transform(thai, 3857), pch = 21, bg = "red",  add = TRUE)
 
 ::: columns
 
-:::: {.column width="50"}
+:::: {.column width="50%"}
 
 ```{r}
 #| echo: true
@@ -981,7 +978,7 @@ mf_label(st_transform(thai, 3857), var = "label", pos = 2)
 
 ::::
 
-:::: {.column width="50"}
+:::: {.column width="50%"}
 
 ```{r}
 #| fig-width: 5
@@ -1029,7 +1026,7 @@ mf_label(st_transform(thai, 3857), var = "label", pos = 2)
 
 ::: columns
 
-:::: {.column width="50"}
+:::: {.column width="50%"}
 
 ```{r}
 #| eval: false
@@ -1041,17 +1038,10 @@ restos <- restos[!is.na(restos$cuisine) &
 
 library(leaflet)
 
-# Un icone pour notre emplacemment
-pirate = makeIcon(
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Maki2-danger-24.svg/240px-Maki2-danger-24.svg.png",
-    70, 70
-  )
-
 # Carte interactive
 m <- leaflet(st_transform(zone, "EPSG:4326")) %>%
   addTiles() %>%
   addPolygons() %>%
-  addMarkers(data = here, icon = pirate) %>%
   addMarkers(data = restos, 
              popup = paste0("<b>", restos$name, "</b><br>",
                             restos$cuisine))
@@ -1060,7 +1050,7 @@ m
 
 :::: 
 
-:::: {.column width="50"}
+:::: {.column width="50%"}
 
 ```{r}
 #| fig-width: 5
@@ -1227,13 +1217,13 @@ Approche multi-échelle de potentiels de population dans des **voisinages géogr
 
 ::: columns
 
-:::: {.column width="50" .medium}
+:::: {.column width="50%" .medium}
 
 ![](img/Pot10km.png)
 
 ::::
 
-:::: {.column width="50" .medium}
+:::: {.column width="50%" .medium}
 ![](img/Pot15min.png)
 ::::
 
@@ -1249,13 +1239,13 @@ Approche multi-échelle de potentiels de population dans des **voisinages géogr
 
 ::: columns
 
-:::: {.column width="50" .medium}
+:::: {.column width="50%" .medium}
 
 ![](img/Pot20km.png)
 
 ::::
 
-:::: {.column width="50" .medium}
+:::: {.column width="50%" .medium}
 ![](img/Pot30min.png)
 ::::
 
@@ -1271,13 +1261,13 @@ Approche multi-échelle de potentiels de population dans des **voisinages géogr
 
 ::: columns
 
-:::: {.column width="50" .medium}
+:::: {.column width="50%" .medium}
 
 ![](img/Pot40km.png)
 
 ::::
 
-:::: {.column width="50" .medium}
+:::: {.column width="50%" .medium}
 
 ![](img/Pot60min.png)
 ::::
@@ -1342,17 +1332,17 @@ Accessibilité des territoires ruraux européens aux **petites et moyennes ville
 
 ::: columns
 
-:::: {.column width="50"}
+:::: {.column width="50%"}
 
 - 512 million de couples origine (carreaux de grille kilométriques peuplés) / destination (petites et moyennes villes)
 
-- Mise en place d'un serveur de routage Europe entière (package [`osrm`](https://github.com/riatelab/osrm)), parallélisation ([`parallel`](https://r-universe.dev/manuals/parallel.html)), optimisation de workflows ([`targets`](https://books.ropensci.org/targets/))
+- Mise en place d'un serveur de routage Europe entière (package [`osrm`](https://github.com/riatelab/osrm)), parallélisation ([`parallel`](https://r-universe.dev/manuals/parallel.html)), optimisation de workflows ([`targets`](https://books.ropensci.org/targets/)), création d'indicateurs d'accessibilité
 
 - Documentation dans une série de notebooks, création d'un outil de géovisualisation
 
 :::: 
 
-:::: {.column width="50"}
+:::: {.column width="50%"}
 
 ![](img/granular_01.png)
 ::::
@@ -1365,17 +1355,17 @@ Accessibilité des territoires ruraux européens aux **petites et moyennes ville
 
 ::: columns
 
-:::: {.column width="50"}
+:::: {.column width="50%"}
 
 - 512 million de couples origine (carreaux de grille kilométriques peuplés) / destination (petites et moyennes villes)
 
-- Mise en place d'un serveur de routage Europe entière (package [`osrm`](https://github.com/riatelab/osrm)), parallélisation ([`parallel`](https://r-universe.dev/manuals/parallel.html)), optimisation de workflows ([`targets`](https://books.ropensci.org/targets/))
+- Mise en place d'un serveur de routage Europe entière (package [`osrm`](https://github.com/riatelab/osrm)), parallélisation ([`parallel`](https://r-universe.dev/manuals/parallel.html)), optimisation de workflows ([`targets`](https://books.ropensci.org/targets/)), création d'indicateurs d'accessibilité
 
 - Documentation dans une série de notebooks, création d'un outil de géovisualisation
 
 :::: 
 
-:::: {.column width="50"}
+:::: {.column width="50%"}
 
 ![](img/granular_02.png)
 ::::
@@ -1389,17 +1379,17 @@ Accessibilité des territoires ruraux européens aux **petites et moyennes ville
 
 ::: columns
 
-:::: {.column width="50"}
+:::: {.column width="50%"}
 
 - 512 million de couples origine (carreaux de grille kilométriques peuplés) / destination (petites et moyennes villes)
 
-- Mise en place d'un serveur de routage Europe entière (package [`osrm`](https://github.com/riatelab/osrm)), parallélisation ([`parallel`](https://r-universe.dev/manuals/parallel.html)), optimisation de workflows ([`targets`](https://books.ropensci.org/targets/))
+- Mise en place d'un serveur de routage Europe entière (package [`osrm`](https://github.com/riatelab/osrm)), parallélisation ([`parallel`](https://r-universe.dev/manuals/parallel.html)), optimisation de workflows ([`targets`](https://books.ropensci.org/targets/)), création d'indicateurs d'accessibilité
 
 - Documentation dans une série de notebooks, création d'un outil de géovisualisation
 
 :::: 
 
-:::: {.column width="50"}
+:::: {.column width="50%"}
 
 ![](img/granular_03.png)
 ::::
@@ -1413,17 +1403,17 @@ Accessibilité des territoires ruraux européens aux **petites et moyennes ville
 
 ::: columns
 
-:::: {.column width="50"}
+:::: {.column width="50%"}
 
 - 512 million de couples origine (carreaux de grille kilométriques peuplés) / destination (petites et moyennes villes)
 
-- Mise en place d'un serveur de routage Europe entière (package [`osrm`](https://github.com/riatelab/osrm)), parallélisation ([`parallel`](https://r-universe.dev/manuals/parallel.html)), optimisation de workflows ([`targets`](https://books.ropensci.org/targets/))
+- Mise en place d'un serveur de routage Europe entière (package [`osrm`](https://github.com/riatelab/osrm)), parallélisation ([`parallel`](https://r-universe.dev/manuals/parallel.html)), optimisation de workflows ([`targets`](https://books.ropensci.org/targets/)), création d'indicateurs d'accessibilité
 
 - Documentation dans une série de notebooks, création d'un outil de géovisualisation
 
 :::: 
 
-:::: {.column width="50"}
+:::: {.column width="50%"}
 
 ![](img/granular_04.png)
 ::::
@@ -1437,17 +1427,17 @@ Accessibilité des territoires ruraux européens aux **petites et moyennes ville
 
 ::: columns
 
-:::: {.column width="50"}
+:::: {.column width="50%"}
 
 - 512 million de couples origine (carreaux de grille kilométriques peuplés) / destination (petites et moyennes villes)
 
-- Mise en place d'un serveur de routage Europe entière (package [`osrm`](https://github.com/riatelab/osrm)), parallélisation ([`parallel`](https://r-universe.dev/manuals/parallel.html)), optimisation de workflows ([`targets`](https://books.ropensci.org/targets/))
+- Mise en place d'un serveur de routage Europe entière (package [`osrm`](https://github.com/riatelab/osrm)), parallélisation ([`parallel`](https://r-universe.dev/manuals/parallel.html)), optimisation de workflows ([`targets`](https://books.ropensci.org/targets/)), création d'indicateurs d'accessibilité
 
 - Documentation dans une série de notebooks, création d'un outil de géovisualisation
 
 :::: 
 
-:::: {.column width="50"}
+:::: {.column width="50%"}
 
 ![](img/granular_05.png)
 ::::
@@ -1461,11 +1451,11 @@ Accessibilité des territoires ruraux européens aux **petites et moyennes ville
 
 ::: columns
 
-:::: {.column width="50"}
+:::: {.column width="50%"}
 
 - 512 million de couples origine (carreaux de grille kilométriques peuplés) / destination (petites et moyennes villes)
 
-- Mise en place d'un serveur de routage Europe entière (package [`osrm`](https://github.com/riatelab/osrm)), parallélisation ([`parallel`](https://r-universe.dev/manuals/parallel.html)), optimisation de workflows ([`targets`](https://books.ropensci.org/targets/))
+- Mise en place d'un serveur de routage Europe entière (package [`osrm`](https://github.com/riatelab/osrm)), parallélisation ([`parallel`](https://r-universe.dev/manuals/parallel.html)), optimisation de workflows ([`targets`](https://books.ropensci.org/targets/)), création d'indicateurs d'accessibilité
 
 - Documentation dans une série de notebooks, création d'un outil de géovisualisation
 
@@ -1473,7 +1463,7 @@ Accessibilité des territoires ruraux européens aux **petites et moyennes ville
 
 :::: 
 
-:::: {.column width="50"}
+:::: {.column width="50%"}
 <center>
 ![](img/granular_06.png){width="400px"}
 ![](img/granular_07.png){width="400px"}
@@ -1490,28 +1480,31 @@ Accessibilité des territoires ruraux européens aux **petites et moyennes ville
 
 ::: columns
 
-:::: {.column width="50"}
+:::: {.column width="50%"}
 
 - 512 million de couples origine (carreaux de grille kilométriques peuplés) / destination (petites et moyennes villes)
 
-- Mise en place d'un serveur de routage Europe entière (package [`osrm`](https://github.com/riatelab/osrm)), parallélisation ([`parallel`](https://r-universe.dev/manuals/parallel.html)), optimisation de workflows ([`targets`](https://books.ropensci.org/targets/))
+- Mise en place d'un serveur de routage Europe entière (package [`osrm`](https://github.com/riatelab/osrm)), parallélisation ([`parallel`](https://r-universe.dev/manuals/parallel.html)), optimisation de workflows ([`targets`](https://books.ropensci.org/targets/)), création d'indicateurs d'accessibilité
 
 - Documentation dans une série de notebooks, création d'un outil de géovisualisation
 
 - Qualifier les écarts de temps de routage à partir de données "réelles" ([Registre des Preuves de Covoiturage](https://www.data.gouv.fr/fr/datasets/trajets-realises-en-covoiturage-registre-de-preuve-de-covoiturage/))
-- Comparer temps de trajet en voiture / vélo. 
 
 :::: 
 
-:::: {.column width="50"}
+:::: {.column width="50%"}
 
-xx
+![](img/granular_08.png)
+
+- Comparer temps de trajet en voiture / vélo
+
+
 ::::
 
 :::
 
 :::: {.medium}
-<center>**En savoir plus ?** Dépôt [Zenodo](https://zenodo.org/records/14160729) (données et méthodes), outil de [géovisualisation](https://nlambert.gitpages.huma-num.fr/granular-gridviz/)</center>
+<br><center>**En savoir plus ?** Dépôt [Zenodo](https://zenodo.org/records/14160729) (données et méthodes), outil de [géovisualisation](https://nlambert.gitpages.huma-num.fr/granular-gridviz/)</center>
 ::::
 
 
@@ -1526,34 +1519,56 @@ xx
     - développement logiciel 
     - import de POI associé à des analyses de complétude et des méthodes d'interpolation spatiale
     - utilisation du réseau et d'engins de routage dérivés d'OSM pour analyses d'accessibilité, généralement associé à des origines-destinations issus de données institutionnelles.
-- **Contribuez quand c'est possible** / adapté ! Voir le wiki [How to contribute](https://wiki.openstreetmap.org/wiki/How_to_contribute)
+- **Contribuez quand c'est possible / adapté !** Voir le wiki [How to contribute](https://wiki.openstreetmap.org/wiki/How_to_contribute)
 
-## Bibliographie (sélective)
+## Ressources et références utiles
+
+<center>Une sélection pas du tout exhaustive, mais pas dénuée d'intérêt pour autant...</center> 
 
 
 ::: {.small}
 
+::: columns
+
+:::: {.column width="50%"}
+
 **Présentation d'OSM**
 
-- [Viry, Généralités autours d'OSM](https://hal.science/hal-03589030v1/file/TR_05_completude_osm.pdf)
+- Plantin, Valentin, 2013 *[Données ouvertes et cartographie libre](https://shs.cairn.info/revue-les-cahiers-du-numerique-2013-1-page-85?lang=fr)*, Les cahiers du numérique, vol. 9, n°1
+- Viry, 2016, *[Généralités autours d'OSM](https://hal.science/hal-03589030v1/file/TR_05_completude_osm.pdf)*
+
 
 **Réflexion sur OSM, ses usages ses évolutions**
 
+- Arsanjani, Zipf, Mooney, Helbich, 2015, *[OpenStreetMap in GIScience:
+Experiences, Research, and Applications](https://link.springer.com/book/10.1007/978-3-319-14280-7)*, Cham, Springer
 - Duféal, Noucher, 2017, *[Des TIC au TOC. Contribuer à OpenStreetMap : entre commun numérique et utopie cartographique](https://journals.openedition.org/netcom/2635)*, Netcom, 31-1/2. 
-- Witt, Loos, Zipf, 2021, [Analysing the Impact of Large Data Imports in OpenStreetMap](https://doi.org/10.3390/ijgi10080528), International Journal of Geo-Information, 10(8), 528. 
+- Hayat, 2019, *[Production des biens communs numériques et usages cartographiques](https://theses.hal.science/tel-03117730)*, thèse de doctorat
+- Witt, Loos, Zipf, 2021, *[Analysing the Impact of Large Data Imports in OpenStreetMap](https://doi.org/10.3390/ijgi10080528)*, International Journal of Geo-Information, 10(8), 528
+- Grinberger et al., 2022, *[Bridges and Barriers: An Exploration of Engagements of the Research Community with the OpenStreetMap Community](https://www.mdpi.com/2220-9964/11/1/54)*, International Journal of Geo-Information, Vol 11
+::::
 
-- Bridges and Barriers: An Exploration of Engagements of the Research Community with the OpenStreetMap Community : https://www.mdpi.com/2220-9964/11/1/54
+:::: {.column width="50%"}
 
 **Complétude**
-- Hennig, 2019, *[Child- and Youth-Friendly Cities: How Does and Can Crowdmapping Support Their Development?](https://doi.org/https://doi.org/10.4000/articulo.4296)*, Journal of Urban Research. 
-- Touya et al. 2010, https://hal.science/hal-02320425/document
 
+- Barrington-Leigh, Millard-Ball, 2017, [The world’s user-generated road map is more than 80% complete](https://doi.org/10.1371/journal.pone.0180698), PLoS ONE 12 (8)
+- Girres, Touya, 2010,  [Quality Assessment of the French OpenStreetMap Dataset](https://doi.org/10.1111/j.1467-9671.2010.01203.x), Transactions in GIS vol 14
+- Hennig, 2019, *[Child- and Youth-Friendly Cities: How Does and Can Crowdmapping Support Their Development?](https://doi.org/https://doi.org/10.4000/articulo.4296)*, Journal of Urban Research 
+- Novack, Vorbeck, Zipf, 2024, [An investigation of the temporality of OpenStreetMap data contribution activities](https://doi.org/10.1080/10095020.2022.2124127), Geo-spatial Information Science, vol 27
 
+**Exemples d'utilisation avec R**
 
-- https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0180698
-- https://onlinelibrary.wiley.com/doi/10.1111/j.1467-9671.2010.01203.x (fr)
-- https://www.tandfonline.com/doi/full/10.1080/10095020.2022.2124127
-- Analyzing the Contributor Activity of a Volunteered Geographic Information Project — The Case of OpenStreetMap (https://www.mdpi.com/2220-9964/1/2/146)
+- Giraud, Pécout, 2025, [Géomatique avec R](https://rcarto.github.io/geomatique_avec_r/15_OSM.html), chapitre 15
+- Giraud, 2017, [Cartographic Explorations of the OpenStreetMap Database with R](https://rcarto.github.io/caRtosm/index.html)
+- Giraud, Ysebaert, Pecout, 2019, [Accessibilité et données OSM](https://rcarto.gitpages.huma-num.fr/santelocal/)
+- Pecout, 2025, [Traitement et analyse de l'IG avec R](https://github.com/HuguesPecout/DEMO_GEO_R), Master I Géomatique, USSEIN
+- Ysebaert, 2023, [Travel time calculation with R and data visualization with Observable](https://rysebaert.github.io/climbing_paris/)
+- Ysebaert, Lambert, Marveaux, 2024, [Acquisition de données géographiques et visualisations de base](https://worldregio.github.io/geounivr2024/INT3_Importe_R.html#openstreetmap), GEO UNIV'R Tunisie
+
+::::
+
+::: 
 
 :::
 
@@ -1587,18 +1602,21 @@ matthieu.viry\@cnrs.fr\
 ::: 
 
 
-# Commentaires
+## Vos retours...
 
-éléments mis de côté de peur d'exploser le temps mais qui peuvent être rajoutés si cela vous semble nécessaire ou pertinent. La plupart du temps il seront évoqués à l'oral avec renvoi vers des ressources de référence. 
+:::: {.medium}
 
-- présentation des logiciels hors OSM qui utilisent / diffusent des données OSM
-- ressources RIATE qui présentent les méthodes type KDE. 
+**Volontairement omis**
+
+...de peur d'exploser le temps mais qui peuvent être rajoutés si cela vous semble fondamental. La plupart du temps il seront évoqués à l'oral avec renvoi vers des ressources de référence. 
+
+- présentation des logiciels qui utilisent / diffusent des données OSM (Overpass? Geofabrik, OSRM/Valhalla, Nominatim, stadia/thunderforest, iD, JOSM, etc.)
+- dans les projets RIATE, exemples d'utilisation avec KDE (restos Tim). 
 - comment installer un serveur osrm
 
-Ce qui pourrait être mis de côté
+**Questions :**
 
-- Usages OSM (bof)
-
-Des questions
-
-- Pas too much au niveau de la prez des projets ? 
+- Le déroulé vous semble clair et adapté au public ? 
+- Pas too much au niveau de la prez des projets RIATE ? 
+- Niveau biblio, j'ai mis ce qui me semblait central/intéressant. Si vous voyez des ressources/ref incontournables, je suis preneur ! 
+::::
