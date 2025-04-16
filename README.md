@@ -24,7 +24,7 @@ Construire la présentation
 `quarto render index.qmd`
 
 
-**(2) Utiliser OpenStreetMap avec R - mise en pratique
+**(2) Utiliser OpenStreetMap avec R - mise en pratique**
 
 - Import des packages de référence
 - Géocodage
