@@ -2,178 +2,38 @@
 
 Présentation réalisée par Ronan Ysebaert, Louis Laurian, Timothée Giraud et Matthieu Viry (UAR RIATE pour le groupe [ElementR](https://elementr.gitpages.huma-num.fr/website/apropos.html) en mai 2025.
 
-# Contenu
+## Contenu
 
 Cette séance propose de sensibiliser ses participants à l'usage d'OpenStreetMap (OSM) avec R. Après une présentation des spécificités et de l’écosystème de cette base de données participative, nous reviendrons sur les packages R utiles pour interfacer son contenu et réaliser des opérations variées : import de tuiles raster, géocodage, export de données géographiques, calcul d’itinéraires et temps de trajet avec différents modes de transport.
 La présentation sera étayée d’exemples d’application issus des travaux et projets du RIATE. Cela permettra d’aborder des aspects connexes liés à la complétude des données, l’implémentation de méthodes d’interpolation spatiale, la mise en place d’engins de routage pour des calculs d’itinéraires massifs ou encore la création d’indicateurs d’accessibilité dérivés de matrices origine-destination.
 Cette intervention se conclura par la présentation d’une chaine de traitement reproductible qui résumera les éléments abordés durant la séance et qui pourra utilement être remobilisée dans d’autres contextes spatiaux ou thématiques. 
 
 
-# Programme de la présentation (pour discussion) / objectif 2h
+## Programme de la demi-journée (3h)
 
-## OpenStreetMap en quelques mots
+Rythmée par une présentation et une mise en application
 
-### Bref historique et grande spécificités
+**(1) OpenStreetMap - spécificités et usages possibles**
 
-- Juillet 2004, Steve Coast.
-- Wikipedia de la donnée géographique
-- Courant du libre (licence Open Data Commons Open Database License)
-- Contribution par les utilisateurs
-- OpenStreetMap France, 2011
+- Présentation d'OpenStreetMap : spécificités, histoire, organisation et usages
+- L'évaluation de la qualité d'OSM
+- Packages R de référence permettant d'interfacer OSM 
+- Retour sur quelques cas d'usage dans les travaux du RIATE
 
-### Utilisateurs et contributeurs
-
-- Evolution des utilisateurs à travers le temps (https://osmstats.neis-one.org/?item=members). 38 % des utilisateurs inscrits ont modifié un objet et 38 % ont contribué de manière significative (Zipf, 2012). 
-- Evolution des contributions
-- Contributions par pays (source Geofabrik)
-
-### Effets contribution
-
-gif (source https://www.lemonde.fr/blog/data/tag/openstreetmap/) 
+Construire la présentation
+`quarto render index.qmd`
 
 
-### Usages courants
+**(2) Utiliser OpenStreetMap avec R - mise en pratique
 
-- Amazon, Apple, FB, etc.
-- Secteur humanitaire (CartONG, Nations Unies, Banque Mondiale, etc.). Cf https://www.missingmaps.org/
-- Collectivités (exemple GRANULAR mise en place service partagé de données à l'échelle inter-communale sur la gestion des déchets).
-- Agences de transport ([SNCF](https://peertube.openstreetmap.fr/w/1Bi7aeGiRFWAXhU61a8gKC), Deutsche Bahn, etc.)
-- SIG et logiciels associés (QGIS, ESRI)
-- Medias
-- Des services/outils pour le public : randonnée, tourisme/city map, etc.) 
-
-### Les objets géographiques dans OSM
-
-- nodes : un noeud qui contient des données avec sa position, des métadonnées (dernières contributions, modifications) et éventuellement des *tags* sous forme de pairs *key-value*.
-- way : une ligne avec au minimum 2 nodes. Peut se référer aussi à un polygone (une ligne qui a partage son premier et dernier point)
-- relation: pour regrouper des objets selon des caractéristiques communes (ligne de bus, objets inclus dans un aéroport, etc.) 
-
-### La folksonomie OSM
-
-- des tags, définis par des clés-valeur (key-value) pour caractériser les objets
-- proposés par la communauté : évolutif, flexibles
-- plusieurs tags peuvent être associés à un objet
-
-> exemple bâtiment recherche condorcet. 
-> OSM wiki pour s'y retrouver
-
-### Les clés principales
-
-(nombres d'objets inclus par clé)
-
-### Précision et complétude
-
-- Précision/justesse géométrique
-- Complétude des attributs / exemple tiré de l'étude centralité
-- Aspect liés à la saturation et complétude des attributs (Heidelberg Institute for Geoinformation Technology) > [Ohsome Dashboard](https://dashboard.ohsome.org/#backend=ohsomeApi&groupBy=none&time=%2F2025-02-02T12%3A00Z%2FP1M&key=natural&value=tree&types=node&measure=count) 
-- [CheckAutopista](https://k1wiosm.github.io/checkautopista2/?id=16898316&lat=49.4788&lon=2.5598&z=7&view=AX)
-
-### Aspects récurrents
-
-- La qualité et la complétude augmente avec le temps
-- Hétérogénéité d'OSM: tags fantaisistes
-- Justesse/qualité dans les zones densément peuplées plus fortes
-- Réseau plutôt de bonne qualité
-- Variabilité en fonction des pays
-
-### Logiciels qui utilisent/diffusent des données OSM
-
-- OverpassTurbo : explorer / télécharger rapidement (exemple cours Merickskay 
-- Geofabrik : télécharger massivement
-- OSRM/Valhalla: routage
-- nominatim : géocodage
-- stadia/thunderforest/CARTO
-- contribuer ! OSMid Be careful bonnes pratiques ! 
-
-## Les packages de référence
-
-Import de données:  osmdata, osmextract
-routage: osrm, [valh NEW!]
-carte interactive: leaflet, mapview
-habillage carto: maptiles, maposm
-géocodage: tidygeocoder, nominatim
-
-> exemple appliqué à l'environnement géo de Condorcet où on recherche l'indien le plus proche à pieds, qu'on déroule simplement. 
-
-
-## Le cas des requêtes massives
-
-- osmextract plutôt qu'osmdata
-- mise en place d'un serveur de routage [Tim] 
-
-
-## OSM : un point de départ (on tourne pour présenter les trucs qu'on a réalisé perso). 
-
-Exemples de réalisations / projets coordonnés par le labo
-
-### Approche multi-source et qualité des données
-
-- Combiner des données institutionnelles (GRANULAR / aspects complétude) [Louis ou Ronan]
-- Analyse de complétude / points (GRANULAR / CGET) [Ronan]
-- Comparaison des temps routiers / preuves de covoiturage [Louis]
-- Habillage de cartes pour mise en situation locale: Airbnb template locaux [Ronan]
-
-### Du point à la surface / interpolations spatiales
-
-- lissages gaussiens : diff de potentiels étude CGET [Ronan]
-- krigeage / restos à Paris [Tim].
-
-### Accessibilité
- 
-- Indicateurs d'accessibilité GRANULAR [Louis]
-- Porosité des points de passage frontaliers [Matthieu]
-- Accès aux maternités [Ronan]
-- Voisinage fonctionnel: potentiel de pop euclidien / par la route [Tim]
-- Accès aux salles de grimpe en vélo [Ronan] / aspect contrib' en plus
-
-
-## Biblio
-
-### Présentation d'OSM
-- [Viry, Généralités autours d'OSM](https://hal.science/hal-03589030v1/file/TR_05_completude_osm.pdf)
-
-### Réflexion sur OSM, ses susages ses évolutions
-https://journals.openedition.org/netcom/2635
-OSM Science—The Academic Study of the OpenStreetMap Project, Data, Contributors, Community, and Applications : https://www.mdpi.com/2220-9964/11/4/230
-Analysing the Impact of Large Data Imports in OpenStreetMap : https://www.mdpi.com/2220-9964/10/8/528
-Bridges and Barriers: An Exploration of Engagements of the Research Community with the OpenStreetMap Community : https://www.mdpi.com/2220-9964/11/1/54
-
-### Complétude
-https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0180698
-https://onlinelibrary.wiley.com/doi/10.1111/j.1467-9671.2010.01203.x (fr)
-https://www.tandfonline.com/doi/full/10.1080/10095020.2022.2124127
-Analyzing the Contributor Activity of a Volunteered Geographic Information Project — The Case of OpenStreetMap (https://www.mdpi.com/2220-9964/1/2/146)
-
-# Mise en situation reproductible et extensible (1h)
-
-- Présentation d'un notebook qui réalise une chaîne de traitement reproductible, extensible à d'autres espaces. Plusieurs possibilités
-- A faire dans un autre repo
-
-## Approche régionale 
-
-pb potentiel > masse de données ?
-
-- Sélectionner une région (genre Bretagne 295 MB ?)
-- OSM extract (une région), filtrer sur une aménité (restos ou autres + mairies + contours communes) : osmextract
-- Nettoyage des données (polygons to points)
-- Agrégation dans la maille (n objet dans la commune / densité pop): avec sf  
-- Lissages spatiaux (potential)
-- Itinéraires mairies > aménité
-- Isochrones
-- Carto du temps de trajet
-- Reproduire tout ça avec une autre région
-
-## Approche locale
-
-- Sélectionner une commune
-- carto mise en page avec maposm
-- export de tags avec osmdata (quelle aménité)
-- nettoyage des données (polygons to points)
-- Krigeage 
+- Import des packages de référence
+- Géocodage
+- Import de tuiles OSM
+- Import de couches géographiques OSM
 - Carroyage
-- Temps d'accès + carto
-- Reproduire ça avec une autre commune
+- Temps d'accès
+- Itinéraires
 
-Ressources :
-- L'exemple d'Hugues: https://github.com/HuguesPecout/DEMO_GEO_R
-- L'exemple proposé à l'ET en Tunisie : https://worldregio.github.io/geounivr2024/INT3_Importe_R.html#openstreetmap    
+Accessible dans ce [dépôt](https://github.com/riatecom/osm-elementr-2025-application)
+
+![](img/appli.png)
