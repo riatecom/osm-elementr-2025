@@ -1,11 +1,11 @@
 ---
-title: "OpenStreetMap - spécificités et usages possibles"
+title: "Utiliser OpenStreetMap avec R"
 subtitle: "Goupe ElementR"
 lang: "fr"
 author: "Ronan Ysebaert, Louis Laurian, Timothée Giraud, Matthieu Viry"
 date: "2025-05-13"
 mainfont: Liberation Sans
-monofont: Liberation Sans
+monofont: Fira Code
 date-format: "DD MMM YYYY"
 format:
   revealjs: 
@@ -26,11 +26,11 @@ editor_options:
 
 :::: {.column width="48%"}
 
-**(1) OSM et des usages possibles dans la recherche... avec R (≈ 1h30)**
+**(1) Utiliser OpenStreetMap pour la recherche, avec R (≈ 1h30)**
 
-- Présentation d'OpenStreetMap : spécificités, histoire, organisation, usages
+- Présentation d'OSM : spécificités, histoire, organisation, usages
 - L'évaluation de la qualité d'OSM
-- Packages R de référence permettant d'interfacer OSM 
+- Principaux packages permettant d'utiliser OSM 
 - Retour sur quelques cas d'usage dans les travaux du RIATE
 
 :::: 
@@ -42,8 +42,8 @@ editor_options:
 
 **(2) Mise en pratique (≈ 1h30)**
 
-- Une chaine de traitement reproductible et extensible
-- Basé sur les packages R de référence : géoréférencement, import de tuiles OSM, d'objets géographiques associé à quelques traitements spatiaux
+- Une chaîne de traitements reproductible et extensible
+- Géoréférencement, import de tuiles OSM et d'objets géographiques, mobilisation dans des traitements d'analyse spatiale
 - *#DoItYourSelf*
 
 ::::
@@ -65,7 +65,7 @@ Une présentation à explorer ! N'hésitez pas à consulter les ressources assoc
 - Aux origines inspiré de Wikipedia et le constat de la prédominance de données géographiques propriétaires/payantes
 - Une licence (Open Data Commons Open Database License - ODbL) favorisant la libre circulation des données
 - Contribution par les utilisateurs
-- Souvent présenté comme une alternative à Google 
+- Souvent présenté comme une alternative à Google Maps
 
 :::: 
 
@@ -89,6 +89,10 @@ Une présentation à explorer ! N'hésitez pas à consulter les ressources assoc
 ## Utilisateurs OSM
 
 <center> 
+Humm?!
+
+Pas très utile  non ? Qui sont les registred users? toi? moi ?
+
 
 ![](img/registered.png){width="800px"}
 <br>
@@ -186,10 +190,9 @@ On peut distinguer les **contributions individuelles** (*volunteers*), **"organi
 ## Une base de donnée évolutive
 
 <center>
-
-![](img/GifsLechenet03.gif){.nostretch  width="800px"}
+<img src="img/comparaison.png" />
 <small>
-Source: OSM Then and Now (téléchargé depuis cet [article](https://www.lemonde.fr/blog/data/tag/openstreetmap/) du Monde)
+Source: OSM Then and Now (devenu [OpenStreetMap Vintage Tile Server](https://github.com/mvexel/openstreetmap-vintage-tile-server))
 </small>
 
 </center>
@@ -233,8 +236,8 @@ mf_title("Masse de données OpenStreetMap à travers le monde")
 mf_credits("Source : Geofabrik, 2025")
 ```
 
-- **Top 3 (Masse de données)** : USA (10.3 Go), Canada (5), France (4.4)
-- **Top 3 (Mo / million hab)** : Féroé (2090 Mo/Million d'habitants), Groenland (295), Norvège (224) / (FR 18e, 65) 
+- **Top 3 (Masse de données par pays )** : USA (10.3 Go), Canada (5), France (4.4)
+<!-- - **Top 3 (Mo / million hab)** : Féroé (2090 Mo/Million d'habitants), Groenland (295), Norvège (224) / (FR 18e, 65)  -->
 
 
 # La base de données OSM
@@ -738,7 +741,7 @@ Estimation du niveau de mise à jour des données (dates des dernières contribu
 
 ::: columns
 
-:::: {.column width="50%"}
+:::: {.column width="60%"}
 
 ```{r}
 #| echo: true
@@ -757,7 +760,7 @@ here
 
 ::::
 
-:::: {.column width="50%"}
+:::: {.column width="40%"}
 
 ```{r}
 #| warning: false
@@ -787,7 +790,7 @@ here
 
 ::: columns
 
-:::: {.column width="50%"}
+:::: {.column width="60%"}
 
 ```{r}
 #| echo: true
@@ -803,7 +806,7 @@ res <- om_get(x = c(st_coordinates(here)[1],
 
 :::: 
 
-:::: {.column width="50%"}
+:::: {.column width="40%"}
 
 ```{r}
 #| fig-width: 5
@@ -828,7 +831,7 @@ res <- om_get(x = c(st_coordinates(here)[1],
 
 ::: columns
 
-:::: {.column width="50%"}
+:::: {.column width="60%"}
 
 ```{r}
 #| echo: true
@@ -848,7 +851,7 @@ mf_map(st_transform(here, 3857), add = TRUE)
 
 :::: 
 
-:::: {.column width="50%"}
+:::: {.column width="40%"}
 
 ```{r}
 #| fig-width: 5
@@ -865,13 +868,13 @@ mf_map(st_transform(here, 3857), add = TRUE)
 
 ## Un restaurant Thaï dans le secteur ? 
 
-**[osmdata](https://github.com/ropensci/osmdata)** (Padgham, 2023) permet d'importer des objets vectoriels d'OSM à partir du serveur [overpass](https://overpass-api.de/). Pour de grosses requêtes, préférez le package **[osmextract](https://github.com/ropensci/osmextract)** (Gilardi, 2025).
+**[osmdata](https://github.com/ropensci/osmdata)** (Padgham, 2023) permet d'importer des objets vectoriels d'OSM à partir du serveur [overpass](https://overpass-api.de/). Pour des requêtes nombreuses ou volumineuses, préférez le package **[osmextract](https://github.com/ropensci/osmextract)** (Gilardi, 2025).
 
 <br>
 
 ::: columns
 
-:::: {.column width="50%"}
+:::: {.column width="60%"}
 
 ```{r}
 #| echo: true
@@ -902,7 +905,7 @@ mf_map(st_transform(thai, 3857), pch = 21, bg = "red",  add = TRUE)
 
 ::::
 
-:::: {.column width="50%"}
+:::: {.column width="40%"}
 
 ```{r}
 #| fig-width: 5
@@ -937,11 +940,11 @@ mf_map(st_transform(thai, 3857), pch = 21, bg = "red",  add = TRUE)
 
 ## Un restaurant Thaï dans le secteur ? 
 
-**[osrm](https://github.com/riatelab/osrm)** (Giraud, 2024) permet l'interface entre R et le service de routage [OSRM](https://project-osrm.org/) et d'exporter routes, isochrones et matrices de distance à pieds/vélo/voiture. Pour des requêtes importantes, créer [sa propre instance OSRM](https://rcarto.github.io/posts/build_osrm_server/) pour ne pas surcharger le serveur de démo.
+**[osrm](https://github.com/riatelab/osrm)** (Giraud, 2024) permet l'interface entre R et le service de routage [OSRM](https://project-osrm.org/) et d'exporter routes, isochrones et matrices de distance à pieds/vélo/voiture. Pour des requêtes nombreuses, créer [sa propre instance OSRM](https://rcarto.github.io/posts/build_osrm_server/) pour ne pas surcharger le serveur de démo.
 
 ::: columns
 
-:::: {.column width="50%"}
+:::: {.column width="60%"}
 
 ```{r}
 #| echo: true
@@ -978,7 +981,7 @@ mf_label(st_transform(thai, 3857), var = "label", pos = 2)
 
 ::::
 
-:::: {.column width="50%"}
+:::: {.column width="40%"}
 
 ```{r}
 #| fig-width: 5
