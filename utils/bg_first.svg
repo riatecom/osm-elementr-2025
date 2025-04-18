@@ -1,7 +1,47 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg id="Calque_1" data-name="Calque 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1215.75 685.5">
-  <defs>
-    <style>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   id="Calque_1"
+   data-name="Calque 1"
+   viewBox="0 0 1050 700"
+   version="1.1"
+   sodipodi:docname="bg_first.svg"
+   inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
+   width="1050"
+   height="700"
+   inkscape:export-filename="/home/ro/Documents/github/osm-elementr-2025/utils/bg_first.png"
+   inkscape:export-xdpi="300"
+   inkscape:export-ydpi="300"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview40"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     showgrid="false"
+     inkscape:zoom="0.74166269"
+     inkscape:cx="427.41802"
+     inkscape:cy="285.17007"
+     inkscape:window-width="1920"
+     inkscape:window-height="990"
+     inkscape:window-x="1920"
+     inkscape:window-y="28"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="Calque_1"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0" />
+  <defs
+     id="defs9">
+    <style
+       id="style2">
       .cls-1 {
         stroke: #d3152c;
         stroke-width: 5px;
@@ -25,23 +65,95 @@
         fill: #d3152c;
       }
     </style>
-    <linearGradient id="Dégradé_sans_nom_11" data-name="Dégradé sans nom 11" x1="113.35" y1="183.52" x2="1030.2" y2="183.52" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#d3162d"/>
-      <stop offset="1" stop-color="#fff"/>
+    <linearGradient
+       id="Dégradé_sans_nom_11"
+       data-name="Dégradé sans nom 11"
+       x1="113.35"
+       y1="183.52"
+       x2="1030.2"
+       y2="183.52"
+       gradientUnits="userSpaceOnUse">
+      <stop
+         offset="0"
+         stop-color="#d3162d"
+         id="stop4" />
+      <stop
+         offset="1"
+         stop-color="#fff"
+         id="stop6" />
     </linearGradient>
   </defs>
-  <image width="1621" height="914" transform="scale(.75)" xlink:href="../../../gitlab/GRANULAR/focus_ceret/fig/background_first.PNG"/>
-  <rect class="cls-3" width="1215.75" height="685.5"/>
-  <rect class="cls-3" x="65.25" y="75.33" width="382.73" height="107.55" rx="5.3" ry="5.3"/>
-  <rect class="cls-4" x="243.23" y="107.28" width="10.57" height="47.47"/>
-  <path class="cls-4" d="M135.68,98.5c-7.2,0-14.4,2.48-20.25,7.43-13.27,11.25-14.85,31.05-3.6,44.1,6.3,7.2,15.07,11.03,23.85,11.03s14.4-2.47,20.25-7.42c13.28-11.25,14.85-31.05,3.6-44.1-6.3-7.2-15.08-11.02-23.85-11.03Z"/>
-  <path class="cls-4" d="M206.33,132.03v22.73h10.58v-22.73c0-9.45,0-14.18,13.05-14.18h.9v-10.57h-.9c-23.62,0-23.62,16.2-23.63,24.75Z"/>
-  <polygon class="cls-4" points="345.15 97.15 334.58 97.15 334.58 107.28 328.95 107.28 328.95 117.18 334.58 117.18 334.58 154.75 345.15 154.75 345.15 117.18 354.83 117.18 354.83 107.28 345.15 107.28 345.15 97.15"/>
-  <path class="cls-4" d="M305.33,112.68c-4.05-4.27-9.45-6.52-15.97-6.52-13.05,0-22.95,10.58-22.95,24.75s9.68,25.2,22.95,25.2,11.93-2.25,15.97-6.75v5.4h10.57v-47.48h-10.57v5.4ZM290.93,145.98c-8.32,0-13.95-6.08-13.95-15.07s1.35-7.88,3.6-10.8c2.47-2.92,5.85-4.27,10.12-4.27,8.32,0,13.95,6.08,13.95,15.07s-5.4,15.08-13.95,15.08h.22Z"/>
-  <path class="cls-4" d="M385.2,106.15c-14.18,0-24.07,10.35-24.07,24.97s10.12,24.98,24.07,24.98,18.23-4.72,22.05-12.83l.45-.67-9.23-4.05-.45.67c-2.48,4.73-7.2,7.2-12.82,7.2s-11.7-4.05-13.05-11.02h36v-.67c.23-1.12.45-2.48.45-3.6,0-14.62-9.68-24.75-23.4-24.75h0v-.23ZM372.38,125.95c1.57-6.52,6.3-10.35,12.82-10.35s11.02,3.83,12.38,10.35h-25.2Z"/>
-  <line class="cls-1" x1="77.73" y1="685.5" x2="76.57" y2="251.31"/>
-  <polygon class="cls-4" points="82.89 229.09 70.45 229.09 64.23 239.86 70.45 250.63 82.89 250.63 89.1 239.86 82.89 229.09"/>
-  <image width="875" height="863" transform="translate(1129.68 607.12) scale(.08)" xlink:href="../../../gitlab/website/fig/logos/cnrs.png"/>
-  <image width="446" height="170" transform="translate(954.22 603.18) scale(.41)" xlink:href="../../../gitlab/website/fig/logos/upariscite.png"/>
-  <line class="cls-2" x1="1030.2" y1="182.3" x2="113.36" y2="184.75"/>
+  <rect
+     class="cls-3"
+     width="1050"
+     height="700"
+     id="rect13"
+     x="1.1528039"
+     y="-0.39700001"
+     style="stroke-width:0.939111" />
+  <rect
+     class="cls-3"
+     x="65.25"
+     y="75.330002"
+     width="382.73001"
+     height="107.55"
+     rx="5.3000002"
+     ry="5.3000002"
+     id="rect15" />
+  <g
+     id="g1089"
+     transform="matrix(0.78235018,0,0,0.78235018,-25.292034,65.14468)">
+    <rect
+       class="cls-4"
+       x="243.23"
+       y="107.28"
+       width="10.57"
+       height="47.470001"
+       id="rect17" />
+    <path
+       class="cls-4"
+       d="m 135.68,98.5 c -7.2,0 -14.4,2.48 -20.25,7.43 -13.27,11.25 -14.85,31.05 -3.6,44.1 6.3,7.2 15.07,11.03 23.85,11.03 8.78,0 14.4,-2.47 20.25,-7.42 13.28,-11.25 14.85,-31.05 3.6,-44.1 -6.3,-7.2 -15.08,-11.02 -23.85,-11.03 z"
+       id="path19" />
+    <path
+       class="cls-4"
+       d="m 206.33,132.03 v 22.73 h 10.58 v -22.73 c 0,-9.45 0,-14.18 13.05,-14.18 h 0.9 v -10.57 h -0.9 c -23.62,0 -23.62,16.2 -23.63,24.75 z"
+       id="path21" />
+    <polygon
+       class="cls-4"
+       points="354.83,117.18 354.83,107.28 345.15,107.28 345.15,97.15 334.58,97.15 334.58,107.28 328.95,107.28 328.95,117.18 334.58,117.18 334.58,154.75 345.15,154.75 345.15,117.18 "
+       id="polygon23" />
+    <path
+       class="cls-4"
+       d="m 305.33,112.68 c -4.05,-4.27 -9.45,-6.52 -15.97,-6.52 -13.05,0 -22.95,10.58 -22.95,24.75 0,14.17 9.68,25.2 22.95,25.2 13.27,0 11.93,-2.25 15.97,-6.75 v 5.4 h 10.57 v -47.48 h -10.57 z m -14.4,33.3 c -8.32,0 -13.95,-6.08 -13.95,-15.07 0,-8.99 1.35,-7.88 3.6,-10.8 2.47,-2.92 5.85,-4.27 10.12,-4.27 8.32,0 13.95,6.08 13.95,15.07 0,8.99 -5.4,15.08 -13.95,15.08 h 0.22 z"
+       id="path25" />
+    <path
+       class="cls-4"
+       d="m 385.2,106.15 c -14.18,0 -24.07,10.35 -24.07,24.97 0,14.62 10.12,24.98 24.07,24.98 13.95,0 18.23,-4.72 22.05,-12.83 l 0.45,-0.67 -9.23,-4.05 -0.45,0.67 c -2.48,4.73 -7.2,7.2 -12.82,7.2 -5.62,0 -11.7,-4.05 -13.05,-11.02 h 36 v -0.67 c 0.23,-1.12 0.45,-2.48 0.45,-3.6 0,-14.62 -9.68,-24.75 -23.4,-24.75 v 0 z m -12.82,19.8 c 1.57,-6.52 6.3,-10.35 12.82,-10.35 6.52,0 11.02,3.83 12.38,10.35 z"
+       id="path27" />
+  </g>
+  <line
+     class="cls-1"
+     x1="77.730003"
+     y1="697.76056"
+     x2="76.57"
+     y2="251.31"
+     id="line29" />
+  <polygon
+     class="cls-4"
+     points="82.89,229.09 70.45,229.09 64.23,239.86 70.45,250.63 82.89,250.63 89.1,239.86 "
+     id="polygon31" />
+  <image
+     width="57.550011"
+     height="56.760754"
+     xlink:href="../../../gitlab/website/fig/logos/cnrs.png"
+     id="image33"
+     x="975.60284"
+     y="630.94269" />
+  <image
+     width="150.33707"
+     height="57.303364"
+     xlink:href="../../../gitlab/website/fig/logos/upariscite.png"
+     id="image35"
+     x="819.83966"
+     y="627.70343" />
 </svg>
