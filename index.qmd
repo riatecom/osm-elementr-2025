@@ -26,11 +26,11 @@ editor_options:
 
 :::: {.column width="48%"}
 
-**(1) Utiliser OpenStreetMap pour la recherche, avec R (≈ 1h30)**
+**(1) Mise en contexte (≈ 1h30)**
 
 - Présentation d'OSM : spécificités, histoire, organisation, usages
 - L'évaluation de la qualité d'OSM
-- Principaux packages permettant d'utiliser OSM 
+- Principaux packages R et applications autour de l'écosystème OSM 
 - Retour sur quelques cas d'usage dans les travaux du RIATE
 
 :::: 
@@ -74,37 +74,37 @@ Une présentation à explorer ! N'hésitez pas à consulter les ressources assoc
 
 :::
 
-<center>![](img/osm_history.png)</center>
+<br><br>
+<center>![](img/osm_history.png){width="700px"}</center>
 
 
 ## Contributeurs OSM
 
 <center>
 
-**2.2 millions** depuis le début du projet OSM. Depuis 2017, entre **250 et 300 mille** contributeurs sont actifs sur l'année. 
+**2.2 millions** depuis le début du projet. Depuis 2017, **≈ 300 000** contributeurs actifs par année 
 
 ::: columns
 
 :::: {.column width="50%" .medium}
 
 **Contributeurs accumulés par mois**
-
-![](img/contrib.png)
-
+![](img/contrib.png){width="380px"}
 ::::
 
 :::: {.column width="50%" .medium}
 
 **Contributeurs par année**
 
-![](img/contrib_year.png)
-
+![](img/contrib_year.png){width="380px"}
 ::::
-
 :::
+**[Nouveaux contributeurs par mois]{style="font-size: 0.85em;"}**
+
+![](img/New_contributors_month.png){width="380px"}
+
 <small>Source : [Wiki OSM](https://wiki.openstreetmap.org/wiki/Stats), 2025</small>
 </center>
-
 
 ## Profil des contributeurs
 
@@ -246,9 +246,8 @@ mf_credits("Source : Geofabrik, 2025")
 - **relation** : pour regrouper des objets selon des caractéristiques communes (ligne de bus, objets inclus dans un aéroport, etc.) 
 
 ## Nodes, ways & relations dans OSM
-
 <center>
-![](img/geometry_stat.png){width="850px"}
+![](img/geometry_stat.png){width="825px"}
 
 <small>Source : [Wiki OSM](https://wiki.openstreetmap.org/wiki/Stats), 2025</small>
 </center>
@@ -334,6 +333,12 @@ mf_credits("Source : Geofabrik, 2025")
 
 ::::
 
+## Les principaux tags
+
+<center>[Taginfo](https://taginfo.openstreetmap.org/keys) rassemble les informations sur les tags OSM afin  d'aider à comprendre ce qu'ils signifient et comment ils sont utilisés</center>
+
+![](img/key_nodes.png)
+
 
 ## Les principaux tags
 
@@ -343,15 +348,53 @@ mf_credits("Source : Geofabrik, 2025")
 
 ### Noeuds
 
-![](img/key_nodes.png)
+```{r}
+library(flextable)
+df <- read.csv("docs/keys_nodes.csv")
+df <- df[1:11,]
+
+df$share_nodes <- round((df$count_nodes / df$count_all * 100), 2)
+df$count_nodes_fraction <- df$count_nodes_fraction * 100
+df <- df[,c("key", "count_nodes", "share_nodes", "count_nodes_fraction",  "values_all", "users_all", "most_frequent_values")]
+ft <- flextable(df)
+ft <- autofit(ft)
+ft
+```
+
+<small>*Note de lecture: En mai 2025, 86 million de noeuds OSM ont pour clé addr:housenumber (clé la plus fréquente pour les nodes), ils représentent 51.27 % des objets géographiques OSM de même clé. 32.76 % des objets contenus dans OSM sont décrits par cette clé. À ces clés sont associés 1.8 million de valeurs différentes, contribuées par 380369 utilisateurs. Les valeurs les plus fréquentes sont 1, 2, 3, 4*.</small>
 
 ### Chemins
 
-![](img/key_ways.png)
+```{r}
+df <- read.csv("docs/keys_ways.csv")
+df <- df[1:11,]
+
+df$share_ways <- round((df$count_ways / df$count_all * 100), 2)
+df$count_ways_fraction <- df$count_ways_fraction * 100
+df <- df[,c("key", "count_ways", "share_ways", "count_ways_fraction",  "values_all", "users_all", "most_frequent_values")]
+ft <- flextable(df)
+ft <- autofit(ft)
+ft
+```
+
+<small>*Note de lecture: En mai 2025, 641 million de chemins OSM ont pour clé building (clé la plus fréquente pour les ways), ils représentent 99.69 % des objets géographiques OSM de même clé. 58.31 % des objets contenus dans OSM sont décrits par cette clé. À ces clés sont associés 7715 valeurs différentes, contribuées par 867401 utilisateurs. Les valeurs les plus fréquentes sont yes, house, residential*.</small>
+
 
 ### Relations
 
-![](img/key_relations.png)
+```{r}
+df <- read.csv("docs/keys_relations.csv")
+df <- df[1:11,]
+
+df$share_relations <- round((df$count_relations / df$count_all * 100), 2)
+df$count_relations_fraction <- df$count_relations_fraction * 100
+df <- df[,c("key", "count_relations", "share_relations", "count_relations_fraction",  "values_all", "users_all", "most_frequent_values")]
+ft <- flextable(df)
+ft <- autofit(ft)
+ft
+```
+
+<small>*Note de lecture: En mai 2025, 13.3 million de relations OSM ont pour clé type (clé la plus fréquente pour les relations), ils représentent 98.84 % des objets géographiques OSM de même clé. 99.98 % des objets contenus dans OSM sont décrits par cette clé. À ces clés sont associés 4624 valeurs différentes, contribuées par 127255 utilisateurs. Les valeurs les plus fréquentes sont multipolygon, restriction, route et boundary*.</small>
 
 :::: 
 
@@ -1653,13 +1696,13 @@ Accessibilité des territoires ruraux européens aux **petites et moyennes ville
 
 ## Pour résumer
 
-- OSM: Un projet vieux de 20 ans. Une **communauté** qui **grandit**, la **qualité** qui **s'améliore**, des **usages** qui se **diversifient** et des outils (extraction de données, saisie de données, routage, stylisation de tuiles raster, évaluation qualité) qui se **multiplient**
+- OSM: 20 ans d'exitence. Une **communauté** qui **grandit**, la **qualité** qui **s'améliore**, des **usages** qui se **diversifient** et des outils (extraction de données, saisie de données, routage, stylisation de tuiles raster, évaluation qualité) qui se **multiplient**
 - Avoir toujours en tête les **spécificités** de cette **base de données participative** (organisations, débats, complétude) pour ne pas faire n'importe quoi 
 - Un **ecosystème autour de R** (mais pas que) **fonctionnel** et qui permet de faire beaucoup de choses
 - Usage du RIATE autour d'OSM :
     - développement logiciel 
     - import de POI associé à des analyses de complétude et des méthodes d'interpolation spatiale
-    - utilisation du réseau et d'engins de routage dérivés d'OSM pour analyses d'accessibilité, généralement associé à des origines-destinations issus de données institutionnelles.
+    - utilisation du réseau et d'engins de routage dérivés d'OSM pour analyses d'accessibilité, qui reposent généralement sur des origines-destinations issues de données institutionnelles.
 - **Contribuez quand c'est possible / adapté !** Voir le wiki [How to contribute](https://wiki.openstreetmap.org/wiki/How_to_contribute)
 
 ## Ressources et références utiles
