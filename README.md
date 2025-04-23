@@ -1,8 +1,12 @@
 # Utiliser OpenStreetMap avec R
 
-Présentation réalisée par Ronan Ysebaert, Louis Laurian, Timothée Giraud et Matthieu Viry (UAR RIATE pour le groupe [ElementR](https://elementr.gitpages.huma-num.fr/website/apropos.html) en mai 2025.
+## Description :memo:
 
-## Contenu
+*Date* : 13/05/2025, 14h-17h  
+*Évènement* : [ElementR](https://elementr.gitpages.huma-num.fr/website/apropos.html) 
+*Durée* : Environ 3 heures
+
+## Contenu :classical_building:
 
 Cette séance propose de sensibiliser ses participants à l'usage d'OpenStreetMap (OSM) avec R. 
 Après une présentation des spécificités et de l’écosystème de cette base de données participative, 
@@ -14,31 +18,33 @@ l’implémentation de méthodes d’interpolation spatiale, la mise en place d�
 Cette intervention se conclura par la présentation d’une chaîne de traitements reproductible 
 qui résumera les éléments abordés durant la séance et qui pourra utilement être remobilisée dans d’autres contextes spatiaux ou thématiques. 
 
-
-## Programme de la demi-journée (3h)
-
-Rythmée par une présentation et une mise en application
-
-**(1) OpenStreetMap - spécificités et usages possibles**
-
-- Présentation d'OpenStreetMap : spécificités, histoire, organisation et usages
-- L'évaluation de la qualité d'OSM
-- Packages R de référence permettant d'interfacer OSM 
-- Retour sur quelques cas d'usage dans les travaux du RIATE
-
-Construire la présentation
-`quarto render index.qmd`
+**La mise en pratique est accessible dans ce [dépôt](https://github.com/riatecom/osm-elementr-2025-application)**
 
 
-**(2) Utiliser OpenStreetMap avec R - mise en pratique**
+## Voir la présentation :book:
 
-- Géocodage
-- Import de tuiles OSM
-- Import de couches géographiques OSM
-- Carroyage
-- Temps d'accès
-- Itinéraires
+La présentation est disponible en ligne à l'adresse suivante : (à compiler à la fin)
 
-Accessible dans ce [dépôt](https://github.com/riatecom/osm-elementr-2025-application)
 
-![](img/appli.png)
+## Compilation de la présentation :computer:
+
+- **Prérequis** :
+    - [Quarto](https://quarto.org)
+
+- **Étapes** :
+    - Cloner le dépôt
+    - Se placer dans le dossier `Magrit-MagisAR9-2024`
+    - Lancer la commande `quarto render . --output-dir dist/`
+    - Ouvrir le fichier `dist/index.html` dans un navigateur Web
+
+## Licence :recycle:
+
+Le contenu de ce dépôt est mis à disposition selon les termes de la [Licence CC BY-NC-SA 4.0 (Creative Commons - Attribution - Pas d’Utilisation Commerciale - Partage dans les Mêmes Conditions 4.0 International)](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.fr).
+
+
+## Auteurs :bust_in_silhouette:
+
+[Ronan Ysebaert](https://github.com/rysebaert), [Louis Laurian](https://github.com/louislrn), Timothée Giraud[](https://github.com/rCarto) et [Matthieu Viry](https://github.com/mthh).
+
+
+![](img/r_packages.png)
