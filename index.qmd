@@ -1,6 +1,6 @@
 ---
 title: "Utiliser OpenStreetMap avec R"
-subtitle: "Goupe ElementR"
+subtitle: "Groupe ElementR"
 lang: "fr"
 author: "Ronan Ysebaert, Louis Laurian, Timothée Giraud, Matthieu Viry"
 date: "2025-05-13"
@@ -44,7 +44,7 @@ editor_options:
 
 - Une chaîne de traitements reproductible et extensible
 - Géoréférencement, import de tuiles OSM et d'objets géographiques, mobilisation dans des traitements d'analyse spatiale
-- *#DoItYourSelf*
+- *#DoItYourself*
 
 ::::
 
@@ -108,7 +108,7 @@ Une présentation à explorer ! N'hésitez pas à consulter les ressources assoc
 
 ## Profil des contributeurs
 
-On peut distinguer les **contributions individuelles** (*volunteers*), **"organisées"**, et les **imports de données** (*data imports*) issus de **sources externes**, souvent massives. 
+On peut distinguer les **contributions individuelles** (*volunteers*), **"organisées"** et les **imports massifs de données** (*data imports*) issus de **sources externes** 
 
 
 ::: columns
@@ -135,7 +135,7 @@ On peut distinguer les **contributions individuelles** (*volunteers*), **"organi
 
 - Une/des communauté(s) organisée(s) ([Mooney, 2019](https://2019.stateofthemap.org/attachments/7ZVYEH_sl_Mooney_a_novel_application.pdf))
 
-- Des *[mapping parties](https://wiki.openstreetmap.org/wiki/FR:Cartoparties)* régulières pour former des débutants à éditer OSM collectivement : [25 événements](https://wiki.openstreetmap.org/wiki/Current_events) à travers le monde en mai 2025 ! 
+- Des *[Cartoparties](https://wiki.openstreetmap.org/wiki/FR:Cartoparties)* régulières pour former des débutants à éditer OSM collectivement : [25 événements](https://wiki.openstreetmap.org/wiki/Current_events) à travers le monde en mai 2025 ! 
 
 - Secteur humanitaire : 60.5 million de bâtiments et 4.5 million de routes cartographiées depuis 2008 ([Herfort et al., 2021](https://doi.org/10.1038/s41598-021-82404-z)), voir le projet [Missing Maps](https://www.missingmaps.org/)
 
@@ -226,8 +226,8 @@ mf_credits("Source : Geofabrik, 2025")
 
 :::: {.column width="30%"}
 
-- **node** : un noeud qui contient des données avec sa position, des métadonnées (dernières contributions, modifications) et éventuellement des *tags* sous forme de pairs *key-value*.
-- **way** : une ligne avec au minimum 2 nodes. Peut se référer aussi à un polygone (une ligne qui a partage son premier et dernier point)
+- **[node](https://wiki.openstreetmap.org/wiki/FR:N%C5%93ud)** : un noeud qui contient des données avec sa position, des métadonnées (dernières contributions, modifications) et éventuellement des *tags* sous forme de pairs *key-value*.
+- **[way](https://wiki.openstreetmap.org/wiki/FR:Chemin)** : une ligne avec au minimum 2 noeuds. Peut se référer aussi à un polygone (une ligne qui a partage son premier et dernier point)
 
 ::::
 
@@ -243,7 +243,7 @@ mf_credits("Source : Geofabrik, 2025")
 
 :::
 
-- **relation** : pour regrouper des objets selon des caractéristiques communes (ligne de bus, objets inclus dans un aéroport, etc.) 
+- **[relation](https://wiki.openstreetmap.org/wiki/FR:Relations)** : pour regrouper des objets selon des caractéristiques communes (ligne de bus, objets inclus dans un aéroport, multipolygones, etc.) 
 
 ## Nodes, ways & relations dans OSM
 <center>
@@ -361,7 +361,7 @@ ft <- autofit(ft)
 ft
 ```
 
-<small>*Note de lecture: En mai 2025, 86 million de noeuds OSM ont pour clé addr:housenumber (clé la plus fréquente pour les nodes), ils représentent 51.27 % des objets géographiques OSM de même clé. 32.76 % des objets contenus dans OSM sont décrits par cette clé. À ces clés sont associés 1.8 million de valeurs différentes, contribuées par 380369 utilisateurs. Les valeurs les plus fréquentes sont 1, 2, 3, 4*.</small>
+<small>*Note de lecture: En mai 2025, 86 million de nœuds OSM ont pour clé addr:housenumber (clé la plus fréquente pour les nodes), ils représentent 51.27 % des objets géographiques OSM de même clé. 32.76 % des objets contenus dans OSM sont décrits par cette clé. À ces clés sont associés 1.8 million de valeurs différentes, contribuées par 380369 utilisateurs. Les valeurs les plus fréquentes sont 1, 2, 3, 4*.</small>
 
 ### Chemins
 
@@ -529,7 +529,7 @@ Les études s'entendent sur le fait que la qualité du géoréférencement est p
 
 <center>
 
-Les études s'intéressent généralement à la complétude de tags clés et à leur consistance (mauvais tags, comparaison avec des bases de données de référence).
+Les études s'intéressent généralement à la complétude de tags clés et à leur cohérence (mauvais tags, comparaison avec des bases de données de référence).
 
 ::: columns
 
@@ -816,7 +816,7 @@ tidygeocoder utilise l'API **[Nominatim](https://nominatim.org/)** pour géocode
 ## Import de données OSM
 
 **[maposm](https://github.com/riatelab/maposm)** (Giraud, 2025) permet d'extraire d'OSM des **objets vectoriels** (bâtiments, couverture du sol, infrastructures de transport) à des **fins cartographiques** 
-<br>
+<br><br>
 
 ::: columns
 
@@ -1027,13 +1027,16 @@ thai$lab_ped <- paste0(thai$name, "\n",
                        round(thai$distance, 2), " km / ",
                        round(thai$duration, 2), " mn")
 
-# Cartogrpahie
+# Cartographie
 om_map(res, title = "Trajets à pieds")
 mf_map(st_transform(ped, 3857), lwd = 5, col = "#238b45", add = TRUE)
-mf_map(st_transform(here, 3857), pch = 21, cex = 2.2, bg = "white", add = TRUE)
-mf_map(st_transform(thai, 3857), pch = 21, cex = 2.2, bg = "#005a32",  add = TRUE)
+mf_map(st_transform(here, 3857), pch = 21, cex = 2.2, 
+       bg = "white", add = TRUE)
+mf_map(st_transform(thai, 3857), pch = 21, cex = 2.2, 
+       bg = "#005a32",  add = TRUE)
 mf_label(st_transform(thai, 3857), var = "lab_ped", pos = 2)
-mf_credits(txt = "Routing: OSRM - github.com/Project-OSRM/osrm-backend\n", cex = .8)
+mf_credits(txt = "Routing: OSRM - github.com/Project-OSRM/osrm-backend\n",
+           cex = .8)
 ```
 
 ::::
@@ -1070,7 +1073,7 @@ thai$lab_ped <- paste0(thai$name, "\n",
                        round(thai$distance, 2), " km / ",
                        round(thai$duration, 2), " mn")
 
-# Cartogrpahie
+# Cartographie
 om_map(res, title = "Trajets à pieds")
 mf_map(st_transform(ped, 3857), lwd = 5, col = "#238b45", add = TRUE)
 mf_map(st_transform(here, 3857), pch = 21, cex = 2.2, bg = "white", add = TRUE)
@@ -1092,7 +1095,7 @@ mf_credits(txt = "Routing: OSRM - github.com/Project-OSRM/osrm-backend\n", cex =
 
 ## Calcul d'itinéraires
 
-**[valh](https://github.com/riatelab/osrm)** (Giraud, Viry, 2025) propose peu ou prou les mêmes fonctionnalités qu'osrm, et permettant la création de [profils de routage](https://valhalla.github.io/valhalla/api/turn-by-turn/api-reference/#costing-models) personnalisés. 
+**[valh](https://github.com/riatelab/valh)** (Giraud, Viry, 2025) propose des fonctionnalités proches d'osrm. Il permet aussi de créer aisément des [profils de routage](https://valhalla.github.io/valhalla/api/turn-by-turn/api-reference/#costing-models) personnalisés... 
 
 ::: columns
 
@@ -1127,7 +1130,7 @@ thai$lab_bik <- paste0(thai$name, "\n",
                        round(thai$dist_bike, 2), " km / ",
                        round(thai$dur_bike , 2), " mn")
 
-# Cartogrpahie
+# Cartographie
 om_map(res, title = "Trajets en vélo")
 mf_map(st_transform(bik, 3857), lwd = 5, col = "#e31a1c", 
        add = TRUE)
@@ -1171,7 +1174,7 @@ thai$lab_bik <- paste0(thai$name, "\n",
                        round(thai$dist_bike, 2), " km / ",
                        round(thai$dur_bike , 2), " mn")
 
-# Cartogrpahie
+# Cartographie
 om_map(res, title = "Trajets en vélo")
 mf_map(st_transform(bik, 3857), lwd = 5, col = "#e31a1c", add = TRUE)
 mf_map(st_transform(here, 3857), pch = 21, cex = 2.2, bg = "white", add = TRUE)
@@ -1185,24 +1188,24 @@ mf_credits("Routing: Valhalla - valhalla.github.io/valhalla\n", cex = .8)
 
 ## Calcul d'itinéraires 
 
-[valh](https://github.com/riatelab/osrm) réalise l'interface en R et l'API **[Valhalla](https://valhalla.github.io/valhalla/)**. Ce [site web](https://valhalla.openstreetmap.de/) permet de jouer sur les paramètres de l'API, comme les *[costing options](https://valhalla.github.io/valhalla/api/turn-by-turn/api-reference/#costing-models)*. 
+... car [valh](https://github.com/riatelab/osrm) réalise l'interface en R et une autre API de routage basé sur OSM :  **[Valhalla](https://valhalla.github.io/valhalla/)**. Ce [site web](https://valhalla.openstreetmap.de/) permet de jouer sur les paramètres de l'API, comme les *[costing options](https://valhalla.github.io/valhalla/api/turn-by-turn/api-reference/#costing-models)*. 
 
 ![](img/valhalla.png)
 <small>
 
-Cette [vignette](https://cran.r-project.org/web/packages/valh/vignettes/install-valhalla.html) décrit comment installer son propre serveur Valhalla pour des requêtes importantes. À noter que dans ces configurations, OSRM présente des performances plus importantes.  
+Cette [vignette](https://cran.r-project.org/web/packages/valh/vignettes/install-valhalla.html) décrit comment installer son propre serveur Valhalla pour des requêtes importantes. À noter que dans ce cas de figure, OSRM présente des performances plus importantes (le réseau simplifié est compilé en amont).  
 
 </small>
 
 ## Cartographie interactive
 
-**[leaflet](https://rstudio.github.io/leaflet/)** (Cheng, 2024) permet de créer des cartes interactives en utilisant la librairie JavaScript éponyme. Elles incluent plusieurs [tuiles de référence](https://leaflet-extras.github.io/leaflet-providers/preview/index.html) à différents niveaux de zoom, dont OSM (défaut).
+**[leaflet](https://rstudio.github.io/leaflet/)** (Cheng, 2024) crée des cartes interactives en utilisant la librairie JavaScript éponyme. Elle inclue plusieurs [tuiles de référence](https://leaflet-extras.github.io/leaflet-providers/preview/index.html) à différents niveaux de zoom, dont OSM (défaut).
 
 <br>
 
 ::: columns
 
-:::: {.column width="60%"}
+:::: {.column width="50%"}
 
 ```{r}
 #| eval: false
@@ -1210,7 +1213,8 @@ Cette [vignette](https://cran.r-project.org/web/packages/valh/vignettes/install-
 
 # Tous les restos hors brasserie et cuisine française
 restos <- restos[!is.na(restos$cuisine) & 
-                   !restos$cuisine %in% c("brasserie", "french"),]
+                   !restos$cuisine %in% c("brasserie",
+                                          "french"),]
 
 library(leaflet)
 
@@ -1226,7 +1230,7 @@ m
 
 :::: 
 
-:::: {.column width="40%"}
+:::: {.column width="50%"}
 
 ```{r}
 #| fig-width: 5
@@ -1236,7 +1240,6 @@ m
 restos <- restos[!is.na(restos$cuisine) & 
                    !restos$cuisine %in% c("brasserie", "french"),]
 
-# Un icone pour notre emplacemment
 library(leaflet)
 
 # Carte interactive
@@ -1254,7 +1257,7 @@ m
 
 ## Cartographie interactive
 
-Les packages R [leaflet](https://rstudio.github.io/leaflet/), [mapview](https://r-spatial.github.io/mapview/) ou [maptiles](https://github.com/riatelab/maptiles) proposent la visualisation de tuiles raster stylisées à différents niveaux de zoom open source comme [Stamen](https://r-spatial.github.io/mapview/) ou [Thunderforest](https://www.thunderforest.com/), qui sont tirées d'OSM
+Les tuiles proposées par les packages R [leaflet](https://rstudio.github.io/leaflet/), [mapview](https://r-spatial.github.io/mapview/) ou [maptiles](https://github.com/riatelab/maptiles) reposent sur des fournisseurs de tuiles raster open source stylisées à différents niveaux de zoom, comme [Stamen](https://r-spatial.github.io/mapview/) ou [Thunderforest](https://www.thunderforest.com/), qui sont tirées d'OSM
 
 <center>
 
@@ -1295,7 +1298,7 @@ Les packages R [leaflet](https://rstudio.github.io/leaflet/), [mapview](https://
 ## Une typologie des territoires frontaliers (CGET, 2016)
 
 <center>
-Création d'indicateurs pour qualifier l'**accessibilité** des des territoires frontaliers à partir d'OSM : **points de passages frontaliers**
+Création d'indicateurs pour qualifier l'**accessibilité** des territoires frontaliers à partir d'OSM : **points de passages frontaliers**
 
 ![](img/cget16_02.png){width="750px"}
 </center>
@@ -1303,7 +1306,7 @@ Création d'indicateurs pour qualifier l'**accessibilité** des des territoires 
 ## Une typologie des territoires frontaliers (CGET, 2016)
 
 <center>
-Création d'indicateurs pour qualifier l'**accessibilité** des des territoires frontaliers à partir d'OSM : **temps de parcours entre deux régions frontalières**
+Création d'indicateurs pour qualifier l'**accessibilité** des territoires frontaliers à partir d'OSM : **temps de parcours entre deux régions frontalières**
 
 ![](img/cget16_03.png){width="650px"}
 
@@ -1313,7 +1316,7 @@ Création d'indicateurs pour qualifier l'**accessibilité** des des territoires 
 
 <center>
 
-Création d'indicateurs pour qualifier l'**accessibilité** des des territoires frontaliers à partir d'OSM : **performance du réseau routier**
+Création d'indicateurs pour qualifier l'**accessibilité** des territoires frontaliers à partir d'OSM : **performance du réseau routier**
 
 ![](img/cget16_04.png){width="650px"}
 
@@ -1501,7 +1504,7 @@ Approche multi-échelle de potentiels de population dans des **voisinages géogr
 :::: 
 
 
-## Accessibilité aux services (Horizon Europe, 2022-2026)
+## Accessibilité aux services (Horizon Europe > 2026)
 
 Accessibilité des territoires ruraux européens aux **petites et moyennes villes** / **écoles** 
 
@@ -1527,7 +1530,7 @@ Accessibilité des territoires ruraux européens aux **petites et moyennes ville
 
 :::
 
-## Accessibilité aux services (Horizon Europe, 2022-2026)
+## Accessibilité aux services (Horizon Europe > 2026)
 
 Accessibilité des territoires ruraux européens aux **petites et moyennes villes** / **écoles** 
 
@@ -1535,7 +1538,7 @@ Accessibilité des territoires ruraux européens aux **petites et moyennes ville
 
 :::: {.column width="30%" .medium}
 
-- **512 million de couples origine - destination** : carreaux de grille kilométriques vers petites et moyennes villes dans un voisinage de 100 km
+- **512 million de couples origine - destination** : carreaux de grille kilométrique vers petites et moyennes villes dans un voisinage de 100 km
 
 - Mise en place d'un **serveur de routage** Europe entière (package *[osrm](https://github.com/riatelab/osrm)*), **parallélisation des calculs** (*[parallel](https://r-universe.dev/manuals/parallel.html)*), optimisation de **workflows** (*[targets](https://books.ropensci.org/targets/)*), création d'**indicateurs d'accessibilité**
 
@@ -1554,7 +1557,7 @@ Accessibilité des territoires ruraux européens aux **petites et moyennes ville
 :::
 
 
-## Accessibilité aux services (Horizon Europe, 2022-2026)
+## Accessibilité aux services (Horizon Europe > 2026)
 
 Accessibilité des territoires ruraux européens aux **petites et moyennes villes** / **écoles** 
 
@@ -1562,7 +1565,7 @@ Accessibilité des territoires ruraux européens aux **petites et moyennes ville
 
 :::: {.column width="30%" .medium}
 
-- **512 million de couples origine - destination** : carreaux de grille kilométriques vers petites et moyennes villes dans un voisinage de 100 km
+- **512 million de couples origine - destination** : carreaux de grille kilométrique vers petites et moyennes villes dans un voisinage de 100 km
 
 - Mise en place d'un **serveur de routage** Europe entière (package *[osrm](https://github.com/riatelab/osrm)*), **parallélisation des calculs** (*[parallel](https://r-universe.dev/manuals/parallel.html)*), optimisation de **workflows** (*[targets](https://books.ropensci.org/targets/)*), création d'**indicateurs d'accessibilité**
 
@@ -1580,7 +1583,7 @@ Accessibilité des territoires ruraux européens aux **petites et moyennes ville
 
 :::
 
-## Accessibilité aux services (Horizon Europe, 2022-2026)
+## Accessibilité aux services (Horizon Europe > 2026)
 
 Accessibilité des territoires ruraux européens aux **petites et moyennes villes** / **écoles** 
 
@@ -1588,7 +1591,7 @@ Accessibilité des territoires ruraux européens aux **petites et moyennes ville
 
 :::: {.column width="30%" .medium}
 
-- **512 million de couples origine - destination** : carreaux de grille kilométriques vers petites et moyennes villes dans un voisinage de 100 km
+- **512 million de couples origine - destination** : carreaux de grille kilométrique vers petites et moyennes villes dans un voisinage de 100 km
 
 - Mise en place d'un **serveur de routage** Europe entière (package *[osrm](https://github.com/riatelab/osrm)*), **parallélisation des calculs** (*[parallel](https://r-universe.dev/manuals/parallel.html)*), optimisation de **workflows** (*[targets](https://books.ropensci.org/targets/)*), création d'**indicateurs d'accessibilité**
 
@@ -1607,7 +1610,7 @@ Accessibilité des territoires ruraux européens aux **petites et moyennes ville
 :::
 
 
-## Accessibilité aux services (Horizon Europe, 2022-2026)
+## Accessibilité aux services (Horizon Europe > 2026)
 
 Accessibilité des territoires ruraux européens aux **petites et moyennes villes** / **écoles** 
 
@@ -1615,7 +1618,7 @@ Accessibilité des territoires ruraux européens aux **petites et moyennes ville
 
 :::: {.column width="30%" .medium}
 
-- **512 million de couples origine - destination** : carreaux de grille kilométriques vers petites et moyennes villes dans un voisinage de 100 km
+- **512 million de couples origine - destination** : carreaux de grille kilométrique vers petites et moyennes villes dans un voisinage de 100 km
 
 - Mise en place d'un **serveur de routage** Europe entière (package *[osrm](https://github.com/riatelab/osrm)*), **parallélisation des calculs** (*[parallel](https://r-universe.dev/manuals/parallel.html)*), optimisation de **workflows** (*[targets](https://books.ropensci.org/targets/)*), création d'**indicateurs d'accessibilité**
 
@@ -1634,7 +1637,7 @@ Accessibilité des territoires ruraux européens aux **petites et moyennes ville
 :::
 
 
-## Accessibilité aux services (Horizon Europe, 2022-2026)
+## Accessibilité aux services (Horizon Europe > 2026)
 
 Accessibilité des territoires ruraux européens aux **petites et moyennes villes** / **écoles** 
 
@@ -1670,7 +1673,7 @@ Accessibilité des territoires ruraux européens aux **petites et moyennes ville
 :::
 
 
-## Accessibilité aux services (Horizon Europe, 2022-2026)
+## Accessibilité aux services (Horizon Europe > 2026)
 
 Accessibilité des territoires ruraux européens aux **petites et moyennes villes** / **écoles** 
 
@@ -1696,9 +1699,9 @@ Accessibilité des territoires ruraux européens aux **petites et moyennes ville
 
 ## Pour résumer
 
-- OSM: 20 ans d'exitence. Une **communauté** qui **grandit**, la **qualité** qui **s'améliore**, des **usages** qui se **diversifient** et des outils (extraction de données, saisie de données, routage, stylisation de tuiles raster, évaluation qualité) qui se **multiplient**
+- OSM: 20 ans d'existence. Une **communauté** qui **grandit**, la **qualité** qui **s'améliore**, des **usages** qui se **diversifient** et des outils (extraction de données, saisie de données, routage, stylisation de tuiles raster, évaluation qualité) qui se **multiplient**
 - Avoir toujours en tête les **spécificités** de cette **base de données participative** (organisations, débats, complétude) pour ne pas faire n'importe quoi 
-- Un **ecosystème autour de R** (mais pas que) **fonctionnel** et qui permet de faire beaucoup de choses
+- Un **écosystème autour de R** (mais pas que) **fonctionnel** et qui permet de faire beaucoup de choses
 - Usage du RIATE autour d'OSM :
     - développement logiciel 
     - import de POI associé à des analyses de complétude et des méthodes d'interpolation spatiale
@@ -1737,19 +1740,19 @@ Experiences, Research, and Applications](https://link.springer.com/book/10.1007/
 
 **Complétude**
 
-- Barrington-Leigh, Millard-Ball, 2017, [The world’s user-generated road map is more than 80% complete](https://doi.org/10.1371/journal.pone.0180698), PLoS ONE 12 (8)
-- Girres, Touya, 2010,  [Quality Assessment of the French OpenStreetMap Dataset](https://doi.org/10.1111/j.1467-9671.2010.01203.x), Transactions in GIS vol 14
+- Barrington-Leigh, Millard-Ball, 2017, *[The world’s user-generated road map is more than 80% complete](https://doi.org/10.1371/journal.pone.0180698)*, PLoS ONE 12 (8)
+- Girres, Touya, 2010, *[Quality Assessment of the French OpenStreetMap Dataset](https://doi.org/10.1111/j.1467-9671.2010.01203.x)*, Transactions in GIS vol 14
 - Hennig, 2019, *[Child- and Youth-Friendly Cities: How Does and Can Crowdmapping Support Their Development?](https://doi.org/https://doi.org/10.4000/articulo.4296)*, Journal of Urban Research 
-- Novack, Vorbeck, Zipf, 2024, [An investigation of the temporality of OpenStreetMap data contribution activities](https://doi.org/10.1080/10095020.2022.2124127), Geo-spatial Information Science, vol 27
+- Novack, Vorbeck, Zipf, 2024, *[An investigation of the temporality of OpenStreetMap data contribution activities](https://doi.org/10.1080/10095020.2022.2124127)*, Geo-spatial Information Science, vol 27
 
 **Exemples d'utilisation avec R**
 
-- Giraud, Pécout, 2025, [Géomatique avec R](https://rcarto.github.io/geomatique_avec_r/15_OSM.html), chapitre 15
-- Giraud, 2017, [Cartographic Explorations of the OpenStreetMap Database with R](https://rcarto.github.io/caRtosm/index.html)
-- Giraud, Ysebaert, Pecout, 2019, [Accessibilité et données OSM](https://rcarto.gitpages.huma-num.fr/santelocal/)
-- Pecout, 2025, [Traitement et analyse de l'IG avec R](https://github.com/HuguesPecout/DEMO_GEO_R), Master I Géomatique, USSEIN
-- Ysebaert, 2023, [Travel time calculation with R and data visualization with Observable](https://rysebaert.github.io/climbing_paris/)
-- Ysebaert, Lambert, Marveaux, 2024, [Acquisition de données géographiques et visualisations de base](https://worldregio.github.io/geounivr2024/INT3_Importe_R.html#openstreetmap), GEO UNIV'R Tunisie
+- Giraud, Pécout, 2025, *[Géomatique avec R](https://rcarto.github.io/geomatique_avec_r/15_OSM.html)*, chapitre 15
+- Giraud, 2017, *[Cartographic Explorations of the OpenStreetMap Database with R](https://rcarto.github.io/caRtosm/index.html)*
+- Giraud, Ysebaert, Pecout, 2019, *[Accessibilité et données OSM](https://rcarto.gitpages.huma-num.fr/santelocal/)*
+- Pecout, 2025, *[Traitement et analyse de l'IG avec R](https://github.com/HuguesPecout/DEMO_GEO_R)*, Master I Géomatique, USSEIN
+- Ysebaert, 2023, *[Travel time calculation with R and data visualization with Observable](https://rysebaert.github.io/climbing_paris/)*
+- Ysebaert, Lambert, Marveaux, 2024, *[Acquisition de données géographiques et visualisations de base](https://worldregio.github.io/geounivr2024/INT3_Importe_R.html#openstreetmap)*, GEO UNIV'R Tunisie
 
 ::::
 
@@ -1761,7 +1764,7 @@ Experiences, Research, and Applications](https://link.springer.com/book/10.1007/
 
 ::: columns
 
-:::: {.column width="82%"}
+:::: {.column width="78%"}
 <br><br><br><br><br>
 
 ::: {.big}
@@ -1774,7 +1777,7 @@ Place à l'application !
 
 ::::
 
-:::: {.column width="18%"}
+:::: {.column width="22%"}
 ::: {.small}
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 ronan.ysebaert\@cnrs.fr\
@@ -1785,23 +1788,3 @@ matthieu.viry\@cnrs.fr\
 ::: 
 ::::
 ::: 
-
-
-## Vos retours...
-
-:::: {.medium}
-
-**Volontairement omis**
-
-...de peur d'exploser le temps mais qui peuvent être rajoutés si cela vous semble fondamental. La plupart du temps il seront évoqués à l'oral avec renvoi vers des ressources de référence. 
-
-- présentation des logiciels qui utilisent / diffusent des données OSM (Overpass? Geofabrik, OSRM/Valhalla, Nominatim, stadia/thunderforest, iD, JOSM, etc.)
-- dans les projets RIATE, exemples d'utilisation avec KDE (restos Tim). 
-- comment installer un serveur osrm
-
-**Questions :**
-
-- Le déroulé vous semble clair et adapté au public ? 
-- Pas too much au niveau de la prez des projets RIATE ? 
-- Niveau biblio, j'ai mis ce qui me semblait central/intéressant. Si vous voyez des ressources/ref incontournables, je suis preneur ! 
-::::
