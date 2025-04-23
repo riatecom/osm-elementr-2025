@@ -2,9 +2,9 @@
 
 ## Description :memo:
 
-*Date* : 13/05/2025, 14h-17h  
-*Évènement* : [ElementR](https://elementr.gitpages.huma-num.fr/website/apropos.html) 
-*Durée* : Environ 3 heures
+- *Date* : 13/05/2025, 14h-17h  
+- *Évènement* : [ElementR](https://elementr.gitpages.huma-num.fr/website/apropos.html)   
+- *Durée* : Environ 3 heures
 
 ## Contenu :classical_building:
 
@@ -33,7 +33,6 @@ La présentation est disponible en ligne à l'adresse suivante : (à compiler à
 
 - **Étapes** :
     - Cloner le dépôt
-    - Se placer dans le dossier `Magrit-MagisAR9-2024`
     - Lancer la commande `quarto render . --output-dir dist/`
     - Ouvrir le fichier `dist/index.html` dans un navigateur Web
 
