@@ -3,5 +3,7 @@
 .RData
 .Ruserdata
 *.html
-index_files
-index_cache
+dist
+
+
+/.quarto/

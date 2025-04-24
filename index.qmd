@@ -12,6 +12,7 @@ format:
     theme: [default,mytheme.scss]
     highlight-style: github
     code-line-numbers: false
+    embed-resources: false
 cache: true
 title-slide-attributes: 
       data-background-image: utils/bg_first.png
@@ -1764,7 +1765,7 @@ Experiences, Research, and Applications](https://link.springer.com/book/10.1007/
 
 ::: columns
 
-:::: {.column width="78%"}
+:::: {.column width="89%"}
 <br><br><br><br><br>
 
 ::: {.big}
@@ -1777,13 +1778,13 @@ Place à l'application !
 
 ::::
 
-:::: {.column width="22%"}
+:::: {.column width="11%"}
 ::: {.small}
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-ronan.ysebaert\@cnrs.fr\
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<span style="color:#D3152C; font-weight: 500; line-height: 1.6;>"> ronan.ysebaert\@cnrs.fr\
 louis.laurian\@cnrs.fr\
 timothee.giraud\@cnrs.fr\
-matthieu.viry\@cnrs.fr\
+matthieu.viry\@cnrs.fr\ </span>
 
 ::: 
 ::::
