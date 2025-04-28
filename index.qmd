@@ -13,7 +13,8 @@ format:
     highlight-style: github
     code-line-numbers: false
     embed-resources: false
-cache: true
+execute:
+  cache: true
 title-slide-attributes: 
       data-background-image: utils/bg_first.png
       data-background-size: cover
@@ -762,19 +763,18 @@ Estimation du niveau de mise à jour des données (dates des dernières contribu
 
 :::: {.column width="60%"}
 
-```{r}
+```{r geocode}
 #| echo: true
 #| eval: false
 
 library(tidygeocoder)
 library(sf)
-library(mapsf)
 
 # Créer un dataframe avec les adresses
 here <- data.frame(address = paste0("5 Cours des Humanités,", 
                                     "93300 Aubervilliers,",
                                     "France"))
-here <- geocode(.tbl = here, address = "address", quiet = TRUE) |>
+here <- geocode(.tbl = here, address = "address", quiet = TRUE)|>
   st_as_sf(coords = c("long", "lat"), crs = 4326)
 here
 ```
@@ -783,22 +783,12 @@ here
 
 :::: {.column width="40%"}
 
-```{r}
+```{r, ref.label='geocode'}
 #| warning: false
 #| message: false
 #| echo: false
-
-library(tidygeocoder)
-library(sf)
-library(mapsf)
-
-# Créer un dataframe avec les adresses
-here <- data.frame(address = paste0("5 Cours des Humanités,", 
-                                    "93300 Aubervilliers,",
-                                    "France"))
-here <- geocode(.tbl = here, address = "address", quiet = TRUE) |>
-  st_as_sf(coords = c("long", "lat"), crs = 4326)
-here
+#| eval: true
+#| cache: true
 ```
 
 :::: 
@@ -823,36 +813,31 @@ tidygeocoder utilise l'API **[Nominatim](https://nominatim.org/)** pour géocode
 
 :::: {.column width="60%"}
 
-```{r}
+```{r maposm1}
 #| echo: true
 #| eval: false
-
 library(maposm)
 
 # Télécharger, combiner et simplifier les couches géographiques
-res <- om_get(x = c(st_coordinates(here)[1],
-                    st_coordinates(here)[2]),
-              r = 2000)
+pt <- st_coordinates(here)
+res <- om_get(x = c(pt[1], pt[2]), r = 2000)
 ```
 
-:::: 
+::::
 
 :::: {.column width="40%"}
 
-```{r}
-#| fig-width: 5
-#| fig-height: 5
-
-library(maposm)
-
-# Télécharger, combiner et simplifier les couches géographiques
-res <- om_get(x = c(st_coordinates(here)[1],
-                    st_coordinates(here)[2]),
-              r = 2000)
+```{r, ref.label='maposm1'}
+#| eval: true
+#| echo: false
 ```
+
+
 ::::
 
 :::
+
+
 
 ## Import de données OSM
 
@@ -863,16 +848,15 @@ res <- om_get(x = c(st_coordinates(here)[1],
 
 :::: {.column width="60%"}
 
-```{r}
+```{r maposm2}
 #| echo: true
 #| eval: false
 
 library(maposm)
 
 # Télécharger, combiner et simplifier les couches géographiques
-res <- om_get(x = c(st_coordinates(here)[1],
-                    st_coordinates(here)[2]),
-              r = 2000)
+pt <- st_coordinates(here)
+res <- om_get(x = c(pt[1], pt[2]), r = 2000, quiet = TRUE)
 
 # En faire la carte
 om_map(res, title = "A 2000 mètres d'ici")
@@ -883,14 +867,13 @@ mf_map(st_transform(here, 3857), add = TRUE)
 
 :::: {.column width="40%"}
 
-```{r}
+```{r, ref.label='maposm2'}
+#| echo: false
+#| eval: true
 #| fig-width: 5
 #| fig-height: 5
-
-# En faire la carte
-om_map(res, title = "A 2000 mètres d'ici")
-mf_map(st_transform(here, 3857), add = TRUE)
 ```
+
 ::::
 
 :::
@@ -903,8 +886,8 @@ mf_map(st_transform(here, 3857), add = TRUE)
 ::: columns
 
 :::: {.column width="60%"}
-</p>
-```{r}
+
+```{r osmdata}
 #| echo: true
 #| eval: false
 
@@ -929,7 +912,7 @@ thai <- restos[restos$cuisine %in% "thai",]
 
 # Résultat
 om_map(res, title = "A 2000 mètres d'ici")
-mf_map(st_transform(here, 3857), pch = 21, cex = 2.2, 
+mf_map(st_transform(here, 3857), pch = 22, cex = 2.2, 
        bg = "darkred", add = TRUE)
 mf_map(st_transform(thai, 3857), pch = 21, 
        cex = 2.2, bg = "black",  add = TRUE)
@@ -940,34 +923,11 @@ mf_label(st_transform(thai, 3857), var = "name", pos = 2)
 
 :::: {.column width="40%"}
 
-```{r}
+```{r, ref.label='osmdata'}
+#| echo: false
+#| eval: true
 #| fig-width: 5
 #| fig-height: 5
-
-# Extraire les restos thai
-library(osmdata)
-
-# Zone de recherche
-zone <- res$zone
-q <- opq(bbox = st_bbox(st_transform(res$zone, 4326)))
-
-# Construire la requête
-req <- add_osm_feature(opq = q, 
-                       key = 'amenity', 
-                       value = "restaurant")
-
-# L'exécuter
-output <- osmdata_sf(req)
-
-# Gestion des données et ajout à la carte
-restos <- output$osm_points
-thai <- restos[restos$cuisine %in% "thai",]
-
-# Résultat
-om_map(res, title = "A 2000 mètres d'ici")
-mf_map(st_transform(here, 3857), pch = 21, cex = 2.2, bg = "darkred", add = TRUE)
-mf_map(st_transform(thai, 3857), pch = 21, cex = 2.2, bg = "black",  add = TRUE)
-mf_label(st_transform(thai, 3857), var = "name", pos = 2)
 ```
 
 ::::
@@ -991,14 +951,12 @@ Pour des requêtes nombreuses ou volumineuses, préférez le package **[osmextra
 
 ## Calcul d'itinéraires
 
-**[osrm](https://github.com/riatelab/osrm)** (Giraud, 2024) de produire routes, isochrones et matrices de distance selon différents modes de transport (à pieds, vélo, voiture) à partir d'origines et de destinations
+**[osrm](https://github.com/riatelab/osrm)** (Giraud, 2022) permet de produire routes, isochrones et matrices de distances selon différents modes de transport (à pieds, vélo, voiture) à partir d'origines et de destinations
 
 ::: columns
 
 :::: {.column width="60%"}
-</p>
-
-```{r}
+```{r osrm}
 #| echo: true
 #| eval: false
 
@@ -1031,7 +989,7 @@ thai$lab_ped <- paste0(thai$name, "\n",
 # Cartographie
 om_map(res, title = "Trajets à pieds")
 mf_map(st_transform(ped, 3857), lwd = 5, col = "#238b45", add = TRUE)
-mf_map(st_transform(here, 3857), pch = 21, cex = 2.2, 
+mf_map(st_transform(here, 3857), pch = 22, cex = 2.2, 
        bg = "white", add = TRUE)
 mf_map(st_transform(thai, 3857), pch = 21, cex = 2.2, 
        bg = "#005a32",  add = TRUE)
@@ -1044,43 +1002,11 @@ mf_credits(txt = "Routing: OSRM - github.com/Project-OSRM/osrm-backend\n",
 
 :::: {.column width="40%"}
 
-```{r}
+```{r, ref.label='osrm'}
 #| fig-width: 5
 #| fig-height: 6
-
-library(osrm)
-
-# Extraire les coordonnées du point d'origine
-o <- data.frame(X = st_coordinates(here)[, 1],
-                Y = st_coordinates(here)[, 2])
-row.names(o) <- 1
-
-# Boucle pour créer les routes sur chacune des destinations
-ped <- list()
-
-for(i in 1:nrow(thai)){
-  ped[[i]] <- osrmRoute(src = o,
-                        dst = thai[i,],
-                        overview = "full",
-                        osrm.profile = 'foot')
-}
-ped <- do.call(rbind, ped)
-
-# Récupérer les temps et distances de trajet
-thai <- merge(thai, 
-              st_set_geometry(ped, NULL),
-              by.x = "osm_id", by.y = "dst")
-thai$lab_ped <- paste0(thai$name, "\n",
-                       round(thai$distance, 2), " km / ",
-                       round(thai$duration, 2), " mn")
-
-# Cartographie
-om_map(res, title = "Trajets à pieds")
-mf_map(st_transform(ped, 3857), lwd = 5, col = "#238b45", add = TRUE)
-mf_map(st_transform(here, 3857), pch = 21, cex = 2.2, bg = "white", add = TRUE)
-mf_map(st_transform(thai, 3857), pch = 21, cex = 2.2, bg = "#005a32",  add = TRUE)
-mf_label(st_transform(thai, 3857), var = "lab_ped", pos = 2)
-mf_credits(txt = "Routing: OSRM - github.com/Project-OSRM/osrm-backend\n", cex = .8)
+#| echo: false
+#| eval: true
 ```
 
 ::::
@@ -1102,9 +1028,7 @@ mf_credits(txt = "Routing: OSRM - github.com/Project-OSRM/osrm-backend\n", cex =
 
 :::: {.column width="60%"}
 
-</p>
-
-```{r}
+```{r valh}
 #| echo: true
 #| eval: false
 
@@ -1135,7 +1059,7 @@ thai$lab_bik <- paste0(thai$name, "\n",
 om_map(res, title = "Trajets en vélo")
 mf_map(st_transform(bik, 3857), lwd = 5, col = "#e31a1c", 
        add = TRUE)
-mf_map(st_transform(here, 3857), pch = 21, cex = 2.2, 
+mf_map(st_transform(here, 3857), pch = 22, cex = 2.2, 
        bg = "white", add = TRUE)
 mf_map(st_transform(thai, 3857), pch = 21, cex = 2.2, 
        bg = "#800026",  add = TRUE)
@@ -1148,41 +1072,13 @@ mf_credits("Routing: Valhalla - valhalla.github.io/valhalla\n",
 
 :::: {.column width="40%"}
 
-```{r}
+```{r, ref.label='valh'}
+#| echo: false
+#| eval: true
 #| fig-width: 5
 #| fig-height: 6
-
-library(valh)
-
-bik <- list()
-
-# Boucle des trajets en vélo en adaptant la vitesse max
-for(i in 1:nrow(thai)){
-  bik[[i]] <- vl_route(src = o,
-                       dst = thai[i,],
-                       costing = 'bicycle',
-                       costing_options = list(cycling_speed = 15))
-}
-bik <- do.call(rbind, bik)
-bik$dst <- thai$osm_id
-
-# Récupérer les temps et distances de trajet
-names(bik)[3:4] <- c("dur_bike", "dist_bike")
-thai <- merge(thai, 
-              st_set_geometry(bik, NULL),
-              by.x = "osm_id", by.y = "dst")
-thai$lab_bik <- paste0(thai$name, "\n",
-                       round(thai$dist_bike, 2), " km / ",
-                       round(thai$dur_bike , 2), " mn")
-
-# Cartographie
-om_map(res, title = "Trajets en vélo")
-mf_map(st_transform(bik, 3857), lwd = 5, col = "#e31a1c", add = TRUE)
-mf_map(st_transform(here, 3857), pch = 21, cex = 2.2, bg = "white", add = TRUE)
-mf_map(st_transform(thai, 3857), pch = 21, cex = 2.2, bg = "#800026",  add = TRUE)
-mf_label(st_transform(thai, 3857), var = "lab_bik", pos = 2)
-mf_credits("Routing: Valhalla - valhalla.github.io/valhalla\n", cex = .8)
 ```
+
 ::::
 
 :::
@@ -1208,7 +1104,7 @@ Cette [vignette](https://cran.r-project.org/web/packages/valh/vignettes/install-
 
 :::: {.column width="50%"}
 
-```{r}
+```{r leaf}
 #| eval: false
 #| echo: true
 
@@ -1224,7 +1120,8 @@ m <- leaflet(st_transform(zone, "EPSG:4326")) %>%
   addTiles() %>%
   addPolygons() %>%
   addMarkers(data = restos, 
-             popup = paste0("<b>", restos$name, "</b><br>",
+             popup = paste0("<b>", restos$name, 
+                            "</b><br>",
                             restos$cuisine))
 m
 ```
@@ -1233,40 +1130,28 @@ m
 
 :::: {.column width="50%"}
 
-```{r}
+```{r, ref.label='leaf'}
 #| fig-width: 5
 #| fig-height: 5
-
-# Tous les restos hors brasserie et cuisine française
-restos <- restos[!is.na(restos$cuisine) & 
-                   !restos$cuisine %in% c("brasserie", "french"),]
-
-library(leaflet)
-
-# Carte interactive
-m <- leaflet(st_transform(zone, "EPSG:4326")) %>%
-  addTiles() %>%
-  addPolygons() %>%
-  addMarkers(data = restos, 
-             popup = paste0("<b>", restos$name, "</b><br>",
-                            restos$cuisine))
-m
+#| eval: true
+#| echo: false
 ```
+
 ::::
  
 :::
 
 ## Cartographie interactive
 
-Les tuiles proposées par les packages R [leaflet](https://rstudio.github.io/leaflet/), [mapview](https://r-spatial.github.io/mapview/) ou [maptiles](https://github.com/riatelab/maptiles) reposent sur des fournisseurs de tuiles raster open source stylisées à différents niveaux de zoom, comme [Stamen](https://r-spatial.github.io/mapview/) ou [Thunderforest](https://www.thunderforest.com/), qui sont tirées d'OSM
+Les tuiles proposées par les packages R [leaflet](https://rstudio.github.io/leaflet/), [mapview](https://r-spatial.github.io/mapview/) ou [maptiles](https://github.com/riatelab/maptiles) reposent sur des fournisseurs de tuiles raster open source stylisées à différents niveaux de zoom, comme [Stadia](https://docs.stadiamaps.com/themes/) ou [Thunderforest](https://www.thunderforest.com/), qui sont tirées d'OSM
 
 <center>
 
 ::: columns
 
 :::: {.column width="45%" .medium}
-![](img/stamen.png)
-[Stamen Toner](https://maps.stamen.com/toner/#12/37.7706/-122.3782)
+![](img/alidade_smooth.png)
+[Stadia Aliade Smooth](https://docs.stadiamaps.com/map-styles/alidade-smooth/)
 
 ::::
 
