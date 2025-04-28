@@ -853,7 +853,6 @@ res <- om_get(x = here, r = 2000)
 library(maposm)
 
 # Télécharger, combiner et simplifier les couches géographiques
-pt <- st_coordinates(here)
 res <- om_get(x = here, r = 2000, quiet = TRUE)
 
 # En faire la carte
