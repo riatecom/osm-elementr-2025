@@ -771,11 +771,10 @@ library(tidygeocoder)
 library(sf)
 
 # Créer un dataframe avec les adresses
-here <- data.frame(address = paste0("5 Cours des Humanités,", 
-                                    "93300 Aubervilliers,",
-                                    "France"))
-here <- geocode(.tbl = here, address = "address", quiet = TRUE)|>
-  st_as_sf(coords = c("long", "lat"), crs = 4326)
+here <- geo(address = "5 Cours des Humanités, 93300 Aubervilliers, France", 
+            quiet = TRUE) |>
+  st_as_sf(coords = c("long", "lat"), crs = 4326)|>
+  st_transform("EPSG:2154")
 here
 ```
 
@@ -819,8 +818,7 @@ tidygeocoder utilise l'API **[Nominatim](https://nominatim.org/)** pour géocode
 library(maposm)
 
 # Télécharger, combiner et simplifier les couches géographiques
-pt <- st_coordinates(here)
-res <- om_get(x = c(pt[1], pt[2]), r = 2000)
+res <- om_get(x = here, r = 2000)
 ```
 
 ::::
@@ -856,11 +854,11 @@ library(maposm)
 
 # Télécharger, combiner et simplifier les couches géographiques
 pt <- st_coordinates(here)
-res <- om_get(x = c(pt[1], pt[2]), r = 2000, quiet = TRUE)
+res <- om_get(x = here, r = 2000, quiet = TRUE)
 
 # En faire la carte
 om_map(res, title = "A 2000 mètres d'ici")
-mf_map(st_transform(here, 3857), add = TRUE)
+mf_map(here, add = TRUE)
 ```
 
 :::: 
@@ -899,24 +897,22 @@ zone <- res$zone
 q <- opq(bbox = st_bbox(st_transform(res$zone, 4326)))
 
 # Construire la requête
-req <- add_osm_feature(opq = q, 
-                       key = 'amenity', 
-                       value = "restaurant")
+req <- add_osm_feature(opq = q, key = 'amenity', value = "restaurant")
 
 # L'exécuter
 output <- osmdata_sf(req)
 
 # Gestion des données et ajout à la carte
 restos <- output$osm_points
-thai <- restos[restos$cuisine %in% "thai",]
+thai <- restos[restos$cuisine %in% "thai",] |>
+     st_transform("EPSG:2154") |>
+     st_filter(res$zone)
 
 # Résultat
 om_map(res, title = "A 2000 mètres d'ici")
-mf_map(st_transform(here, 3857), pch = 22, cex = 2.2, 
-       bg = "darkred", add = TRUE)
-mf_map(st_transform(thai, 3857), pch = 21, 
-       cex = 2.2, bg = "black",  add = TRUE)
-mf_label(st_transform(thai, 3857), var = "name", pos = 2)
+mf_map(here, pch = 22, cex = 2.2, bg = "darkred", add = TRUE)
+mf_map(thai, pch = 21, cex = 2.2, bg = "black",  add = TRUE)
+mf_label(thai, var = "name", pos = c(3, 4, 2, 2, 4))
 ```
 
 ::::
@@ -961,17 +957,11 @@ Pour des requêtes nombreuses ou volumineuses, préférez le package **[osmextra
 #| eval: false
 
 library(osrm)
-
-# Extraire les coordonnées du point d'origine
-o <- data.frame(X = st_coordinates(here)[, 1],
-                Y = st_coordinates(here)[, 2])
-row.names(o) <- 1
-
 # Boucle pour créer les routes sur chacune des destinations
 ped <- list()
 
 for(i in 1:nrow(thai)){
-  ped[[i]] <- osrmRoute(src = o,
+  ped[[i]] <- osrmRoute(src = here,
                         dst = thai[i,],
                         overview = "full",
                         osrm.profile = 'foot')
@@ -988,12 +978,12 @@ thai$lab_ped <- paste0(thai$name, "\n",
 
 # Cartographie
 om_map(res, title = "Trajets à pieds")
-mf_map(st_transform(ped, 3857), lwd = 5, col = "#238b45", add = TRUE)
-mf_map(st_transform(here, 3857), pch = 22, cex = 2.2, 
+mf_map(ped, lwd = 5, col = "#238b45", add = TRUE)
+mf_map(here, pch = 22, cex = 2.2, 
        bg = "white", add = TRUE)
-mf_map(st_transform(thai, 3857), pch = 21, cex = 2.2, 
+mf_map(thai, pch = 21, cex = 2.2, 
        bg = "#005a32",  add = TRUE)
-mf_label(st_transform(thai, 3857), var = "lab_ped", pos = 2)
+mf_label(thai, var = "lab_ped", pos = c(2, 4, 4, 2, 4))
 mf_credits(txt = "Routing: OSRM - github.com/Project-OSRM/osrm-backend\n",
            cex = .8)
 ```
@@ -1038,7 +1028,7 @@ bik <- list()
 
 # Boucle des trajets en vélo en adaptant la vitesse max
 for(i in 1:nrow(thai)){
-  bik[[i]] <- vl_route(src = o,
+  bik[[i]] <- vl_route(src = here,
                        dst = thai[i,],
                        costing = 'bicycle',
                        costing_options = list(cycling_speed = 15))
@@ -1057,13 +1047,13 @@ thai$lab_bik <- paste0(thai$name, "\n",
 
 # Cartographie
 om_map(res, title = "Trajets en vélo")
-mf_map(st_transform(bik, 3857), lwd = 5, col = "#e31a1c", 
+mf_map(bik, lwd = 5, col = "#e31a1c", 
        add = TRUE)
-mf_map(st_transform(here, 3857), pch = 22, cex = 2.2, 
+mf_map(here, pch = 22, cex = 2.2, 
        bg = "white", add = TRUE)
-mf_map(st_transform(thai, 3857), pch = 21, cex = 2.2, 
+mf_map(thai, pch = 21, cex = 2.2, 
        bg = "#800026",  add = TRUE)
-mf_label(st_transform(thai, 3857), var = "lab_bik", pos = 2)
+mf_label(thai, var = "lab_bik", pos = c(2, 4, 4, 2, 4))
 mf_credits("Routing: Valhalla - valhalla.github.io/valhalla\n", 
            cex = .8)
 ```
