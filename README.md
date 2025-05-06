@@ -10,7 +10,7 @@
 
 ## Voir la présentation :book:
 
-La présentation est disponible en ligne à l'adresse suivante : (à compiler à la fin)
+La présentation est disponible en ligne à l'adresse suivante : [https://riatecom.github.io/osm-elementr-2025](https://riatecom.github.io/osm-elementr-2025)
 
 
 ## Compilation de la présentation :computer:
