@@ -53,6 +53,65 @@ editor_options:
 
 Une présentation à explorer ! N'hésitez pas à consulter les ressources associées à cette présentation ultérieurement. 
 
+## Jouer l'exercice pratique tout à l'heure...
+
+<center>
+
+Nécessite l'installation de plusieurs packages R... et une connexion internet 
+
+<br>
+
+::: columns
+
+:::: {.column width="48%"}
+
+**Packages pour interfacer des données OpenStreetMap**
+
+```{r}
+#| echo: true
+#| eval: false
+
+library(tidygeocoder) # géocodage
+library(maptiles) # import de tuiles OSM (raster)
+library(osmdata) # import de données OSM (vecteur)
+library(maposm) # import de données OSM (couches géo)
+library(osrm) # calcul d'itinéraires
+```
+
+:::: 
+
+:::: {.column width="4%"}
+::::
+
+:::: {.column width="48%"}
+
+**Packages pour manipuler des données spatiales et les cartographier**
+
+```{r}
+#| echo: true
+#| eval: false
+
+library(sf) # manipulation de données vectorielles
+library(terra) # manipulation de données raster
+library(mapsf) # cartographie thématique
+library(maplegend) # légendes
+library(spatstat) # analyse de semis de points
+library(stplanr) # segmenter des lignes
+library(mapview) # cartographie interactive
+library(lwgeom) # gestion géométrique des itinéraires
+library(mapiso) # vectoriser un raster
+```
+
+::::
+
+:::
+
+<br>
+
+**Instructions d'installation** : [https://github.com/riatecom/osm-elementr-2025-application](https://github.com/riatecom/osm-elementr-2025-application)
+
+</center>
+
 # Le projet OpenStreetMap 
 
 ##  Le projet OSM
