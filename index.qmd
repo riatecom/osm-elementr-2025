@@ -1572,7 +1572,7 @@ Accessibilité des territoires ruraux européens aux **petites et moyennes ville
 
 :::: {.column width="30%" .medium}
 
-- **512 million de couples origine - destination** : carreaux de grille kilométriques vers petites et moyennes villes dans un voisinage de 100 km
+- **512 million de couples origine - destination** : carreaux de grille kilométrique vers petites et moyennes villes dans un voisinage de 100 km
 
 - Mise en place d'un **serveur de routage** Europe entière (package *[osrm](https://github.com/riatelab/osrm)*), **parallélisation des calculs** (*[parallel](https://r-universe.dev/manuals/parallel.html)*), optimisation de **workflows** (*[targets](https://books.ropensci.org/targets/)*), création d'**indicateurs d'accessibilité**
 
